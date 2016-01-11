@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    /**
+     * 闭包
+     * 返回false
+     * 函数返回值变成20
+     * @type {number}
+     */
+    var num = 10;
+    function addNum(myNum){
+        return num + myNum;
+    }
+    num = 15;
+    console.log( addNum(5) == 15, "Add two numbers together, one from a closure." );
+
+    /**
+     *
+     * @type {number}
+     */
+    var a = 5;
+    function runMe(a){
+        console.log( a == 6, "Check the value of a." );
+
+        function innerRun(){
+            console.log( b == 7, "Check the value of b." );
+            console.log( c == null, "Check the value of c." );
+        }
+
+        var b = 7;
+        innerRun();
+        var c = 8;
+    }
+    runMe(6);
+    /**
+     * 定时器到时，d的值已经累加三次，为3
+     * This one is quite tricky, we'll revisit it.
+     */
+    for ( var d = 0; d < 3; d++ ) {
+        setTimeout(function(){
+            console.log( d == 3, "Check the value of d." );
+        }, 100);
+    }
+</script>
+<body>
+
+</body>
+</html>

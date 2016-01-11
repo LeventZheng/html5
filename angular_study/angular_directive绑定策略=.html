@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>-->
+    <script type="text/javascript" src="angular.js"></script>
+</head>
+<body>
+    <div ng-app="MyModule" ng-controller="myCtrl">
+        <div>
+            <p>ng-model</p>
+            <input type="text" ng-model="ctrlFlavor" />
+        </div>
+        <div>
+            <p>directive</p>
+            <drink flavor=ctrlFlavor></drink>
+        </div>
+    </div>
+
+    <script>
+        var myModule = angular.module('MyModule',[]);
+        myModule.controller('myCtrl',function($scope){
+            $scope.ctrlFlavor = "百威";
+        });
+        myModule.directive('drink',function(){
+            return{
+                restrict:"AE",
+                template:"<input type=text ng-model=flavor />",
+                scope:{
+                    flavor:'='
+                }
+            }
+        });
+    </script>
+</body>
+</html>

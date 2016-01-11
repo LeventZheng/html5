@@ -1,0 +1,218 @@
+/*******************************************************************************
+ * @cssname:page.js
+ * @author:leventZheng
+ * @date:2015-11-23
+ * @use:flash 限时联盟抢购门店端
+ ******************************************************************************/
+@charset "utf-8";
+@import "compass/css3";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {font-family: Arial, "\5b8b\4f53", sans-serif;font-size: 16px;}
+/***************************** 个性化样式 ********************************/
+/* 变量 */
+$pink:#ff597a;$pink-rich:#ff2d56;$blue:#4a60b3;$grey:#ccc;$white:#fff;$black:#000;
+$color-font1:#000;/*主要字体颜色*/$color-font2:#606366;/*深灰色*/$color-font3:#b1b2ad;/*淡灰色*/
+$color-font8:#ff7632;/*橙色*/$color-font9:#fff100;/*金黄色*/
+$color-button1:$pink;/*粉色*/$color-button2:#d5d5d5;/*灰色*/
+$border:1px solid #ddd;
+$color-url:#2293ea;/*超链接颜色*/$color-url1:#ff8400;/*超链接激活后*/
+
+/***************************** 通用样式 ********************************/
+.f-c1{ color: $color-font1 !important;}.f-c2{ color: $color-font2 !important;/*二级颜色*/}.f-c3{ color: $color-font3 !important;/*三级颜色*/}
+.f-c7 { color: $blue;}.f-c8 { color: $color-font8 !important;/*收货人颜色*/}.f-c9 { color: $color-font9 !important;/*支付金额颜色*/}
+.c-pink {color: $pink;}
+.bg-white{background-color: $white;}.bg-pink{background-color: $pink;}.bg-grey{ background-color: $grey}
+a{
+  text-decoration: none;outline:none;
+  &:link {color:#333;}
+  &:visited {color:#333;}
+  &:hover {color:#c00;text-decoration:underline;}
+  &:active{blr:expression(this.onFocus=this.blur())}
+  &:focus {outline:none;-moz-outline:none;}
+}
+a,.url {
+  color:$color-url !important; text-decoration:none;
+  &:visited { color:$color-url !important;}
+  &:hover, &:active, &:focus { color:$color-url1 !important; text-decoration:underline;}
+}
+.border { border: $border;}.border-top { border-top: $border;}.border-bottom{ border-bottom: $border;}.border-left{ border-left: $border;}
+/* 实心按钮 */
+%_button { height: 40px; line-height: 40px; text-align: center; font-size: 14px; @include border-radius(1px);}
+%_button1 { width: 100%; height: 50px; line-height: 50px; border-radius: 3px; color: white; font-size: 20px; text-align: center;}
+.button { background: $color-button1; @extend %_button; color: white;/* 粉色按钮 */}
+.button-disabled { background: $color-button2; @extend %_button; color: white;/* 灰色按钮 */}
+.button1 { background:-webkit-gradient(linear, 0% 100%, 100% 0%,from(#fe777b), to(#f68156)); @extend %_button1;/* 我的拼团按钮 */}
+.button2 { background:-webkit-gradient(linear, 0% 100%, 100% 0%,from(#007ffc), to(#00b9fc)); @extend %_button1;/* 订单列表按钮 */}
+.button3 { background-color: #fff9c9; @extend %_button; color:#af956b;}/* 查看订单 */
+
+.mt-3{ margin-top: -3px;}.mt-20{ margin-top:-20px;}.ml90{ margin-left: 90px;}
+.pt80{ padding-top: 80px;}.pt100{ padding-top: 100px;}
+.htc80{ height: 80px; line-height: 80px;}
+/********************** 拼团首页 *****************************/
+.ng-eeeeee{background-color:#eeeeee;}
+.btn {
+  font-family: '\5FAE\8F6F\96C5\9ED1';
+  display: inline-block;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 36px;
+  height: 36px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+}
+
+.btn-primary {
+  color: #fff;
+  border: 1px solid #f27022;
+  background-image: -webkit-linear-gradient(top,#fda16a 0,#f27022 100%);
+  background-image: linear-gradient(to bottom,#fda16a 0,#f27022 100%);
+  background-repeat: repeat-x;
+}
+
+.titleBar {
+  width: 100%;
+  font-size: 14px;
+  background: #f2f2f2;
+  box-sizing: border-box;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+}
+
+.iconArea-blue { background-color: #52aaef; width: 10px;  height: 30px; @include border-radius(3px);}
+.iconArea-orange {  background-color: #f6822b;  width: 10px;  height: 30px; @include border-radius(3px);}
+.iconArea-red {  background-color: #f53155;  width: 10px;  height: 30px; @include border-radius(3px);}
+.loudSpeaker { background:url("../images/loudSpeaker.png") no-repeat; background-size: 30px;  width: 30px; height: 30px;}
+.devide{width: 100%; background-color: #e8e8e8; height: 10px;}
+
+.prdName{line-height: 1.25;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;text-overflow: ellipsis;display:-webkit-box; -webkit-box-pack: center;}
+.pgName{line-height: 1.25;overflow:hidden;-webkit-line-clamp: 1;-webkit-box-orient: vertical;text-overflow: ellipsis;display:-webkit-box; -webkit-box-pack: center;}
+/***********商品详情************/
+.detail_price_par{ background: #fff9e7; width: 100%; height: 30px;z-index: -2;}
+.gp_price_column{ background: #ff496d; width: 100%;height: 20px; line-height: 20px; font-size: 14px; @include border-radius(1px);color: white; text-align: center;}
+.bg-e8e8e8{background: #e8e8e8;}
+.button_confirm_goods{height: 40px; line-height: 40px; text-align: center; font-size: 18px; background: #4a60b3; @include border-radius(1px); color: white;}
+.percent{ margin-left: -30px;}
+.gp_success{position: absolute; top: 0; right: 0; background:url("../images/gp_success.png") no-repeat; background-size: 65px 65px; height: 65px; width: 65px;}
+.gp_success_corner{ top: 0; right: -5px; z-index: -1; position: absolute;  background:url("../images/gp_success.png") 0 -7px no-repeat; background-size: 65px 65px; height: 58px; width: 58px;}
+.selectSkuColumn{max-height: 200px;height: 400px; overflow-y: auto; overflow-x: hidden; margin-top: 20px;}
+#imageText img{margin:0; padding:0; border: none;width: 100%;}
+/***********立即拼团************/
+.agree{background: url("../images/join/agree.png") center center no-repeat; height: 38px; width: 38px;}
+/***********供货商详情************/
+.c-ecb22a{color: #ecb22a;}
+.close{background:url("../images/close.png") no-repeat; height: 15px; width: 15px;}
+/***********支付方式************/
+.unselect{background: url("../images/unselect.png") center center no-repeat; height: 36px; width: 36px;}
+.select{background: url("../images/select.png") center center no-repeat; height: 36px; width: 36px;}
+.bg-size60p{background-size: 60%!important;}
+.bg-size75p{background-size: 75%;}
+.bg-size25p{background-size: 25%;}
+.bg-size20p{background-size: 20%;}
+.bottom_column{height: 60px; position: fixed; bottom: 0;}
+/***************支付成功*************/
+.bg_payment{background: url("../images/bg_payment.png") no-repeat;width: 100%; height: 270px;}
+.payment_title{font-style: "黑体"; font-size: 32px;}
+/***********管理收货地址************/
+.edit{background: url("../images/edit.png") center center no-repeat; height: 28px; width: 28px;}
+.delete{background: url("../images/delete.png") center center no-repeat; height: 28px; width: 28px;}
+#province{margin-left: -5px;}
+/***********发票信息************/
+.box_unselect{ width: 105px; height: 35px; line-height: 35px; border: 1px solid #999; text-align: center; color: #999;}
+.box_select{ width: 105px; height: 35px; line-height: 35px; background: url("../images/invoice_select.png") no-repeat 5px 10px; border: 1px solid #f00; text-align: center; color: #f00;}
+.form-control {
+  display: inline-block;
+  width: auto;
+  padding: 0 6px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control.form-control-lg {
+  line-height: 48px;
+  height: 48px;
+  font-size: 18px;
+}
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+.form-control.error {
+  border-color: #a94442;
+}
+
+/************************* 其他页面 ******************************/
+.bg-fff{background-color: #fff;}
+.bg-524B62{background-color: #524B62;}
+.fc-yellow{color: #FFF04E;}
+.fc-fff{color: #fff;}
+.f-db{display: block !important;}
+.grey-dot { border-radius: 50%;background-color: #EBECEE;width: 16px;height: 16px;left:-48px;top:13px;}
+.blue-dot{left:-50px;top:12px;}
+.blue-dot-inner {border-radius: 50%;background-color:#324AFF;width: 20px;height: 20px;}
+.blue-dot-outer {border-radius: 50%;background-color: #5D32FF;opacity: 0.302;width: 30px;height: 30px;left:-5px;top:-5px;}
+.po-f{position: fixed;}
+.bottom0{bottom: 0;}
+.border-box{box-sizing: border-box;}
+.bg-arrow{background: url("../images/main/pointer_right.png") no-repeat right center;background-size:8px 12px; }
+.line-d5{width: 100%;border-bottom: 1px solid #ddd;transform: scale(1,0.5);-webkit-transform: scale(1,0.5); -moz-transform:scale(1,0.5);-o-transform:scale(1,0.5);}
+.btn_dark{border-radius: 2px;border: 1px solid #655f5f;color:#655f5f;display: inline-block;}
+.btn_red{border-radius: 2px;border: 1px solid #ff0000;color:#ff0000;display: inline-block;}
+.bolder_grey{border: 1px solid #d9d9d9;color:#d9d9d9;}
+.lh-1{line-height: 1;}
+.lh-1d5{line-height: 1.5;}
+.alert-box{position: fixed;box-sizing:border-box;width: 80%;top:30%;left:10%; text-align: center;border-radius:5px;background-color: #FFF;z-index: 9999;}
+.btn_grey{background-color: #d9d9d9;border-radius: 3px;}
+.btn_bg_red{background-color: #FB3159;border-radius: 3px;}
+.prdName{line-height: 1.25;overflow:hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;text-overflow: ellipsis;display:-webkit-box; -webkit-box-pack: center;}
+.toggle{background-color: #f6f6f6;color:#cdcdca;}
+.flipy {transform: rotateX(180deg); -moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+.noOrder{padding-top:30%;text-align: center;}
+.noOrder>img{width: 122px;height: 122px;}
+.btn_go_index {border: 1px solid #b1b2ad; border-radius: 4px; color: #b1b2ad;}
+
+/*字体颜色*/
+.fc-23272b{color: #23272b;}/*商品名称*/
+.fc-606366{color: #606366;}
+

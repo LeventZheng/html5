@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>-->
+    <script type="text/javascript" src="angular.js"></script>
+</head>
+<body>
+    <div ng-app="MyModule" ng-controller="myCtrl">
+        <drink flavors={{ctrlFlavor}}></drink>//此时指令中的flavors==$scope.ctrlFlavor,这是@绑定
+    </div>
+
+    <script>
+        var myModule = angular.module('MyModule',[]);
+        myModule.controller('myCtrl',function($scope){
+            $scope.ctrlFlavor = "百威s";
+        });
+        myModule.directive('drink',function(){
+            return{
+                restrict:"AE",
+                template:"<div>{{flavors}}</div>",//$.flavors,此时还没有值
+                scope:{
+                    flavors:'@'//让指令中的flavors==$scope.flavors,而已知flavors==$scope.ctrlFlavor,所以$scope.flavor==$scope.ctrlFlavor
+                    //@绑定只绑定String,属于单向绑定
+                }
+            }
+        });
+    </script>
+</body>
+</html>

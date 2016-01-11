@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript" src="artDialog.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    });
+    function artdialog(){
+//            art.dialog('artDialog崇尚：简单、强大、优雅', function(){alert('yes');});
+        art.dialog({ content: '欢迎使用artDialog对话框组件！', skin: 'aero', icon: 'succeed', follow: 'btn2', yesFn: function(){ this.follow('btn1').time(2); return false; }});
+    }
+</script>
+<body>
+    <div>
+        <input type="button" value="show" onclick="artdialog()"/>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+
+    <title>无标题文档</title>
+    <script>
+        $(document).ready(function(){
+            $("select").click(function(){
+                var selectinput=this.parentNode;
+                var selectinput_input=$(selectinput).children("input");
+                var selectinput_select=$(selectinput).children("select");
+                selectinput_input.attr("value",selectinput_select.val());
+            });
+        });
+    </script>
+</head>
+<style>
+    .selectinput{
+        height:25px;
+        line-height:25px;
+        vertical-align:middle;
+        width: 200px;
+        overflow: hidden;
+        background: url(down_arrow_select.png) no-repeat right #FFFFFF;
+    }
+
+    .selectinput_select{
+        height:25px;
+        width:100%;
+        margin:0;
+        padding:0;
+        font:"宋体" 14px;
+        background: transparent;
+        -webkit-appearance: none;
+    }
+
+    .selectinput_input{
+        position:relative;
+        margin:0;
+        padding:0;
+        top:-23px;
+        left:1px;
+        height:20px;
+        line-height: 20px;
+        border:none;
+        width:20%;
+        font:"宋体" 14px;
+    }
+
+</style>
+
+<body>
+<div class='selectinput' id="test3">
+    <select  size='1' class="selectinput_select"  >
+        <option value="test1">test1</option>
+        <option value="test2">test2</option>
+        <option value="test3">test3</option>
+    </select>
+    <input type='text'  class="selectinput_input"/>
+</div>
+</body>
+</html>

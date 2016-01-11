@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>-->
+    <script type="text/javascript" src="angular.js"></script>
+</head>
+<body>
+    <div ng-app="MyModule" ng-controller="myCtrl">
+        <drink flavorrrrrr="{{ctrlFlavor}}"></drink>
+    </div>
+
+    <script>
+        var myModule = angular.module('MyModule',[]);
+        myModule.controller('myCtrl',function($scope){
+            $scope.ctrlFlavor = "百威123";
+        });
+        myModule.directive('drink',function(){
+            return{
+                restrict:"AE",
+                template:"<div>{{flavor}}</div>",
+                link:function(scope,element,attrs){
+                    scope.flavor = attrs.flavorrrrrr;//把属性中的flavor作为桥梁，让$scope.flavor==$scope.ctrlFlavor
+                    //当指令与$scope中的值同名时，可以用@绑定替代
+                }
+            }
+        });
+    </script>
+</body>
+</html>

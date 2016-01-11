@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript">
+    function merge(root){
+        for ( var i = 1; i < arguments.length; i++ )
+            for ( var key in arguments[i] )
+//                console.log(key);
+                root[key] = arguments[i][key];
+        return root;
+    }
+
+    var merged = merge({name: "John"}, {city: "Boston"});
+//    console.log(merged);
+//    console.log( merged.name == "John", "The original name is intact." );
+//    console.log( merged.city == "Boston", "And the city has been copied over." );
+    /**
+     * root接收到的是第一个参数，即{name:"John"}
+     * arguments能够接收全部参数
+     */
+</script>
+<script>
+    function fn(){
+        this.aa = "obj1";
+        this.bb = "obj2";
+    }
+    var json = {"aa":"json1","bb":"json2"};
+    var obj = new fn();
+    var radio = document.getElementById("radio");
+    console.log("-------------json----------------");
+    for(var key in json){
+        console.log(key+"--"+json[key]);
+    }
+
+    console.log("-------------new obj----------------");
+    for(key in obj){
+        console.log(key+"--"+obj[key]);
+    }
+    console.log("-------------document----------------");
+    for(key in radio){
+        console.log(key+"--"+radio[key]);
+    }
+    /**
+     * 从上面例子中可以看出：
+     1、 for in 可以遍历自己定义的json对象 ，和自己new的函数对象。
+     2、for in 不能遍历页面节点对象，但是把radio换成遍历document不会报错。
+     3、不建议用for in来遍历节点对象，因为不是所有节点对象属性都支持in运算符的访问。
+     */
+</script>
+<body>
+<input type="radio" id="radio"/>
+</body>
+</html>

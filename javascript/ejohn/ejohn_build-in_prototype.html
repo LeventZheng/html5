@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    /**
+     * Beware: Extending prototypes can be dangerous.
+     * obj.keys() == ["a","b","c","keys"]
+     * @returns {Array}
+     */
+    Object.prototype.keys = function(){
+        var keys = [];
+        for ( var i in this )
+            keys.push( i );
+        return keys;
+    };
+
+    var obj = { a: 1, b: 2, c: 3 };
+
+    console.log( obj.keys().length == 3, "We should only have 3 properties." );
+
+    delete Object.prototype.keys;
+</script>
+<body>
+
+</body>
+</html>

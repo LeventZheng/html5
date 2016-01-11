@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+<style>
+    body,.inputColumn,.buttonColumn{width: 100%;}
+    input{width: 95%;}
+    .fl{float: left}
+    .fr{float: right}
+    .mt50{margin-top: 50px;}
+    .content{width: 45%;margin: 50px auto 0 auto;}
+    .btnBg{ background:url(img/btnBg.png) no-repeat; text-align:center; color:#fff; width:262px; height:46px; line-height:46px; border:none; font-size:18px;font-family:inherit;}
+</style>
+<body>
+<div class="content">
+    <div class="fl">
+        <select name="taxPayerType" id="taxPayerType" class="taxType">
+            <option selected value="1">一般纳税人</option>
+            <option value="2">小规模纳税人</option>
+        </select>
+    </div>
+    <div class="fr">
+        <div class="inputColumn">
+            <input type="text" id="name" placeholder="请输入名称">
+        </div>
+        <div class="buttonColumn">
+            <button class="btnBg" id="companyInfoCompleteBtn">确定</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

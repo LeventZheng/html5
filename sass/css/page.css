@@ -1,0 +1,811 @@
+@charset "UTF-8";
+/*******************************************************************************
+ * @cssname:page.js
+ * @author:leventZheng
+ * @date:2015-11-23
+ * @use:flash 限时联盟抢购门店端
+ ******************************************************************************/
+/* line 10, ../sass/page.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  font-family: Arial, "\5b8b\4f53", sans-serif;
+  font-size: 16px;
+}
+
+/***************************** 个性化样式 ********************************/
+/* 变量 */
+/*主要字体颜色*/
+/*深灰色*/
+/*淡灰色*/
+/*橙色*/
+/*金黄色*/
+/*粉色*/
+/*灰色*/
+/*超链接颜色*/
+/*超链接激活后*/
+/***************************** 通用样式 ********************************/
+/* line 33, ../sass/page.scss */
+.f-c1 {
+  color: #000 !important;
+}
+
+/* line 33, ../sass/page.scss */
+.f-c2 {
+  color: #606366 !important;
+  /*二级颜色*/
+}
+
+/* line 33, ../sass/page.scss */
+.f-c3 {
+  color: #b1b2ad !important;
+  /*三级颜色*/
+}
+
+/* line 34, ../sass/page.scss */
+.f-c7 {
+  color: #4a60b3;
+}
+
+/* line 34, ../sass/page.scss */
+.f-c8 {
+  color: #ff7632 !important;
+  /*收货人颜色*/
+}
+
+/* line 34, ../sass/page.scss */
+.f-c9 {
+  color: #fff100 !important;
+  /*支付金额颜色*/
+}
+
+/* line 35, ../sass/page.scss */
+.c-pink {
+  color: #ff597a;
+}
+
+/* line 36, ../sass/page.scss */
+.bg-white {
+  background-color: #fff;
+}
+
+/* line 36, ../sass/page.scss */
+.bg-pink {
+  background-color: #ff597a;
+}
+
+/* line 36, ../sass/page.scss */
+.bg-grey {
+  background-color: #ccc;
+}
+
+/* line 37, ../sass/page.scss */
+a {
+  text-decoration: none;
+  outline: none;
+}
+/* line 39, ../sass/page.scss */
+a:link {
+  color: #333;
+}
+/* line 40, ../sass/page.scss */
+a:visited {
+  color: #333;
+}
+/* line 41, ../sass/page.scss */
+a:hover {
+  color: #c00;
+  text-decoration: underline;
+}
+/* line 42, ../sass/page.scss */
+a:active {
+  blr: expression(this.onFocus=this.blur());
+}
+/* line 43, ../sass/page.scss */
+a:focus {
+  outline: none;
+  -moz-outline: none;
+}
+
+/* line 45, ../sass/page.scss */
+a, .url {
+  color: #2293ea !important;
+  text-decoration: none;
+}
+/* line 47, ../sass/page.scss */
+a:visited, .url:visited {
+  color: #2293ea !important;
+}
+/* line 48, ../sass/page.scss */
+a:hover, a:active, a:focus, .url:hover, .url:active, .url:focus {
+  color: #ff8400 !important;
+  text-decoration: underline;
+}
+
+/* line 50, ../sass/page.scss */
+.border {
+  border: 1px solid #ddd;
+}
+
+/* line 50, ../sass/page.scss */
+.border-top {
+  border-top: 1px solid #ddd;
+}
+
+/* line 50, ../sass/page.scss */
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 50, ../sass/page.scss */
+.border-left {
+  border-left: 1px solid #ddd;
+}
+
+/* 实心按钮 */
+/* line 52, ../sass/page.scss */
+.button, .button-disabled, .button3 {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 14px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+}
+
+/* line 53, ../sass/page.scss */
+.button1, .button2 {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* line 54, ../sass/page.scss */
+.button {
+  background: #ff597a;
+  color: white;
+  /* 粉色按钮 */
+}
+
+/* line 55, ../sass/page.scss */
+.button-disabled {
+  background: #d5d5d5;
+  color: white;
+  /* 灰色按钮 */
+}
+
+/* line 56, ../sass/page.scss */
+.button1 {
+  background: -webkit-gradient(linear, 0% 100%, 100% 0%, from(#fe777b), to(#f68156));
+  /* 我的拼团按钮 */
+}
+
+/* line 57, ../sass/page.scss */
+.button2 {
+  background: -webkit-gradient(linear, 0% 100%, 100% 0%, from(#007ffc), to(#00b9fc));
+  /* 订单列表按钮 */
+}
+
+/* line 58, ../sass/page.scss */
+.button3 {
+  background-color: #fff9c9;
+  color: #af956b;
+}
+
+/* 查看订单 */
+/* line 60, ../sass/page.scss */
+.mt-3 {
+  margin-top: -3px;
+}
+
+/* line 60, ../sass/page.scss */
+.mt-20 {
+  margin-top: -20px;
+}
+
+/* line 60, ../sass/page.scss */
+.ml90 {
+  margin-left: 90px;
+}
+
+/* line 61, ../sass/page.scss */
+.pt80 {
+  padding-top: 80px;
+}
+
+/* line 61, ../sass/page.scss */
+.pt100 {
+  padding-top: 100px;
+}
+
+/* line 62, ../sass/page.scss */
+.htc80 {
+  height: 80px;
+  line-height: 80px;
+}
+
+/********************** 拼团首页 *****************************/
+/* line 64, ../sass/page.scss */
+.ng-eeeeee {
+  background-color: #eeeeee;
+}
+
+/* line 65, ../sass/page.scss */
+.btn {
+  font-family: '\5FAE\8F6F\96C5\9ED1';
+  display: inline-block;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 36px;
+  height: 36px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-image: -webkit-linear-gradient(top, #fff 0, #e0e0e0 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e0e0e0));
+  background-image: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+}
+
+/* line 92, ../sass/page.scss */
+.btn-primary {
+  color: #fff;
+  border: 1px solid #f27022;
+  background-image: -webkit-linear-gradient(top, #fda16a 0, #f27022 100%);
+  background-image: linear-gradient(to bottom, #fda16a 0%, #f27022 100%);
+  background-repeat: repeat-x;
+}
+
+/* line 100, ../sass/page.scss */
+.titleBar {
+  width: 100%;
+  font-size: 14px;
+  background: #f2f2f2;
+  box-sizing: border-box;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+}
+
+/* line 111, ../sass/page.scss */
+.iconArea-blue {
+  background-color: #52aaef;
+  width: 10px;
+  height: 30px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 112, ../sass/page.scss */
+.iconArea-orange {
+  background-color: #f6822b;
+  width: 10px;
+  height: 30px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 113, ../sass/page.scss */
+.iconArea-red {
+  background-color: #f53155;
+  width: 10px;
+  height: 30px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 114, ../sass/page.scss */
+.loudSpeaker {
+  background: url("../images/loudSpeaker.png") no-repeat;
+  background-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+/* line 115, ../sass/page.scss */
+.devide {
+  width: 100%;
+  background-color: #e8e8e8;
+  height: 10px;
+}
+
+/* line 117, ../sass/page.scss */
+.prdName {
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+}
+
+/* line 118, ../sass/page.scss */
+.pgName {
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+}
+
+/***********商品详情************/
+/* line 120, ../sass/page.scss */
+.detail_price_par {
+  background: #fff9e7;
+  width: 100%;
+  height: 30px;
+  z-index: -2;
+}
+
+/* line 121, ../sass/page.scss */
+.gp_price_column {
+  background: #ff496d;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  color: white;
+  text-align: center;
+}
+
+/* line 122, ../sass/page.scss */
+.bg-e8e8e8 {
+  background: #e8e8e8;
+}
+
+/* line 123, ../sass/page.scss */
+.button_confirm_goods {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  background: #4a60b3;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  color: white;
+}
+
+/* line 124, ../sass/page.scss */
+.percent {
+  margin-left: -30px;
+}
+
+/* line 125, ../sass/page.scss */
+.gp_success {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("../images/gp_success.png") no-repeat;
+  background-size: 65px 65px;
+  height: 65px;
+  width: 65px;
+}
+
+/* line 126, ../sass/page.scss */
+.gp_success_corner {
+  top: 0;
+  right: -5px;
+  z-index: -1;
+  position: absolute;
+  background: url("../images/gp_success.png") 0 -7px no-repeat;
+  background-size: 65px 65px;
+  height: 58px;
+  width: 58px;
+}
+
+/* line 127, ../sass/page.scss */
+.selectSkuColumn {
+  max-height: 200px;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 20px;
+}
+
+/* line 128, ../sass/page.scss */
+#imageText img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+}
+
+/***********立即拼团************/
+/* line 130, ../sass/page.scss */
+.agree {
+  background: url("../images/join/agree.png") center center no-repeat;
+  height: 38px;
+  width: 38px;
+}
+
+/***********供货商详情************/
+/* line 132, ../sass/page.scss */
+.c-ecb22a {
+  color: #ecb22a;
+}
+
+/* line 133, ../sass/page.scss */
+.close {
+  background: url("../images/close.png") no-repeat;
+  height: 15px;
+  width: 15px;
+}
+
+/***********支付方式************/
+/* line 135, ../sass/page.scss */
+.unselect {
+  background: url("../images/unselect.png") center center no-repeat;
+  height: 36px;
+  width: 36px;
+}
+
+/* line 136, ../sass/page.scss */
+.select {
+  background: url("../images/select.png") center center no-repeat;
+  height: 36px;
+  width: 36px;
+}
+
+/* line 137, ../sass/page.scss */
+.bg-size60p {
+  background-size: 60% !important;
+}
+
+/* line 138, ../sass/page.scss */
+.bg-size75p {
+  background-size: 75%;
+}
+
+/* line 139, ../sass/page.scss */
+.bg-size25p {
+  background-size: 25%;
+}
+
+/* line 140, ../sass/page.scss */
+.bg-size20p {
+  background-size: 20%;
+}
+
+/* line 141, ../sass/page.scss */
+.bottom_column {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+}
+
+/***************支付成功*************/
+/* line 143, ../sass/page.scss */
+.bg_payment {
+  background: url("../images/bg_payment.png") no-repeat;
+  width: 100%;
+  height: 270px;
+}
+
+/* line 144, ../sass/page.scss */
+.payment_title {
+  font-style: "黑体";
+  font-size: 32px;
+}
+
+/***********管理收货地址************/
+/* line 146, ../sass/page.scss */
+.edit {
+  background: url("../images/edit.png") center center no-repeat;
+  height: 28px;
+  width: 28px;
+}
+
+/* line 147, ../sass/page.scss */
+.delete {
+  background: url("../images/delete.png") center center no-repeat;
+  height: 28px;
+  width: 28px;
+}
+
+/* line 148, ../sass/page.scss */
+#province {
+  margin-left: -5px;
+}
+
+/***********发票信息************/
+/* line 150, ../sass/page.scss */
+.box_unselect {
+  width: 105px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #999;
+  text-align: center;
+  color: #999;
+}
+
+/* line 151, ../sass/page.scss */
+.box_select {
+  width: 105px;
+  height: 35px;
+  line-height: 35px;
+  background: url("../images/invoice_select.png") no-repeat 5px 10px;
+  border: 1px solid #f00;
+  text-align: center;
+  color: #f00;
+}
+
+/* line 152, ../sass/page.scss */
+.form-control {
+  display: inline-block;
+  width: auto;
+  padding: 0 6px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/* line 170, ../sass/page.scss */
+.form-control.form-control-lg {
+  line-height: 48px;
+  height: 48px;
+  font-size: 18px;
+}
+
+/* line 175, ../sass/page.scss */
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* line 181, ../sass/page.scss */
+.form-control.error {
+  border-color: #a94442;
+}
+
+/************************* 其他页面 ******************************/
+/* line 186, ../sass/page.scss */
+.bg-fff {
+  background-color: #fff;
+}
+
+/* line 187, ../sass/page.scss */
+.bg-524B62 {
+  background-color: #524B62;
+}
+
+/* line 188, ../sass/page.scss */
+.fc-yellow {
+  color: #FFF04E;
+}
+
+/* line 189, ../sass/page.scss */
+.fc-fff {
+  color: #fff;
+}
+
+/* line 190, ../sass/page.scss */
+.f-db {
+  display: block !important;
+}
+
+/* line 191, ../sass/page.scss */
+.grey-dot {
+  border-radius: 50%;
+  background-color: #EBECEE;
+  width: 16px;
+  height: 16px;
+  left: -48px;
+  top: 13px;
+}
+
+/* line 192, ../sass/page.scss */
+.blue-dot {
+  left: -50px;
+  top: 12px;
+}
+
+/* line 193, ../sass/page.scss */
+.blue-dot-inner {
+  border-radius: 50%;
+  background-color: #324AFF;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 194, ../sass/page.scss */
+.blue-dot-outer {
+  border-radius: 50%;
+  background-color: #5D32FF;
+  opacity: 0.302;
+  width: 30px;
+  height: 30px;
+  left: -5px;
+  top: -5px;
+}
+
+/* line 195, ../sass/page.scss */
+.po-f {
+  position: fixed;
+}
+
+/* line 196, ../sass/page.scss */
+.bottom0 {
+  bottom: 0;
+}
+
+/* line 197, ../sass/page.scss */
+.border-box {
+  box-sizing: border-box;
+}
+
+/* line 198, ../sass/page.scss */
+.bg-arrow {
+  background: url("../images/main/pointer_right.png") no-repeat right center;
+  background-size: 8px 12px;
+}
+
+/* line 199, ../sass/page.scss */
+.line-d5 {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  transform: scale(1, 0.5);
+  -webkit-transform: scale(1, 0.5);
+  -moz-transform: scale(1, 0.5);
+  -o-transform: scale(1, 0.5);
+}
+
+/* line 200, ../sass/page.scss */
+.btn_dark {
+  border-radius: 2px;
+  border: 1px solid #655f5f;
+  color: #655f5f;
+  display: inline-block;
+}
+
+/* line 201, ../sass/page.scss */
+.btn_red {
+  border-radius: 2px;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  display: inline-block;
+}
+
+/* line 202, ../sass/page.scss */
+.bolder_grey {
+  border: 1px solid #d9d9d9;
+  color: #d9d9d9;
+}
+
+/* line 203, ../sass/page.scss */
+.lh-1 {
+  line-height: 1;
+}
+
+/* line 204, ../sass/page.scss */
+.lh-1d5 {
+  line-height: 1.5;
+}
+
+/* line 205, ../sass/page.scss */
+.alert-box {
+  position: fixed;
+  box-sizing: border-box;
+  width: 80%;
+  top: 30%;
+  left: 10%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #FFF;
+  z-index: 9999;
+}
+
+/* line 206, ../sass/page.scss */
+.btn_grey {
+  background-color: #d9d9d9;
+  border-radius: 3px;
+}
+
+/* line 207, ../sass/page.scss */
+.btn_bg_red {
+  background-color: #FB3159;
+  border-radius: 3px;
+}
+
+/* line 208, ../sass/page.scss */
+.prdName {
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+}
+
+/* line 209, ../sass/page.scss */
+.toggle {
+  background-color: #f6f6f6;
+  color: #cdcdca;
+}
+
+/* line 210, ../sass/page.scss */
+.flipy {
+  transform: rotateX(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+/* line 211, ../sass/page.scss */
+.noOrder {
+  padding-top: 30%;
+  text-align: center;
+}
+
+/* line 212, ../sass/page.scss */
+.noOrder > img {
+  width: 122px;
+  height: 122px;
+}
+
+/* line 213, ../sass/page.scss */
+.btn_go_index {
+  border: 1px solid #b1b2ad;
+  border-radius: 4px;
+  color: #b1b2ad;
+}
+
+/*字体颜色*/
+/* line 216, ../sass/page.scss */
+.fc-23272b {
+  color: #23272b;
+}
+
+/*商品名称*/
+/* line 217, ../sass/page.scss */
+.fc-606366 {
+  color: #606366;
+}

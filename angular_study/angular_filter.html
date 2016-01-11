@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="module">
+    <meta charset="utf-8">
+</html>
+<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+<script type="text/javascript">
+    var module = angular.module("module",[]);
+    module.controller("AngularFilter",
+        function($scope,$http){
+            loadChatInfoList($scope, $http);
+        }
+    );
+
+    function loadChatInfoList($scope, $http){
+        var url = "data.json";
+        $http({
+            method : 'GET',
+            url : url
+        }).success(function(data, status, headers, config) {
+            data = eval('('+data+')');
+            $scope.chatInfoList = data.chatInfoList;
+        }).error(function(data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+        });
+    }
+</script>
+<div >
+    <div ng-controller="AngularFilter">
+        <p>输入过滤:<input type="text" ng-model="message"></p>
+        <div ng-repeat="chatInfo in chatInfoList | filter:message">
+            <div ng-if="chatInfo.type == 'txt'">
+                <p><span ng-bind="chatInfo.nickName"></span>&nbsp;<span ng-bind="chatInfo.date"></span></p>
+                <p ng-bind="chatInfo.content"></p>
+            </div>
+            <div ng-if="chatInfo.type == 'img'">
+                <p><span ng-bind="chatInfo.nickName"></span>&nbsp;<span ng-bind="chatInfo.date"></span></p>
+                <img ng-src="{{chatInfo.content}}" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>

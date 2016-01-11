@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+</html>
+<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+<script type="text/javascript">
+    var myModule = angular.module("MyModule",[]);
+    myModule.controller("HelloAngular",
+        function ($scope){
+            $scope.greet = {
+                text:"Hello Angular!"
+            };
+    });
+
+</script>
+<div >
+    <div ng-controller="HelloAngular">
+        <p >{{greet.text}},angular</p>
+    </div>
+</div>
+</body>

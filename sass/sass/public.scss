@@ -1,0 +1,131 @@
+/*******************************************************************************
+ * @cssname:public.js
+ * @author:leventZheng
+ * @date:2015-11-23
+ * @use:公用CSS文件
+ ******************************************************************************/
+@charset "utf-8";
+@import "compass/reset";
+@import "compass/css3";
+@import "page";
+@for $i from 1 through 40{
+  @if $i<=24{
+    .f-z#{$i}{font-size: 1px * $i;}
+  }
+  @if $i%5==0{
+    .m#{$i}{margin: 1px*$i;}
+    .mt#{$i}{margin-top: 1px*$i;}
+    .mr#{$i}{margin-right: 1px*$i;}
+    .mb#{$i}{margin-bottom: 1px*$i;}
+    .ml#{$i}{margin-left: 1px*$i;}
+    .p#{$i}{padding: 1px*$i;}
+    .pt#{$i}{padding-top: 1px*$i;}
+    .pr#{$i}{padding-right: 1px*$i;}
+    .pb#{$i}{padding-bottom: 1px*$i;}
+    .pl#{$i}{padding-left: 1px*$i;}
+    .lh#{$i}{line-height: 1px*$i;}
+    .h#{$i}{height: 1px*$i;}
+    .htc#{$i}{line-height: 1px*$i;height: 1px*$i;}
+  }
+  @else if $i<=15{
+    .m#{$i}{margin: 1px*$i;}
+    .mt#{$i}{margin-top: 1px*$i;}
+    .mr#{$i}{margin-right: 1px*$i;}
+    .mb#{$i}{margin-bottom: 1px*$i;}
+    .ml#{$i}{margin-left: 1px*$i;}
+    .p#{$i}{padding: 1px*$i;}
+    .pt#{$i}{padding-top: 1px*$i;}
+    .pr#{$i}{padding-right: 1px*$i;}
+    .pb#{$i}{padding-bottom: 1px*$i;}
+    .pl#{$i}{padding-left: 1px*$i;}
+    .lh#{$i}{line-height: 1px*$i;}
+    .h#{$i}{height: 1px*$i;}
+    .htc#{$i}{line-height: 1px*$i;height: 1px*$i;}
+  }
+}
+
+@for $width from 1 through 100{
+  @if $width%5==0{
+    .w#{$width}p{width: 1%*$width;}
+  }@else if $width%10==9{
+    .w#{$width}p{width: 15*$width;}
+  }
+  .w#{$width}{width: 1px*$width;}
+}
+
+.pic img{ width:auto; height:auto; max-width:100%; max-height:100%;}
+input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+textarea { resize:none; }
+.fm-y{font-family:'Microsoft Yahei',"\u5fae\u8f6f\u96c5\u9ed1","\5b8b\4f53",Arial;}.fw-b {font-weight: bold;}.fw-n {font-weight:normal;}
+.cur-d{cursor: default;}.cur-a{cursor: auto;/*自动*/} .cur-c{cursor: crosshair;/*十字准心*/} .c-p,.cur-p{cursor: pointer;/*手指*/} .cur-w{cursor: wait;/*等待/沙漏*/} .cur-h{cursor: help;/*帮助*/} .cur-t{cursor: text;/*文字/编辑*/} .cur-m{cursor: move;/*可移动*/} .cur-na{cursor:not-allowed;/*禁止*/}
+.td-u {text-decoration: underline;}.td-lh{text-decoration: line-through;/*删除线*/}.td-n,.td-n:hover,.td-n a:hover,a.td-u:hover{text-decoration:none;}
+.ta-c {text-align: center;}.ta-l {text-align: left;}.ta-r {text-align: right;}.ta-j{text-align:justify;}
+.d-n {display: none;}.d-ib{display: inline-block;}.d-b {display: block;}.d-i {display: inline;}
+.va-m {vertical-align: middle;}.va-t {vertical-align: top;}.va-b {vertical-align: bottom;}
+.fl {float: left;}.fr {float: right;}.fn {float: none;}
+.clear{display: block; clear:both; font-size:0; height:0; line-height:0;*zoom:1}.clear:after{content:"."; clear:both; display:block; height:0; visibility:hidden;}
+.ov-h{overflow:hidden;}.overflow-y{overflow-y: auto;overflow-x: hidden;}.vi-h{visibility:hidden;}.vi-v{visibility:visible;}
+.po-r{position:relative;}.po-a{position:absolute;}.po-f{position:fixed;}
+.nowrap{white-space:nowrap;}
+.wr-bw{word-wrap:break-word;}.wb-ba{word-break:break-all;}
+
+.b0{bottom:0}
+/* ------------------- multiply CSS ------------------ */
+/* 块状元素水平居中 */
+.auto{margin-left:auto; margin-right:auto;}
+/* 基于display:table-cell的自适应布局 */
+.cell{display:table-cell; *display:inline-block; width:2000px; *width:auto;}
+/* 双栏自适应cell部分连续英文字符换行 */
+.cell_bk{display:table; width:100%; table-layout:fixed; word-wrap:break-word;}
+/* 单行文字溢出虚点显 示*/
+.ell{text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+/* css3过渡动画效果 */
+.trans{-webkit-transition:all 0.3s;-moz-transition:all 0.3s;-ms-transition:all 0.3s;-o-transition:all 0.3s;	transition:all 0.3s;}
+/* 大小不定元素垂直居中 */
+.dib_vm{display:inline-block; width:0; height:100%; vertical-align:middle;}
+
+/* 盒子模型 */
+.flex-container { display: -webkit-box;}
+.flex-container-v { display: -webkit-box; -webkit-box-orient:vertical;}
+.box-flex1{-webkit-box-flex: 1;}.box-flex2{-webkit-box-flex: 2;}.box-flex3{-webkit-box-flex: 3;}
+
+/*load more*/
+.loadMore{height:40px;text-align:center;display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;}
+.loadIcon{display:block;height:22px;line-height:22px;padding-left:25px;background-repeat:no-repeat;background-position:left center;background-image:url("../images/loading.png");-webkit-background-size:20px 20px;}
+.loadArrow{margin-right: 5px;display:block;width:20px;height:20px;background:url("../images/loading.png") no-repeat center center;-webkit-background-size:20px 20px;}
+.noMore{height:20px;line-height:20px;text-align:center;}
+.noMoreImg{display:inline-block;background: url("../images/loading.png") no-repeat left center;padding-left:25px;background-size: 20px 20px; height: 20px;}
+
+/*loading circle*/
+.la26{width:26px; height:26px;display:block;-webkit-background-size:100%;background-size:100%;position: relative; top:50%; z-index:30;}
+.loadings{z-index:10000;position:fixed;background: url("data:image/gif;base64,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") no-repeat center center; width:100%; height: 100%;}
+
+
+/* 通用字体颜色 */
+.white {color:#fff !important;}.black {color: #000;}.blue { color:#00f;}.red { color: #f00;}.reds { color:#c00;}.grey { color: #ccc;}
+.c333 {color: #333!important;}.c666 {color: #666!important;}.c999 {color: #999!important;}
+.color-60{color: #999999;/*加载中字体颜色*/}
+/* 边框 */
+.border-999 { border: 1px solid #999;}.border-ddd { border: 1px solid #ddd;}.border-red { border: 1px solid #ff0000;}.border-black { border: 1px solid #000;}
+.border-top-ddd { border-top: 1px solid #ddd;}.border-bottom-ddd { border-bottom: 1px solid #ddd;}.border-left-ddd { border-left: 1px solid #ddd;}
+.border-bottom-orange { border-bottom: 3px solid #f6822b;}
+/* 空心按钮 */
+.button_black{@extend .border-black;@extend .black;@extend .w80;@extend .ta-c;@extend .h30;@extend .lh30;@extend .f-z14;}
+.button_grey{@extend .border-999;@extend .c999;@extend .w80;@extend .ta-c;@extend .h30;@extend .lh30;@extend .f-z14;}
+.button_red{@extend .border-red;@extend .red;@extend .w80;@extend .ta-c;@extend .h30;@extend .lh30;@extend .f-z14;}
+.button_pink{border:1px solid #ff2d56;color: #ff2d56;width: 280px;@extend .ta-c;@extend .h40;@extend .lh40;@extend .f-z14;}
+/* 数量加减按钮 */
+%button_add_minus{background-color: #f5f5f5; @extend .border-ddd; @extend .htc35; @extend .ta-c; @extend .w35;}
+.button_add{@include border-corner-radius(top, right, 3px);@include border-corner-radius(bottom, right, 3px); @extend %button_add_minus; @extend .grey;}
+.button_minus{@include border-corner-radius(top, left, 3px);@include border-corner-radius(bottom, left, 3px); @extend %button_add_minus; @extend .black;}
+/***********倒计时************/
+.timeDay,.timeHour,.timeMinute,.timeSecond{@extend .ml5; @extend .mr5;@extend .f-z12; @extend .white; @include border-radius(1px); background-color: #4a4a4a;}
+
+/* 弹框界面 */
+.mask{ background:#000;filter:alpha(opacity=70); opacity:0.7; position:fixed !important; width:100%; height:100%; left:0; top:0; z-index:999;}
+.alertBox{ width:800px; height:500px; position:fixed !important; background:#fff; z-index:1000; left:25%; top:20%; box-sizing:border-box; border:1px solid #86c1f0; @extend .overflow-y;}
+.alertBoxClose{ background: url(../images/icon.png) -49px 0 no-repeat;cursor:pointer; width: 22px;}
+/* APP弹框界面 */
+.pic_box_app{ width:84%; left:7%; top:20%; position:fixed !important; background:#fff; z-index:1000; box-sizing:border-box; border:1px solid #86c1f0; @extend .ov-h;}
+.alert_box_close{ background: url(../images/icon.png) -49px 0 no-repeat; width: 22px;height: 22px;}
+.bottom_box{ width: 100%; position:fixed !important;bottom: 0; background:#fff; z-index:1000; box-sizing:border-box; max-height: 400px;}

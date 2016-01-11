@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+<head>
+    <meta charset="utf-8">
+</head>
+<!--<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>-->
+<script type="text/javascript" src="angular.js"></script>
+<script type="text/javascript">
+    var myModule = angular.module("MyModule",[]);
+    myModule.controller('myCtrl',function($scope){
+        $scope.loadData = function(){
+            console.log("myCtrl,正在加载数据");
+        }
+    });
+    myModule.directive('load',function(){
+        return{
+            restrict:'E',
+            template:'<div ng-click="howtoload()">显示加载数据</div>',
+            replace:true,
+            scope:{
+                howtoload:"&"
+            }
+//            link:function(scope,element,attrs){
+//                element.bind("mouseenter",function(){
+////                    scope.loadData();
+////                    scope.$apply("loadData1()");
+//                    scope.$apply(attrs.howtoload);
+//                });
+//            }
+        }
+    });
+</script>
+<body>
+<div >
+    <div ng-controller="myCtrl">
+        <load howtoload="loadData()"></load>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+<!--<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>-->
+<script type="text/javascript" src="angular.js"></script>
+<script type="text/javascript">
+    var myModule = angular.module("MyModule",[]);
+
+    myModule.directive('hello',function(){
+        return{
+            restrict:'E',
+            scope:{},
+            template:'<div><input type="text" ng-model="data" />{{data}}</div>',
+            replace:true
+        }
+    });
+</script>
+<body>
+<div >
+    <div>
+        <hello></hello>
+        <hello></hello>
+        <hello></hello>
+        <hello></hello>
+    </div>
+</div>
+</body>
+</html>

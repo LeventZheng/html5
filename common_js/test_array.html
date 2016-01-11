@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="prototype.js"></script>
+    <script>
+        var array = [0,1,2];
+        console.log(array);
+        console.log("insertFirst:");
+        array.insertFirst(4);
+        console.log(array);
+
+        console.log("getIndexByAttr:");
+        console.log(array.getIndexByAttr(1));
+
+        console.log("getByAttr:");
+        console.log(array.getByAttr(2));
+
+        console.log("removeByAttr:");
+        array.removeByAttr("2");
+        console.log(array);
+
+        console.log("putFirstByAttr:");
+        array.putFirstByAttr(1);
+        console.log(array);
+
+        console.log("putFirstByAttr:");
+        array.updateArrayByAttr(-1);
+        console.log(array);
+
+        console.log("**********************************************************");
+        var arrayObj = [
+            {name:"david",code:"01"},
+            {name:"tom",code:"02"},
+            {name:"ketty",code:"03"}
+        ];
+        console.log(arrayObj);
+        console.log("insertFirst:");
+        arrayObj.insertFirst({name:"bill",code:"04"});
+        console.log(arrayObj);
+
+        console.log("getIndexByAttr:");
+        console.log(arrayObj.getIndexByAttr("ketty","name"));
+
+        console.log("getByAttr:");
+        console.log(arrayObj.getByAttr("tom","name"));
+
+        console.log("removeByAttr:");
+        arrayObj.removeByAttr("02","code");
+        console.log(arrayObj);
+
+        console.log("putFirstByAttr:");
+        arrayObj.putFirstByAttr("ketty","name");
+        console.log(arrayObj);
+
+        console.log("putFirstByAttr1:");
+        arrayObj.updateArrayByAttr({name:"Lily",code:"05"});
+        console.log(arrayObj);
+
+        console.log("putFirstByAttr2:");
+        arrayObj.updateArrayByAttr({name:"Tom",code:"08"});
+        console.log(arrayObj);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
