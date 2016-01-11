@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>moment.js（js date）日期格式化中文api - 懒人建站http://www.51xuediannao.com/</title>
+
+<link href="http://css.lrjz100.com/static/css/demoStyle.css" type="text/css" rel="stylesheet" title="这是演示页面自身的样式表文件，和插件无关！"/>
+
+<script type="text/javascript" src="moment.js"></script>
+<script>
+    var getId = function(id){ return document.getElementById(id) }
+</script>
+<style>
+body,a{ font-size:14px; color:#666;}
+ul,li{ margin:0; padding:0; list-style:none}
+    dl,dd{margin-left: 0}
+</style>
+</head>
+
+<body style="padding: 50px;">
+<h1>moment.js中文api</h1>
+<div class="demobox">
+    <dl class="demo">
+        <dt class="h3">当前日期格式化</dt>
+        <dd class="html">
+            <p>moment().format('MMMM Do YYYY, h:mm:ss a');<span id="d1"></span></p>
+            <p>moment().format('dddd');<span id="d2"></span></p>
+            <p>moment().format("MMM Do YY");<span id="d3"></span></p>
+            <p>moment().format('YYYY [escaped] YYYY');<span id="d4"></span></p>
+            <p>moment().format();<span id="d5"></span></p>
+            ---------------------------------------------------
+            <p>moment().format('YYYY-MM-DD');<span id="d6"></span></p>
+            <p>moment().format('YYYY-MM-DD h:mm:ss a');<span id="d7"></span></p>
+            <script>
+                getId("d1").innerHTML = " -> "+moment().format('MMMM Do YYYY, h:mm:ss a');
+                getId("d2").innerHTML = " -> "+moment().format('dddd');
+                getId("d3").innerHTML = " -> "+moment().format("MMM Do YY");
+                getId("d4").innerHTML = " -> "+moment().format('YYYY [escaped] YYYY');
+                getId("d5").innerHTML = " -> "+moment().format();
+                getId("d6").innerHTML = " -> "+moment().format('YYYY-MM-DD');
+                getId("d7").innerHTML = " -> "+moment().format('YYYY-MM-DD hh:mm:ss a');
+            </script>
+        </dd>
+    </dl>
+    <dl class="demo">
+        <dt class="h3">指定日期格式化</dt>
+        <dd class="html">
+            <p>moment("20111031", "YYYYMMDD").fromNow();<span id="d01"></span></p>
+            <p>moment("20120620", "YYYYMMDD").fromNow();<span id="d02"></span></p>
+            <p>moment().startOf('day').fromNow();<span id="d03"></span></p>
+            <p>moment().endOf('day').fromNow();<span id="d04"></span></p>
+            <p>moment().startOf('hour').fromNow();<span id="d05"></span></p>
+            <script>
+                getId("d01").innerHTML = " -> "+moment("20111031", "YYYYMMDD").fromNow();
+                getId("d02").innerHTML = " -> "+moment("20120620", "YYYYMMDD").fromNow();
+                getId("d03").innerHTML = " -> "+moment().startOf('day').fromNow();
+                getId("d04").innerHTML = " -> "+moment().endOf('day').fromNow();
+                getId("d05").innerHTML = " -> "+moment().startOf('hour').fromNow();
+            </script>
+        </dd>
+    </dl>
+    <dl class="demo">
+        <dt class="h3">当前日期向前或者向后推的日期格式化</dt>
+        <dd class="html">
+            <p>moment().subtract(10, 'days').calendar();<span id="d001"></span></p>
+            <p>moment().subtract(6, 'days').calendar();<span id="d002"></span></p>
+            <p>moment().subtract(3, 'days').calendar();<span id="d003"></span></p>
+            <p>moment().subtract(1, 'days').calendar();<span id="d004"></span></p>
+            <p>moment().calendar();<span id="d005"></span></p>
+            <p>moment().add(1, 'days').calendar();<span id="d006"></span></p>
+            <p>moment().add(3, 'days').calendar();<span id="d007"></span></p>
+            <p>moment().add(10, 'days').calendar();<span id="d008"></span></p>
+            <script>
+                getId("d001").innerHTML = " -> "+moment().subtract(10, 'days').calendar();
+                getId("d002").innerHTML = " -> "+moment().subtract(6, 'days').calendar();
+                getId("d003").innerHTML = " -> "+moment().subtract(3, 'days').calendar();
+                getId("d004").innerHTML = " -> "+moment().subtract(1, 'days').calendar();
+                getId("d005").innerHTML = " -> "+moment().calendar();
+                getId("d006").innerHTML = " -> "+moment().add(1, 'days').calendar();
+                getId("d007").innerHTML = " -> "+moment().add(3, 'days').calendar();
+                getId("d008").innerHTML = " -> "+moment().add(10, 'days').calendar();
+            </script>
+        </dd>
+    </dl>
+    <dl class="demo">
+        <dt class="h3">也可以使用下面方式日期格式化</dt>
+        <dd class="html">
+            <p>moment().format('L');<span id="d0001"></span></p>
+            <p>moment().format('l');<span id="d0002"></span></p>
+            <p>moment().format('LL');<span id="d0003"></span></p>
+            <p>moment().format('ll');<span id="d0004"></span></p>
+            <p>moment().format('LLL');<span id="d0005"></span></p>
+            <p>moment().format('lll');<span id="d0006"></span></p>
+            <p>moment().format('LLLL');<span id="d0007"></span></p>
+            <p>moment().format('llll');<span id="d0008"></span></p>
+            <script>
+                getId("d0001").innerHTML = " -> "+moment().format('L');
+                getId("d0002").innerHTML = " -> "+moment().format('l');
+                getId("d0003").innerHTML = " -> "+moment().format('LL');
+                getId("d0004").innerHTML = " -> "+moment().format('ll');
+                getId("d0005").innerHTML = " -> "+moment().format('LLL');
+                getId("d0006").innerHTML = " -> "+moment().format('lll');
+                getId("d0007").innerHTML = " -> "+moment().format('LLLL');
+                getId("d0008").innerHTML = " -> "+moment().format('llll');
+            </script>
+        </dd>
+    </dl>
+</div>
+
+<!--下面只是说明与程序代码无关-->
+<div style="width:95%;padding:50px; font-size:14px; line-height:1.75;">
+    <span>本代码由<a href="http://www.51xuediannao.com" style="color:#F00;">懒人建站网 收集整理 我要学电脑.COM →51xuediannao.com</a> </span>
+    <a href="http://www.51xuediannao.com/">懒人建站-jquery特效-建站素材 http://www.51xuediannao.com/</a><br/>
+    
+    <span>我们为您提供-
+    <a href="http://www.51xuediannao.com/html+css/">html+css</a>，
+    <a href="http://www.51xuediannao.com/js/">jquery特效</a>，
+    <a href="http://www.51xuediannao.com/js/">JS代码</a>，
+    <a href="http://www.51xuediannao.com/js/texiao/">网页特效</a>，
+    <a href="http://www.51xuediannao.com/js/nav/">导航菜单</a>，
+    <a href="http://www.51xuediannao.com/js/slide/">焦点幻灯片</a>，
+    <a href="http://www.51xuediannao.com/sucai/">建站素材</a>
+    <a class="link" title="大学生假期网上兼职挣点零花钱" href="http://www.51xuediannao.com/yumenba/wsjianzhi.html">大学生假期网上兼职挣点零花钱</a>
+    </span>
+    <span>懒人建站只收录实用和能提高用户体验的代码</span>
+    <span>我们只想解放出你的部分写代码时间来思考更高层次的设计。</span>
+</div>
+</body>
+</html>

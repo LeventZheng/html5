@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script type="text/javascript" src="jQuery/jquery-1.10.1.min.js"></script>
+
+<body>
+<p>请输入数字：</p><input name="" class="test" type="text" />
+</body>
+<script type="text/javascript">
+	$('.test').off('keydown').on('keydown',function(event){
+		
+		// console.log(event);
+		// console.log(event.ctrlKey);
+		// console.log(event.shiftKey);
+
+		//Allow:backspace,delete,tab,escape,enter and .
+		if($.inArray(event.keyCode,[46,8,9,27,13,110,190]) !== -1 ||
+			//Allow: CTRL+A
+			(event.keyCode == 65 && event.ctrlKey === true) ||
+			//Allow: home, end, left, right
+			(event.keyCode >= 35 && event.keyCode <= 39))
+			{
+				//Let it happen,don't do anything
+				return;
+			}
+		//Ensure that it is a number and stop the keypress
+		if((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode <96 || event.keyCode > 105))
+		{
+			event.preventDefault();
+		}
+	});
+			
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script type="text/javascript">
+	var father =  function(){
+		this.showmsg = function(){
+			alert(0);
+		}
+		this.show = function(){
+			alert(1);
+		}
+	}
+	father.showmsg = function(){
+		alert(3);
+	}
+	var sun = function(){
+		this.show = function(){
+			alert(4);
+		}
+	}
+	sun.prototype = new father();
+	var sunInstance = new sun();
+//	sunInstance.show();
+//	sunInstance.showmsg();
+	
+	var fatherInstance = new father();
+//	fatherInstance.show();
+	
+//	fatherInstance.show.call(sunInstance);//和fatherInstance.show()有什么区别？
+	
+//	father.showmsg();
+	father.showmsg.call(sunInstance);
+</script>
+<body>
+</body>
+</html>

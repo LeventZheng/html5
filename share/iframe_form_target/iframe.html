@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>iframe与form的target简单应用</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<form name="form1">
+    <div>
+        <iframe name="query" src="test.html"></iframe>
+        <iframe name="list"></iframe>
+    </div>
+    <div>
+        <iframe name="theID"></iframe>
+        <iframe name="theName"></iframe>
+    </div>
+</form>
+</body>
+
+<form name="jumpform" target="theID" action="test.html">
+    <input type="submit" value="提交">
+</form>
+</html>

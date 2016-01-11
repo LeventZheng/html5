@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript">
+    var name = "I am window";
+    var obj = {
+        name:"sharpxiajun",
+        job:"Software",
+        ftn01:function(obj){
+            obj.show();
+        },
+        ftn02:function(ftn){
+            ftn();
+        },
+        ftn03:function(ftn){
+            ftn.call(this);
+        }
+    };
+    function Person(name){
+        this.name = name;
+        this.show = function(){
+            console.log("姓名:" + this.name);
+            console.log(this);
+        }
+    }
+    var p = new Person("Person");
+    obj.ftn01(p);
+    obj.ftn02(function(){
+        alert(this.name);
+        console.log(this.name);
+        console.log(this);
+    });
+    obj.ftn03(function(){
+        console.log(this.name);
+        console.log(this);
+    });
+</script>
+<body>
+
+</body>
+</html>

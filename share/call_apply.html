@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script type="text/javascript">
+	function Person(name,age,love){
+		this.name = name;
+		this.age = age;
+		this.love = love;
+		this.say = function say(){
+			alert('姓名：' + name);
+		}
+	}
+	
+	function student(name,age){
+		//调用一个对象的一个方法，以另一个对象替换当前对象。
+		Person.call(this,name,age);
+	}
+	
+	function teacher(name,age,love){
+		////比call优越的地方:可用一个参数指代数组内所有参数
+		//Person.apply(this,arguments);	
+		Person.apply(this,[name,age,love]);	
+	}
+	
+	var per=new Person("武凤楼",25,"魏荧屏"); //输出："武凤楼"  
+    per.say();
+    var stu=new student("曹玉",18);//输出："曹玉"
+	console.log(stu);
+    stu.say();
+    var tea=new teacher("秦杰",18,'gugu');//输出："秦杰"
+	console.log(tea);
+    tea.say();
+</script>
+<body>
+</body>
+</html>

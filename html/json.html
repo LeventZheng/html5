@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var json = {18:[{
+                name:"a",
+                code:"a"
+            },
+                {
+                    name:"b",
+                    code:"b"
+                },
+                {
+                    name:"c",
+                    code:"c"
+                }]};
+            console.log(json);
+            console.log(json["18"]);
+            var json1 = JSON.stringify(json);
+            console.log(json1);
+            console.log(typeof (json1));
+            console.log(json1 instanceof String);
+            console.log(json1 instanceof Object);
+            /**
+             * 在这里aa只是一个以string为数据类型的值 并不是String的实例对象
+            aa instanceof String 在只有左侧是右侧类的对象时才会返回ture
+            alert(aa instanceof Object);    它的值一样是false  （所有对象都是Object的实例）
+            说明aa本身并不是任何一个类的实例
+            如果想将这个数据类型转换为String的类对象的话可以
+            var b=new String(aa);
+            alert(b instanceof String);  //ture
+            此时b就是String类的实例对象了
+            还有你可以测一下typeof aa;
+            返回的是 string 而并不是Object
+            所以aa instanceof 任何类都会返回false
+             */
+            var json2 = new String(json1);
+            console.log(json2 instanceof String);
+
+            var json3 = JSON.parse(json1);
+            console.log(json3);
+        };
+    </script>
+</head>
+<body>
+
+</body>
+</html>

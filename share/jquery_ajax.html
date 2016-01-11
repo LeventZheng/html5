@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var url = "static_data/ajax.json";
+        $.ajax( {
+            url:url,
+            data:null,
+            type:'get',
+            async:true,
+            cache:false,
+            contentType:"application/json",
+            dataType:'json',
+            success:function(data, textStatus, jqXHR) {
+                if(!data.code){
+                    alert("登录超时，请重新登录！");
+                    return;
+                }
+                else{
+                    console.log(1);
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
+        console.log(2);
+    });
+</script>
+<body>
+
+</body>
+</html>
