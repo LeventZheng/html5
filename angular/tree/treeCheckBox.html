@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="Css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="tree.css">
+	<script src="Scripts/jquery-1.9.1.js" type="text/javascript" ></script>
+	<script src="Scripts/angular.js" type="text/javascript" ></script>
+	<script src="Scripts/angular-ui-router.js" type="text/javascript" ></script>
+	<script src="Scripts/bootstrap.js" type="text/javascript" ></script>
+	<script src="Js/underscore.js" type="text/javascript" ></script>
+	<script src="treeCheckBox.js" type="text/javascript" ></script>
+</head>
+<body data-ng-controller="AppCtrl">
+	<div class="modal-header text-center">
+		<h3 class="modal-title">角色菜单配置</h3>
+	</div>
+	<div class="modal-body">
+		<div class="tree">
+			<ul>
+				<li ng-repeat="group in allGroupMenus" ng-class="{closed:group.closed}">
+					<div>
+						<input type="checkbox" ng-model="group.checked"
+							ng-change="groupChanged(group)"
+							ng-class="{intermediate: isIntermediateGroup(group)}"/> 
+						<span ng-click="group.closed=!group.closed"> 
+							<span class="glyphicon" ng-class="group.closed?'glyphicon-plus':'glyphicon-minus'"></span>
+							{{group.TITLE}} 
+						</span>
+					</div>
+					<ul ng-class="{hidden: group.closed}">
+						<li ng-repeat="funMenu in group.FunMenus" ng-class="{closed:funMenu.closed}">
+							<input type="checkbox" ng-model="funMenu.checked"
+								ng-change="menuChanged(funMenu, group)"/>
+							<span ng-click="funMenu.closed=!funMenu.closed">
+								{{funMenu.FunMenu.TITLE}} 
+							</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div style="display:block;">你选中的groupIds是:{{groupIds}}</div>
+			<div style="display:block;">你选中的menuIds是:{{menuIds}}</div>
+			<div>
+				<input class="pull-left" type="checkbox" ng-model="chkall" id="controlAll" ng-click="checkAll(chkall)" />
+				<!-- <input class="pull-left" type="checkbox" ng-model="allGroupMenus.checked" ng-change="selectAll({{allGroupMenus}})" /> -->
+				<span>全选</span>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<span class="btn btn-primary" ng-click="submit(allGroupMenus)">提交</span>
+	</div>
+</body>
+</html>

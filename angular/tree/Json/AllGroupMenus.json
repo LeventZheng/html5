@@ -1,0 +1,127 @@
+[{
+	"ID": "1",
+	"GROUP_ID": "1",
+	"TITLE": "人事",
+	"FunMenus": [{
+		"ID": "1",
+		"MENU_ID": "1",
+		"GROUP_ID": "1",
+		"FunMenu": {
+			"MENU_ID": "1",
+			"TITLE": "机构管理"
+		}
+	}, {
+		"ID": "2",
+		"MENU_ID": "2",
+		"GROUP_ID": "1",
+		"FunMenu": {
+			"MENU_ID": "2",
+			"TITLE": "部门定义"
+		}
+	}]
+}, {
+	"ID": "2",
+	"GROUP_ID": "2",
+	"TITLE": "财务",
+	"FunMenus": [{
+		"ID": "6",
+		"MENU_ID": "4",
+		"GROUP_ID": "2",
+		"FunMenu": {
+			"MENU_ID": "4",
+			"TITLE": "人才项目"
+		}
+	}]
+}, {
+	"ID": "3",
+	"GROUP_ID": "3",
+	"TITLE": "请假",
+	"FunMenus": []
+}, {
+	"ID": "4",
+	"GROUP_ID": "4",
+	"TITLE": "我",
+	"FunMenus": [{
+		"ID": "3",
+		"MENU_ID": "3",
+		"GROUP_ID": "4",
+		"FunMenu": {
+			"MENU_ID": "3",
+			"TITLE": "我的日程"
+		}
+	}, {
+		"ID": "5",
+		"MENU_ID": "5",
+		"GROUP_ID": "4",
+		"FunMenu": {
+			"MENU_ID": "5",
+			"TITLE": "通知"
+		}
+	}]
+}, {
+	"ID": "5",
+	"GROUP_ID": "5",
+	"TITLE": "项目",
+	"FunMenus": [{
+		"ID": "4",
+		"MENU_ID": "4",
+		"GROUP_ID": "5",
+		"FunMenu": {
+			"MENU_ID": "4",
+			"TITLE": "人才项目"
+		}
+	}, {
+		"ID": "1429109902689103439634391",
+		"MENU_ID": "1",
+		"GROUP_ID": "5",
+		"FunMenu": {
+			"MENU_ID": "1",
+			"TITLE": "机构管理"
+		}
+	}]
+}, {
+	"ID": "1429105767680102839637984",
+	"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+	"TITLE": "分组1",
+	"FunMenus": [{
+		"ID": "1429109637639103239633247",
+		"MENU_ID": "1",
+		"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+		"FunMenu": {
+			"MENU_ID": "1",
+			"TITLE": "机构管理"
+		}
+	}, {
+		"ID": "1429109637685103239635708",
+		"MENU_ID": "3",
+		"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+		"FunMenu": {
+			"MENU_ID": "3",
+			"TITLE": "我的日程"
+		}
+	}, {
+		"ID": "1429109950040103039638129",
+		"MENU_ID": "5",
+		"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+		"FunMenu": {
+			"MENU_ID": "5",
+			"TITLE": "通知"
+		}
+	}, {
+		"ID": "1429109964866102739633041",
+		"MENU_ID": "2",
+		"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+		"FunMenu": {
+			"MENU_ID": "2",
+			"TITLE": "部门定义"
+		}
+	}, {
+		"ID": "1429109964943102739634701",
+		"MENU_ID": "4",
+		"GROUP_ID": "b82b24c8fe9c42abb4580191a37641d7",
+		"FunMenu": {
+			"MENU_ID": "4",
+			"TITLE": "人才项目"
+		}
+	}]
+}]
