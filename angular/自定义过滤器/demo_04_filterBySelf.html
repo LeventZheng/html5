@@ -1,0 +1,17 @@
+
+ <html>
+     <head>
+        <title>Angular FilterBySelf</title>
+         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src ="angular.js"></script>
+        <script type="text/javascript" src="FilterBySelf.js"></script>
+ </head>
+      <body ng-app="MyApp">
+          <div ng-controller= "Ctrl">  
+                  <input type="text" ng-model="greeting" />
+                 <h1>没有添加过滤器: {{greeting}} </h1>
+                 <h1>添加过滤器 :{{greeting|reverse}}</h1>
+                 <h1>添加过滤器并大写:{{greeting|reverse:true}}</h1>
+          </div>
+     </body>
+ </html>
