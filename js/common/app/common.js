@@ -91,73 +91,83 @@ common.URL = {
     IMG_URL : null
 };
 
-common.URL.IMG_URL = common.URL.IMG_URL_MATCH.formal;
-if(common.getCurrentUrlPath() == common.URL.IP_URL_MATCH.test){
-    common.URL.IMG_URL = common.URL.IMG_URL_MATCH.test;
-}
-
 common.extend({
     getCurrentUrlPath : function() {
         var currentUrl = document.location.toString();
         var index = currentUrl.lastIndexOf("/");
         return currentUrl.substring(0, index)+"/";
     },
-    /**
-     * 检测对象是否是一个数组
-     */
-    isArrayLike : function(obj){
-        if(obj instanceof Array){
-            return true;
-        }
-        var length = obj.length;
-        if ( obj.nodeType === 1 && length ) {
-            return true;
-        }
-        return false;
+    getQueryString : function(target, name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = target.match(reg);
+        var context = "";
+        if (r != null)
+            context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? "" : context;
     },
-    /**
-     * 检测对象是否是空对象(不包含任何可读属性)。
-     * 方法既检测对象本身的属性，也检测从原型继承的属性(因此没有使hasOwnProperty)。
-     */
-    isEmptyObject : function (obj){
-        for(var n in obj){
-            return false;
-        }
-        return true;
+    //移除转义字符
+    removeESC : function(string){
+        return string.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');
     },
-    /**
-     * 检测对象是否是空对象(不包含任何可读属性)。 //如你上面的那个对象就是不含任何可读属性
-     * 方法只检测对象本身的属性，不检测从原型继承的属性。
-     */
-    isOwnEmpty : function (obj){
-        for(var name in obj){
-            if(obj.hasOwnProperty(name)){
-                return false;
+    //移除特殊字符
+    removeSpecialCharacter : function(string){
+        return string.replace(/[\@\#\$\%\^\&\*\(\)\{\}\:\"\L\<\>\?\[\]]/);
+    },
+    removePrevPages : function(indexTitle){
+        Mama100hytJSBridge.getStack(function(result){
+            var arr = [];
+            //保留首页与当前页
+            var index = -1;//拼团首页下标
+            for(var i=0; i<result.length-1; i++){
+                if(result[i].name == indexTitle){
+                    index = i;
+                }else if(index>-1){
+                    arr.push(i);
+                }
             }
-        }
-        return true;
+            Mama100hytJSBridge.closePages(function(result){}, function(code){}, arr);
+        }, function(code){});
     },
     /**
-     * 获取时间
-     * 在angularjs中有过滤器
-     * 格式:yyyy-mm-dd hh:min:sec
+     * 处理支付结果统一接口
+     * @param data,支付接口返回参数data.payResult为支付返回参数(支付宝、微信各不一样)
+     * @param id,在支付宝中是orderCode,在微信支付中是prepayId
      * @returns {string}
      */
-    getFormatDate : function(date){
-        if( date instanceof Date ){
-            var formatDate = date.getFullYear() + "-";
-            var Month = date.getMonth()+1;
-            var Day = date.getDate();
-            var Hour = date.getHours();
-            var Minutes = date.getMinutes();
-            var Seconds = date.getSeconds();
-            if (Month >= 10 ){ formatDate += Month + "-"; }else{ formatDate += "0" + Month + "-"; }
-            if (Day >= 10 ){ formatDate += Day + " "; }else{ formatDate += "0" + Day + " "; }
-            if (Hour >= 10){ formatDate += Hour + ":"; }else{ formatDate += "0" + Hour + ":"; }
-            if (Minutes >= 10){ formatDate += Minutes + ":"; }else{ formatDate += "0" + Minutes + ":"; }
-            if (Seconds >= 10){ formatDate += Seconds; }else{ formatDate += "0" + Seconds; }
-            return formatDate;
+    handlePayResult : function(data, id){
+        var payResult = {status:'unknown', amount : null, reason: null};
+        if(data.payType=='alipay'){
+            if(data.payResult.resultStatus==9000){
+                var success = common.getQueryString(data.payResult.result,'success');
+                success = common.removeESC(success);
+                var out_trade_no = common.removeESC(common.getQueryString(data.payResult.result,'out_trade_no'));
+                if(success=='true' && out_trade_no==id){
+                    payResult.status = 'success';
+                    var amount= common.getQueryString(data.payResult.result,'total_fee');
+                    amount = common.removeESC(amount);
+                    payResult.amount = amount;
+                }
+            }else if(data.payResult.resultStatus==6001){
+                payResult.status = 'fail';
+                payResult.reason = encodeURI(data.payResult.memo);
+            }
+        }else if(data.payType=='weixin') {
+            if(data.payResult.errCode==0){
+                if(data.payResult.prepayId==id){
+                    payResult.status = 'success';
+                }
+            }else if(data.payResult.errCode==-2){
+                payResult.status = 'fail';
+                payResult.reason = encodeURI('操作已经取消');
+            }
         }
-        return date;
+        return payResult;
     }
 });
+
+common.URL.IMG_URL = common.URL.IMG_URL_MATCH.formal;
+if(common.getCurrentUrlPath() == common.URL.IP_URL_MATCH.test){
+    common.URL.IMG_URL = common.URL.IMG_URL_MATCH.test;
+}

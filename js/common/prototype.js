@@ -5,6 +5,28 @@
  * @use:为js对象拓展原形方法
  ******************************************************************************/
 
+/**
+ * 返回对象的类型
+ * 能够对Array、Date等对象进行识别
+ * @param obj
+ * @returns {*}
+ */
+function getObjType(obj){
+	var class2type = {};
+	var typeList = "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" ");
+	for(var item in typeList){
+		class2type["[object "+typeList[item]+"]"] = typeList[item].toLowerCase();
+	}
+	if( obj === null){
+		return obj+"";
+	}
+	if(typeof obj === "object" || typeof obj === "function"){
+		return class2type[toString.call(obj)] || "object";
+	}else{
+		return typeof obj;
+	}
+};
+
 function isArrayLike(obj){
 	if(obj instanceof Array){
 		return true;

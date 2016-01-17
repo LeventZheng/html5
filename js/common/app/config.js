@@ -16,6 +16,7 @@ if(common.device.platform == "ios") common.device.os = "iPhone OS";//如果是io
         common.event.deviceready = 'DOMContentLoaded';
         common.event.viewWillAppear = 'DOMContentLoaded';
     } else {
+        //common.event.deviceready = 'load';
         common.device.type = "iPhone";
         common.device.os = "iPhone OS";
         common.device.platform = "ios";
@@ -28,7 +29,7 @@ if(common.device.platform == "ios") common.device.os = "iPhone OS";//如果是io
     if(!Mama100hytJSBridge) return;
     var testConfig = {
         //版本号
-        version : "5.0",
+        version : "5.0.0",
 
         //用户位置
         location : {
@@ -92,6 +93,8 @@ if(common.device.platform == "ios") common.device.os = "iPhone OS";//如果是io
                 Biostime.common.showLoading();
             }else if("loaded" == method){
                 Biostime.common.hideLoading();
+            }else if("title" == method){
+                document.title = para[0].title;
             }
         } else if("PvStat" == pluginName){
             "record"==method&&successCallback();

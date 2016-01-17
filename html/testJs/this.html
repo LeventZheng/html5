@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var x= 10;
+        function fun(){
+            alert("fun:"+this.x);
+        }
+        var obj = {
+            x:20,
+            fun : function(){
+                alert("obj:"+this.x);
+            }
+        };
+        var func = obj.fun;
+        fun();  //10
+        func(); //10
+
+        var funs = obj.fun();
+        funs(); //20
+    </script>
+</head>
+<body>
+<div id="nav" onclick="getId()">ddd</div>
+<script>
+    function getId(){
+        alert(this.id);//undefined
+    }
+</script>
+</body>
+</html>

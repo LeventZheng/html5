@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>typeof</h1>
+<p>
+    typeof返回一个表达书的数据类型的字符串，返回结果为javascript中的基本数据类型，
+    包括:number、boolean、string、object、undefined、function等6中数据类型
+</p>
+<script>
+    console.log("*********************typeof***********************");
+    console.log(typeof 100);//number
+    console.log(typeof 1==1);//boolean
+    console.log(typeof 'onepixel');//string
+    console.log(typeof {});//object
+    console.log(typeof parseInt);//function
+    console.log(typeof []);//object
+    console.log(typeof new Date);//object
+</script>
+<p>可以看出，typeof可以准确的判断除了obejct以外的基础数据类型，但不能区分object类的具体类型</p>
+<p>比如Array、Date、以及自定义类</p>
+<h1>instanceof</h1>
+<p>
+    instanceof本意是用来判断A是否为B的实例对象，表达式为: A instanceof B,<br/>
+    如果A是B的实例，则返回true，否则返回false。<br/>
+    在这里需要特别注意的是，instanceof检测的是原型，<br/>
+    如下模拟原型检测内部执行<br/>
+    instanceof(A,B) = {<br/>
+    &emsp;var L = A.__proto__;<br/>
+    &emsp;var R = B.prototype;<br/>
+    &emsp;if(L == R){<br/>
+    &emsp;&emsp;//A的内部属性__proto__指向B的原型对象<br/>
+    &emsp; return true;<br/>
+    &emsp;}<br/>
+    &emsp;return false;<br/>
+    }
+</p>
+<p>从上述过程可以看出，当A的__proto__指向B的prototype时，就认为A就是B的实例对象。</p>
+<script>
+    console.log('*****************instanceof****************');
+    console.log([] instanceof Array);//true
+    console.log({} instanceof Object);//true
+    console.log(new Date instanceof Date);//true
+    function Person(){};
+    console.log(new Person instanceof Person);//true
+    console.log([] instanceof Object);//true
+    console.log(new Person instanceof Object);//true
+</script>
+<p>从上面例子可以看出，虽然instanceof能够正确判断[]是Array的实例对象，</p>
+<p>但[] instanceof认为也是Object的实例对象，</p>
+<p>从原型链可以看出，[]的__proto__最终指向了Object.prototype，</p>
+<p>因此js认为[]也是Object的实例，</p>
+<p>因此，用instanceof只能够用来判断已知的数据类型，</p>
+<p>比如:instanceof Array，不能获取一个对象的具体数据类型</p>
+<h1>优化方案</h1>
+<p>参照jquery源码</p>
+<p>实现了一个较好的解决方案来获取数据类型</p>
+<script>
+    /*(function(){
+        var class2type = {};
+        var typeList = "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" ");
+        for(var item in typeList){
+            class2type["[object "+typeList[item]+"]"] = typeList[item].toLowerCase();
+        }
+        return {
+            getObjType:function(obj){
+                if( obj === null){
+                    return obj+"";
+                }
+                if(typeof obj === "object" || typeof obj === "function"){
+                    return class2type[toString.call(obj)] || "object";
+                }else{
+                    return typeof obj;
+                }
+            }
+        }
+    })();*/
+    var getObjType = function(obj){
+        var class2type = {};
+        var typeList = "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" ");
+        for(var item in typeList){
+            class2type["[object "+typeList[item]+"]"] = typeList[item].toLowerCase();
+        }
+        if( obj === null){
+            return obj+"";
+        }
+        if(typeof obj === "object" || typeof obj === "function"){
+            return class2type[toString.call(obj)] || "object";
+        }else{
+            return typeof obj;
+        }
+    };
+    console.log(getObjType([]));
+    console.log(getObjType(new Date));
+</script>
+</body>
+</html>

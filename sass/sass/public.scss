@@ -59,15 +59,15 @@ textarea { resize:none; }
 .fm-y{font-family:'Microsoft Yahei',"\u5fae\u8f6f\u96c5\u9ed1","\5b8b\4f53",Arial;}.fw-b {font-weight: bold;}.fw-n {font-weight:normal;}
 .cur-d{cursor: default;}.cur-a{cursor: auto;/*自动*/} .cur-c{cursor: crosshair;/*十字准心*/} .c-p,.cur-p{cursor: pointer;/*手指*/} .cur-w{cursor: wait;/*等待/沙漏*/} .cur-h{cursor: help;/*帮助*/} .cur-t{cursor: text;/*文字/编辑*/} .cur-m{cursor: move;/*可移动*/} .cur-na{cursor:not-allowed;/*禁止*/}
 .td-u {text-decoration: underline;}.td-lh{text-decoration: line-through;/*删除线*/}.td-n,.td-n:hover,.td-n a:hover,a.td-u:hover{text-decoration:none;}
-.ta-c {text-align: center;}.ta-l {text-align: left;}.ta-r {text-align: right;}.ta-j{text-align:justify;}
+.ta-c {text-align: center;}.ta-l {text-align: left;}.ta-r {text-align: right;}.ta-j{text-align:justify;/*设置内容根据宽度自动调整字间距，使各行的长度恰好相等*/}
 .d-n {display: none;}.d-ib{display: inline-block;}.d-b {display: block;}.d-i {display: inline;}
 .va-m {vertical-align: middle;}.va-t {vertical-align: top;}.va-b {vertical-align: bottom;}
 .fl {float: left;}.fr {float: right;}.fn {float: none;}
 .clear{display: block; clear:both; font-size:0; height:0; line-height:0;*zoom:1}.clear:after{content:"."; clear:both; display:block; height:0; visibility:hidden;}
 .ov-h{overflow:hidden;}.overflow-y{overflow-y: auto;overflow-x: hidden;}.vi-h{visibility:hidden;}.vi-v{visibility:visible;}
 .po-r{position:relative;}.po-a{position:absolute;}.po-f{position:fixed;}
-.nowrap{white-space:nowrap;}
-.wr-bw{word-wrap:break-word;}.wb-ba{word-break:break-all;}
+.nowrap{white-space:nowrap;/*强制不换行*/}
+.wr-bw{word-wrap:break-word;/*自动不换行*/}.wr-n{word-wrap:normal/*自动不换行*/}.wb-ba{word-break:break-all;/*强制英文单词断行*/}
 
 .b0{bottom:0}
 /* ------------------- multiply CSS ------------------ */

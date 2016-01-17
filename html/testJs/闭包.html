@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <style>
+        p{background: greenyellow;}
+    </style>
+    <script>
+        function init(){
+            var pAry = document.getElementsByTagName("p");
+            for(var i=0; i<pAry.length; i++){
+
+                //p标签的点击事件
+                /*pAry[i].onclick = function(){
+                    alert(i);//全都是5,因为i是外部变量，一直在跳
+                }*/
+
+                //闭包1
+                (function(_i){
+                    pAry[_i].onclick = function(){
+                        alert(_i);//当前i值
+                    }
+                })(i);
+                //闭包2
+               /* pAry[i].onclick = function(_i){
+                    alert(_i);//当前i值
+                }(i);*/
+
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+    <p>产品0</p>
+    <p>产品1</p>
+    <p>产品2</p>
+    <p>产品3</p>
+    <p>产品4</p>
+</body>
+</html>

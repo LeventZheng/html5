@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>sessionStorage</title>
+</head>
+<body>
+<script>
+    if( sessionStorage.hits){
+        sessionStorage.hits = Number(sessionStorage.hits) + 1;
+    }else{
+        sessionStorage.hits = 1;
+    }
+    document.write("Toatl Hits :" + sessionStorage.hits );
+</script>
+<p>Refresh the page to increase number of hits.</p>
+<p>Close the window and open it again and check the result.</p>
+<button onclick="window.open('sessionStorage.html')">跳转</button>
+<button onclick="window.location.href=('sessionStorage1.html')">打开当前页</button>
+</body>
+</html>
