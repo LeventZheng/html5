@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../js/lib/angular/angular-clipboard.js"></script>
+    <script type="text/javascript">
+        angular.module('myApp',['angular-clipboard'])
+                .controller('myCtrl',['$scope',function($scope){
+                    $scope.textToCopy = "请复制我吧";
+                    $scope.success = function(){
+                        alert("复制成功");
+                    }
+                }]);
+    </script>
+</head>
+<body ng-controller="myCtrl">
+    <input type="text" ng-model="textToCopy"/>
+    <button clipboard text="textToCopy" on-copied="success()" on-error="fail(err)">Copy</button>
+</body>
+</html>
