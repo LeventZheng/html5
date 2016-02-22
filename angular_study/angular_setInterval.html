@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <title></title>
+    <style>
+        .myClass{
+            background-color: mediumvioletred;
+            width: 500px;
+        }
+    </style>
+    <script>
+        var app = angular.module('myApp',[])
+                .controller('myCtrl',['$scope','$interval',function($scope,$interval){
+                    $scope.valueA = 1;
+                    /*setInterval(function(){
+                        $scope.$apply(function(){
+                            $scope.valueA++;
+                        });
+                    },1000);*/
+                    $interval(function(){
+                        $scope.valueA++;
+                    },1000);
+                }]);
+    </script>
+</head>
+<body ng-controller="myCtrl">
+<div id="myId" class="myClass">123</div>
+<span ng-bind="valueA" style="height: 200px;background-color: #003399"></span>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .radius{
+            width: 500px;
+            height: auto;
+            margin: 20px;
+            padding: 50px;
+            -webkit-border-image: url("images/border-image.jpg") 5 5  stretch;
+            border-radius: 5px;
+            box-shadow: 15px 15px 10px greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div class="radius">
+    <ul>
+        <li>在显示方法中可以指定的值为repeat、stretch、round三种</li>
+        <li>repeat将显示方法指定为repeat时，图像将以平铺的方式进行显示</li>
+        <li>stretch将显示方法指定为stretch时，图像将以拉伸的方式进行显示</li>
+        <li>repeat+stretch将显示方法指定为repeat+stretch时，图像将以平铺方式和拉伸方式结合使用</li>
+        <li>round将显示方法指定为round时与将显示指定为repeat类似</li>
+    </ul>
+</div>
+</body>
+</html>

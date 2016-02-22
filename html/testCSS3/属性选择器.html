@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .link[href^='http']{
+            text-decoration: none;
+        }
+        .link[href$='fgh']{
+            background-color: mediumvioletred;
+        }
+        .link[href*='456']{
+            border: 1px greenyellow solid;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a class="link" href="http://www.baidu.com">跳转到百度</a>
+    <a class="link" href="abcdefgh">1</a>
+    <a class="link" href="123456789">2</a>
+</div>
+</body>
+</html>
