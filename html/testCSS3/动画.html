@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        @keyframes move {
+            form{background-color: black}
+            to{background-color: orangered}
+        }
+        .test{
+            width: 100px;
+            height: 100px;
+            animation: move 3s;
+            /*animation-delay: 2s;*/
+            animation-direction: alternate;
+            background-color: greenyellow;
+        }
+    </style>
 </head>
 <body>
-
+<div class="test"></div>
 </body>
 </html>
