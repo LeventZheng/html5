@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .content-box{
+            box-sizing:content-box;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing:content-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid #E6A43F;
+            background: blue;
+        }
+        .padding-box{
+            box-sizing:padding-box;
+            -webkit-box-sizing:padding-box;
+            -moz-box-sizing:padding-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid #186645;
+            background: red;
+        }
+        .border-box{
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid #3DA3EF;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="content-box">content高度为height为100px</div>
+<div class="padding-box">不存在padding-box</div>
+<div class="border-box">此时height指的是border+padding+content的高度，实际content高度为100px-40px-10px</div>
+</body>
+</html>
