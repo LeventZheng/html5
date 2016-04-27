@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../js/lib/jquery/jquery-1.11.1.js"></script>
+    <script>
+        var countObj = {
+            input$ : null,
+            init : function(config){
+                this.input$ = $(config.id);
+                this.bind();
+                return this;
+            },
+            bind : function(){
+                var self = this;
+                this.input$.on('keyup',function(){
+                    self.render()
+                });
+            },
+            getNum : function(){
+                if(this.input$ && this.input$.val()){
+                    return this.input$.val().length;
+                }else
+                    return 0;
+            },
+            render : function(){
+                var length = this.getNum();
+                if($('#count').length == 0){
+                    this.input$.after('<span id="count"></span>');
+                }
+                $('#count').text(length + '个字');
+            }
+        };
+        $(function(){
+            countObj.init({id:'#input'});
+        });
+    </script>
+</head>
+<body>
+    <div><input id="input" type="text"/></div>
+</body>
+</html>

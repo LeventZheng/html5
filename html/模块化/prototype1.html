@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function Point(x, y)
+        {
+            if(x) this.x = x;
+            if(y) this.y = y;
+        }
+        Point.prototype.x = 0;
+        Point.prototype.y = 0;
+
+        function LineSegment(p1, p2)
+        {
+//私有成员
+            var m_firstPoint = p1;
+            var m_lastPoint = p2;
+            var m_width = {
+                valueOf : function(){return Math.abs(p1.x - p2.x)},
+                toString : function(){return Math.abs(p1.x - p2.x)}
+            }
+            var m_height = {
+                valueOf : function(){return Math.abs(p1.y - p2.y)},
+                toString : function(){return Math.abs(p1.y - p2.y)}
+            }
+//getter
+            this.getFirstPoint = function()
+            {
+                function GETTER(){};
+                GETTER.prototype = m_firstPoint;
+                return new GETTER();
+            }
+            this.getLastPoint = function()
+            {
+                function GETTER(){};
+                GETTER.prototype = m_lastPoint;
+                return new GETTER();
+            }
+
+            this.length = {
+                valueOf : function(){return Math.sqrt(m_width*m_width + m_height*m_height)},
+                toString : function(){return Math.sqrt(m_width*m_width + m_height*m_height)}
+            }
+        }
+        var p1 = new Point;
+        var p2 = new Point(2,3);
+        var line1 = new LineSegment(p1, p2);
+        var lp = line1.getFirstPoint();
+        lp.x = 100; //不小心改写了lp的值，但是没有破坏原始的值
+        alert(line1.getFirstPoint().x);
+        alert(line1.length); //line1.lenght不发生改变
+    </script>
+</head>
+<body>
+
+</body>
+</html>

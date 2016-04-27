@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module('myApp',[])
+                .controller('myCtrl',['$scope','$parse',function($scope,$parse){
+                    var context = {
+                        name : 'dreamapple',
+                        a : 'a'
+                    };
+                    var expression = "'Hello ' + name";
+                    var parseFunc = $parse(expression);
+                    $scope.parseValue = parseFunc(context);
+                    console.log($scope.parseValue);
+                }]);
+    </script>
+</head>
+<body ng-controller="myCtrl">
+
+</body>
+</html>
