@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var APP = React.createClass({
+        getInitialState:function(){
+            alert('init');
+            return {opacity:0.3,fontSize:'14px'}
+        },
+        render:function(){
+            var objStyle = {color:'red',fontSize:this.state.fontSize,opacity:this.state.opacity}
+            return <div className='abc' style={objStyle} >Hello {this.props.name} !</div>;
+        },
+        componentWillMount:function(){
+            alert('componentWillMount');
+        },
+        componentDidMount:function(){
+            alert('componentDidMount');
+        }
+    });
+    ReactDOM.render(<APP name='world'/>,document.getElementById('example'));
+</script>
+</body>
+</html>

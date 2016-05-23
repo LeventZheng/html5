@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var App = React.createClass({
+            getInitialState:function(){
+                return {keyValue:''}
+            },
+            change:function(event){
+                this.setState({
+                    keyValue : event.target.value
+                })
+            },
+            render:function(){
+                return <div><input type="text" onChange={this.change}/><span>{this.state.keyValue}</span></div>;
+               // return  <div>121112</div>;
+            }
+        });
+        ReactDOM.render(<App/>,document.getElementById('example'));
+    </script>
+</body>
+</html>
