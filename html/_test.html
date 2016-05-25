@@ -5,11 +5,12 @@
     <title></title>
 </head>
 <script>
-    var result = {"mobResponse":{"code":"100","desc":"参团成功","result":{"orderCodes":["1914528530935990562"],"payArgs":"{\"partnerid\":\"1218651701\",\"prepayid\":\"wx201601151817248131f1e2ff0312183633\",\"package\":\"Sign=WXPay\",\"noncestr\":\"0968d7d76ef94e85b33578cd09f7c401\",\"timestamp\":\"1452853042\",\"sign\":\"34CF36462B0295C0264DCB29B2F840E1\"}","payUrl":"","paymentCode":"1714528530937790067","tradeCode":"1214528530935932434","validateResult":{"actCode":"0114527632213845709","deliveryId":"107743","invoiceBean":null,"payType":"weixin","skus":[{"count":1,"resultCode":"","resultDesc":"","sku":147,"spu":186,"validateFlag":true}],"validateResult":true}},"tsno":""}};
-    var data = result.mobResponse.result;
-    console.log(data);
-    var payArgs = data.payArgs;
-    console.log(JSON.parse(payArgs));
+    var a = true+5,
+            b = 5 + "3",
+            c = "1" + 2,
+            d = undefined + 4,
+            e = null;
+    alert(c + b + d + e);
 </script>
 <body>
 
