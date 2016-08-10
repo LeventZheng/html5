@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2016/5/5.
  */
+'use strict';
 let age = 23;
 
 let name = "tom";
