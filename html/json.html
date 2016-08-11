@@ -26,11 +26,11 @@
             console.log(json1 instanceof Object);
             /**
              * 在这里aa只是一个以string为数据类型的值 并不是String的实例对象
-            aa instanceof String 在只有左侧是右侧类的对象时才会返回ture
-            alert(aa instanceof Object);    它的值一样是false  （所有对象都是Object的实例）
-            说明aa本身并不是任何一个类的实例
+             json1 instanceof String 在只有左侧是右侧类的对象时才会返回ture
+            alert(json1 instanceof Object);    它的值一样是false  （所有对象都是Object的实例）
+            说明json1本身并不是任何一个类的实例
             如果想将这个数据类型转换为String的类对象的话可以
-            var b=new String(aa);
+            var b=new String(json1);
             alert(b instanceof String);  //ture
             此时b就是String类的实例对象了
             还有你可以测一下typeof aa;

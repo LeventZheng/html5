@@ -17,7 +17,7 @@
                     return {
                         restrict:'A',
                         scope:true,
-                        template:'Inside myDirective,isolate scope:{{myProperty}}'
+                        template:'Inside myInheritScopeDirective,isolate scope:{{myProperty}}'
                     }
                 });
     </script>
@@ -26,8 +26,8 @@
 <h1>scope设置true与{}的区别</h1>
 <div ng-init="myProperty='Wow,this is cool'">
     Surrounding scope:{{myProperty}}
-    <div my-inherit-scope-directive></div>
     <div my-directive></div>
+    <div my-inherit-scope-directive></div>
 </div>
 </body>
 </html>

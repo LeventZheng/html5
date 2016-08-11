@@ -7,8 +7,8 @@
  */
 function devideSort(array){
     if(Object.prototype.toString.call(array).slice(8,-1) === 'Array'){
-        var newArr = [array[0]];
         for(var i=1; i<array.length; i++){
+<<<<<<< HEAD
             var k = parseInt(i/2);
             //alert(array[k]);
             if(array[i]<array[k]){
@@ -20,9 +20,34 @@ function devideSort(array){
         }
         console.log(newArr);
         return true;
+=======
+            var key = array[i];
+            var  left = 0, right = i-1;
+            while(left <= right){
+            	var middle = parseInt((left + right)/2);
+                console.log('middle:'+array[middle]+",key:"+key);
+                if(array[middle]>key){
+            		right = middle - 1;
+            	}else{
+            		left = middle + 1;
+            	}
+                console.log('left:'+left+",right:"+right);
+            }
+            for(var j = i; j>left; j--){
+                array[j] = array[j-1];
+            }
+            array[left] = key;
+        }
+        console.log(array);
+>>>>>>> a1b6b83d22258d760733b1f1c7ca458b9fbc15a9
     }else{
         return 'this is not a Array.'
     }
 }
+<<<<<<< HEAD
 
 console.log(devideSort([1,3,2,87,6,4,5,123,11,98]));
+=======
+devideSort([1,8,2,7,5,9,3]);
+//console.log(devideSort([1,3,8,4,9,6,5,4]));
+>>>>>>> a1b6b83d22258d760733b1f1c7ca458b9fbc15a9

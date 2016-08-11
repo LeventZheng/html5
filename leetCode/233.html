@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number of Digit One</title>
+</head>
+<body>
+
+</body>
+<script>
+    var countDigitOne = function(n) {
+        var count =0;
+        for( var i =0; i<=n; i++){
+            i.toString().split('').forEach(function(num){
+                if(num == '1'){
+                    count++;
+                }
+            });
+        }
+        return count;
+    };
+</script>
+</html>
