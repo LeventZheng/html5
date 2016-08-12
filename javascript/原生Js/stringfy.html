@@ -13,6 +13,15 @@
         console.log(new String("a"));
         console.log(JSON.stringify("a") instanceof String);
 
+        console.log(JSON.stringify({name:'tom',age:18,isGirl:false}));
+        console.log(JSON.stringify({name:'tom',age:18,isGirl:false}) == '{"name":"tom","age":18,"isGirl":false}');
+        console.log(JSON.stringify({name:'tom',age:18,isGirl:false}) == "{'name':'tom','age':18,'isGirl':false}");
+        console.log(JSON.stringify({name:'tom',age:18,isGirl:false}) == "{\"name\":\"tom\",\"age\":18,\"isGirl\":false}");
+        console.log(JSON.stringify({name:'tom',age:18,isGirl:false}) == '{\"name\":\"tom\",\"age\":18,\"isGirl\":false}');
+        console.log("------------")
+        console.log(JSON.stringify(true));
+        console.log(JSON.stringify(3.14));
+
         console.log(String.prototype.substr.toString());
     </script>
 </head>
