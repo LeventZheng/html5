@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .zoom{ border-radius: 5px; width: 120px; height: 80px; display: inline-block; }
+        .rotateY{animation: myfirst 3s;}
+        @keyframes myfirst
+        {
+            from {transform: rotateY(0deg);}
+            to {transform: rotateY(180deg);}
+        }
+
+        .bc0{ background-color: navajowhite;}
+        .bc1{ background-color: yellowgreen}
+        .bc2{ background-color: slategrey}
+        .bc3{ background-color: mediumvioletred}
+        .bc4{ background-color: firebrick}
+        .bc5{ background-color: purple}
+        .bc6{ background-color: cornflowerblue}
+        .bc7{ background-color: darkseagreen}
+    </style>
 </head>
 <body>
-
+    <!--<span class="zoom bc1"></span>-->
 </body>
+<script>
+    for( var i=0; i<100; i++){
+        var zoom = document.createElement('span');
+        var className = "zoom bc"+i%8;
+        zoom.className = className;
+        document.body.appendChild(zoom);
+    }
+    document.querySelector('.zoom').addEventListener('mouseover',function(e){
+        console.log(e);
+        var className = e.target.className;
+        if(className.indexOf('rotateY') == -1){
+            className  += " rotateY";
+            e.target.className = className;
+        }
+    });
+</script>
 </html>
