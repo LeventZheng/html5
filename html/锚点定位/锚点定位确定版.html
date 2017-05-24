@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #nav{
+            position: fixed;
+            width: 90px;
+            right: 17px;
+        }
+        #nav a{ display: block;}
+        .c{
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $(window).scroll(function(){
+                //为页面添加页面滚动监听事件
+                var wst =  $(window).scrollTop() //滚动条距离顶端值
+                for (i=1; i<6; i++){             //加循环
+                    if($("#a"+i).offset().top<=wst){ //判断滚动条位置
+                        $('#nav a').removeClass("c"); //清除c类
+                        $("#a"+i+i).addClass("c");	//给当前导航加c类
+                    }
+                }
+
+            })
+            $('#nav a').click(function(){
+                $('#nav a').removeClass("c");
+                $(this).addClass("c");
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="nav">
+    <a id="a11" href="#a1" class="c">书籍目录</a>
+    <a id="a22" href="#a2">作品试读</a>
+    <a id="a33" href="#a3">购买须知</a>
+    <a id="a44" href="#a4">注意事项</a>
+    <a id="a55" href="#a5">用户点评</a>
+</div>
+<br /><br />
+页面结构如下：
+<div id="a1" style="height: 900px; background: yellow;">测试</div>
+<div id="a2" style="height: 900px; background: mediumvioletred;">测试</div>
+<div id="a3" style="height: 900px; background: green;">测试</div>
+<div id="a4" style="height: 900px; background: dimgray;">测试</div>
+<div id="a5" style="height: 900px; background: cornflowerblue;">测试</div>
+</body>
+</html>
