@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <title>SDK Demo Pages</title>
+
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="sdk.2.0.0.js"></script>
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+        }
+
+        input,
+        textarea {
+            width: 180px;
+            border: 1px solid #cccccc;
+            border-radius: 2px;
+            padding: 3px;
+        }
+
+        .v-area {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0;
+            overflow: auto;
+            background-color: #ffffff;
+            border-left: 1px solid #cccccc;
+        }
+
+        .v-topbar {
+            padding: 0px;
+        }
+
+        .v-block {
+            border: 1px solid #cccccc;
+            margin: 5px;
+            padding: 5px;
+            padding-bottom: 15px;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+
+        .nobd {
+            border: none;
+            padding: 0;
+            text-align: right;
+            box-shadow: none;
+        }
+
+        .v-func-result {
+            min-height: 80px;
+            width: 180px;
+            border: 1px solid #cccccc;
+            padding: 3px;
+            overflow: auto;
+        }
+
+        .clearfix {
+            clear: both;
+            overflow: hidden;
+            height: 1px;
+        }
+
+        #btn-show-panel {
+            position: fixed;
+            z-index: 10;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =================================  Toolbar ================================= -->
+
+<button id="btn-show-panel">&lt;&lt;</button>
+
+<div class="v-area">
+    <div class="v-topbar">
+        <div class="v-block nobd">
+            <button id="btn-hide-panel">&gt;&gt;</button>
+        </div>
+
+        <div class="v-block">
+            <h3>服务器参数</h3>
+            <table>
+                <tr>
+                    <td>服务器地址：</td>
+                    <td><input type="text" id="v-ipt-host" value="https://release.uzer.me"></td>
+                </tr>
+                <tr>
+                    <td>SessionManager地址：</td>
+                    <td><input type="text" id="v-ipt-sess" value="https://release.uzer.me/eaas-sessionmgrv2/"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="v-block">
+            <h3>启动参数</h3>
+            <table>
+                <tr>
+                    <td>ClientID：</td>
+                    <td><input type="text" id="v-ipt-clientId" value="xiaoEducation"></td>
+                </tr>
+                <tr>
+                    <td>ClientSEC：</td>
+                    <td><input type="text" id="v-ipt-clientSecret" value="XiaoEducation@XieTong"></td>
+                </tr>
+                <tr>
+                    <td>用户ID：</td>
+                    <td><input type="text" id="v-ipt-userId" value="2006040615159808"></td>
+                </tr>
+                <tr>
+                    <td>用户名：</td>
+                    <td><input type="text" id="v-ipt-userNickname" value="test"></td>
+                </tr>
+                <tr>
+                    <td>应用ID：</td>
+                    <td><input type="text" id="v-ipt-appId" value="APP00001"></td>
+                </tr>
+                <tr>
+                    <td>文件ID：</td>
+                    <td><input type="text" id="v-ipt-fileId" value="2131061073102848"></td>
+                </tr>
+                <tr>
+                    <td>文件名：</td>
+                    <td><input type="text" id="v-ipt-fileName" value="EAAS-API.doc"></td>
+                </tr>
+                <tr>
+                    <td>文件路径：</td>
+                    <td><input type="text" id="v-ipt-filePath" value=""></td>
+                </tr>
+                <tr>
+                    <td>会话ID：</td>
+                    <td><input type="text" id="v-ipt-user-1"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="v-block">
+            <h3>发起者</h3>
+            <button class="v-apptool-user-H">打开</button>
+            <button class="v-apptool-ctrl-H">控制</button>
+            <button class="v-close-app">退出</button>
+        </div>
+
+        <div class="v-block">
+            <h3>参与者</h3>
+            <button class="v-apptool-user-1">加入</button>
+            <button class="v-apptool-ctrl-1">控制</button>
+            <button class="v-apptool-exit-1">离开</button>
+        </div>
+
+        <div class="v-block">
+            <h3>X模块调用</h3>
+            <table>
+                <tr>
+                    <td>功能名称：</td>
+                    <td><input type="text" id="v-ipt-funcname" value=""></td>
+                </tr>
+                <tr>
+                    <td>功能参数：</td>
+                    <td><textarea id="v-ipt-funcargs" rows="6"></textarea></td>
+                </tr>
+                <tr>
+                    <td>调用结果：</td>
+                    <td>
+                        <div class="v-func-result"></div>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="v-apptool-xcall">开始调用</button>
+        </div>
+    </div>
+</div>
+
+<!-- =================================  App Display Area ================================= -->
+
+<div id="my_app" style="overflow: auto; background-color: #000000; width:100%; height: 100%;"></div>
+
+<!-- =================================  Demo JS Code ===================================== -->
+
+<script>
+    $(function () {
+        var x;
+        function myFunction(){
+            x="你能看到这行，就说明myFunction函数运行了！";
+            console.log(x);
+        }
+        window.onbeforeunload=function(){
+            myFunction();
+            return x;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        $('#btn-hide-panel').on('click', function () {
+            $('.v-area').hide();
+            $('#btn-show-panel').show();
+        });
+
+        $('#btn-show-panel').on('click', function () {
+            $('.v-area').show();
+            $('#btn-show-panel').hide();
+        });
+
+        // host启动
+        $('.v-apptool-user-H').on('click', function () {
+            startAsHost();
+        });
+
+        // participant启动
+        $('.v-apptool-user-1').on('click', function () {
+            startAsParticipant();
+        });
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        function startAsHost() {
+            var clientId = $('#v-ipt-clientId').val();
+            var clientSecret = $('#v-ipt-clientSecret').val();
+
+            var hostUrl = $('#v-ipt-host').val();
+            var sessUrl = $('#v-ipt-sess').val();
+
+//            UApp.configSDK({
+//                clientId: clientId, // "dataHome",
+//                clientSecret: clientSecret, // "57a9a330e4b0e76619fbfc1d",
+//                serverURL: hostUrl,
+//                sessionManagerURL: sessUrl
+//            });
+
+            UApp.Authenticator.authorize('2bba2bb5-c028-4ca3-91b2-bcd015506bd2','xiaoEducation').then(function () {
+                var session = new UApp.ApplicationSession();
+
+                session.on('SESSION_CONNECTED', function (event) {
+                    console.log("会话已连接成功(firstTime):"+JSON.stringify(event));
+                });
+                session.on('SESSION_DISCONNECTED', function (event) {
+                    console.log("会话连接已断开(type):"+JSON.stringify(event));
+                });
+                session.on('SESSION_RECONNECTING', function (event) {
+                    console.log("会话重连中:"+JSON.stringify(event));
+                });
+                session.on('SESSION_RECONNECT_ERROR', function (event) {
+                    console.log("会话重连错误中:"+JSON.stringify(event));
+                });
+                session.on('APP_START_FAILED', function (event) {
+                    console.log("应用启动失败(errorCode):"+JSON.stringify(event));
+                });
+                session.on('APP_START_PREPARING', function (event) {
+                    console.log("应用启动准备中:"+JSON.stringify(event));
+                });
+                session.on('APP_START_OPEN', function (event) {
+                    console.log("应用打开中:"+JSON.stringify(event));
+                });
+                session.on('APP_START_COMPLETED', function (event) {
+                    console.log("应用打开完成( controllerId,hostId):"+JSON.stringify(event));
+                });
+                session.on('APP_WILL_EXIT', function (event) {
+                    console.log("应用将退出(reason):"+JSON.stringify(event));
+                });
+                session.on('APP_LEAVE_FAILED', function (event) {
+                    console.log("应用退出失败(errorCode):"+JSON.stringify(event));
+                });
+                session.on('APP_IME_LIST', function (event) {
+                    console.log("读取输入法列表( listIME,currIME):"+JSON.stringify(event));
+                });
+                session.on('APP_IME_CHANGE', function (event) {
+                    console.log("输入法切换( ime):"+JSON.stringify(event));
+                });
+                session.on('APP_CONTROL_GOT', function (event) {
+                    console.log("获得控制权:"+JSON.stringify(event));
+                });
+                session.on('APP_CONTROLLER_CHANGE', function (event) {
+                    console.log("控制权有变更( controllerId):"+JSON.stringify(event));
+                });
+                session.on('APP_PARTICIPANT_CHANGE', function (event) {
+                    console.log("参与者有变动( userId,isJoin):"+JSON.stringify(event));
+                });
+                session.on('APP_IN_ZOMEBIE', function (event) {
+                    console.log("应用因长时间未操作，进入被自动回收倒计时阶段( timeout):"+JSON.stringify(event));
+                });
+                session.on('APP_PLAYER_SIZE_CHANGE', function (event) {
+                    console.log("应用画面展示区域尺寸有变动( local, remote):"+JSON.stringify(event));
+                });
+                session.on('NETWORK_CHANGE', function (event) {
+                    console.log("网络状态有变动(  state):"+JSON.stringify(event));
+                });
+                session.on('APP_CLIPBOARD_OVERFLOW', function (event) {
+                    console.log("粘贴内容过多，请分片粘贴:"+JSON.stringify(event));
+                });
+                session.on('MCU_SIG', function (event) {
+                    console.log("MCU_SIG:"+JSON.stringify(event));
+                    switch (event.type) {
+                        case "ready":
+                            break;
+                        case "failed":
+                            break;
+                        case "timeout":
+                            break;
+                        case "abnormalCandidate":
+                            break;
+                    }
+                });
+
+
+
+                session.on('APP_CALL_API', function (event) {
+                    $('.v-func-result').text(JSON.stringify(event));
+                    console.log("APP_CALL_API:"+JSON.stringify(event));
+                });
+
+                var userId = $('#v-ipt-userId').val();
+                var userNickname = $('#v-ipt-userNickname').val();
+                var appId = $('#v-ipt-appId').val();
+                var fileId = $('#v-ipt-fileId').val();
+                var fileName = $('#v-ipt-fileName').val();
+                var filePath = $('#v-ipt-filePath').val();
+
+                // APP00051 Photoshop
+                // APP00061 PDF阅读器
+
+
+//                $.post("http://test.teaching.xiaojiaoyu100.com/tea_api/share/session/start",
+//                    {"fileName":"EAAS-API.doc","canExportFile":false,"appId":"APP00001","canCopyPasteOut":false,"userId":"2006040615159808","canSaveFile":true,"fileId":"2"},
+//                    function(data,status){
+//                        console.log(">>>>>>>>>>>>>>>>>>>>>>>Data: " + JSON.stringify(data) + "\nStatus: " + status+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//                    });
+
+                $.ajax({
+                    type:"POST",
+                    url:"http://test.teaching.xiaojiaoyu100.com/tea_api/share/session/start",
+                    contentType:"application/json",  //发送信息至服务器时内容编码类型。
+                    dataType:"json",  // 预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断，比如XML MIME类型就被识别为XML。
+                    data:'{"canExportFile":false,"fileName":"EAAS-API.doc","appId":"APP00001","canCopyPasteOut":false,"userId":"2006040615159808","canSaveFile":true,"fileId":"2"}',
+                    success:function(data){
+                        console.log("session start获取后台session信息："+JSON.stringify(data));
+                        session.start({
+                            container: "my_app",
+                            isParticipantMode:false,
+                            sessionId:data.data.sessionId,
+//                    sessionMgrUrl: "https://192.168.11.7/eaas-sessionmgrv2/api/",
+                            sessionMgrUrl: "https://release.uzer.me/eaas-sessionmgrv2/api/",
+                            mcuUrl: "https://release.uzer.me:8080",
+                            gwHost: "release.uzer.me",
+                            gwPort: 12316,
+                            useH264:true,
+                            userId:2006040615159808,
+                            userNickname: "jack"
+                        });
+                    }
+                });
+
+
+
+                /**
+                 * 网络状态事件
+                 */
+//                session.on("NETWORK_CHANGE",function(t) {
+//                    console.log('网络状态：'+t.state);
+//                });
+
+                $('.v-close-app').on('click', function () {
+                    if (session) {
+                        session.leave(false);
+                    }
+                });
+
+                $('.v-apptool-ctrl-H').on('click', function () {
+                    if (session) {
+                        session.requestControl();
+                    }
+                });
+
+                $('.v-apptool-xcall').on('click', function () {
+                    if (session) {
+                        var funcName = $('#v-ipt-funcname').val();
+                        var funcArgs = $('#v-ipt-funcargs').val();
+                        session.requestCallRemoteAPI(funcName, funcArgs);
+                    }
+                });
+            }).catch(function (e) {
+                console.log("[ERROR]", e);
+            });
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        function startAsParticipant() {
+            var clientId = $('#v-ipt-clientId').val();
+            var clientSecret = $('#v-ipt-clientSecret').val();
+
+            UApp.configSDK({
+                clientId: clientId, // "dataHome",
+                clientSecret: clientSecret, // "57a9a330e4b0e76619fbfc1d",
+                serverURL: (window.localStorage.getItem("eaas_serv_url") || "https://release.uzer.me"),
+                sessionManagerURL: "https://release.uzer.me/eaas-sessionmgrv2/"
+            });
+
+            var sessionId = $('#v-ipt-user-1').val();
+            var userNickname = $('#v-ipt-userNickname').val();
+
+            UApp.Authenticator.authorize().then(function () {
+                var session = new UApp.ApplicationSession();
+
+                session.start({
+                    container: "my_app",
+                    userId: "1585726243260416",
+                    sessionId: sessionId,
+                    userNickname: userNickname
+                });
+
+                $('.v-apptool-ctrl-1').on('click', function () {
+                    if (session) {
+                        session.requestControl();
+                    }
+                });
+
+                $('.v-apptool-exit-1').on('click', function () {
+                    if (session) {
+                        session.leave(false);
+                    }
+                });
+            });
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    });
+
+</script>
+
+</body>
+
+</html>

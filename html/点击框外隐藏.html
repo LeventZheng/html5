@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #bar{
+            width: 200px;
+            height: 200px;
+            background: #2ec184;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+    <script src="./../js/lib/jquery/jquery-1.10.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(document).click(function(){
+                $("#bar").hide();
+            });
+            $("#bar").click(function(event){
+//                alert(123);
+                event.stopPropagation();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="bar"></div>
+    <input type="text">
+    <div class="box"></div>
+</body>
+</html>

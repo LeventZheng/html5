@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拼接搜索结果插入span标签</title>
+    <script>
+        var str1 = "函数式";
+        var str2 = "搜索出的函数式棒棒哒函数式aaaaaa函数式 ";
+//        var str3 = str2.substring(0,str2.indexOf(str1));
+//        var str4 = str2.substring(str2.indexOf(str1)+str1.length);
+//        console.log(str3 + "<span>" + str1 + "</span>" + str4);
+        var str = "";
+        var strArr = str2.split(str1);
+        for(var i=0; i<strArr.length-1; i++){
+            str += strArr[i] + "<span>" + str1 + "</span>";
+        }
+        console.log(str);
+    </script>
+    <script>
+        var str11 = "圆";
+        var str12 = "圆不咋hi是啊圆实打实圆";
+        var names  =str12.split(str11);
+        console.log(names);
+        var label = "";
+        for (var i = 0; i < names.length; i++) {
+            if (i === names.length-1 && !names[i]) {} else {
+                label += names[i] + '<span class="hight-light">' + str11 + '</span>';
+            }
+        }
+        console.log(label);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
