@@ -1,0 +1,25 @@
+﻿body
+{
+}
+#demo
+{
+	background: #9bd8ed;
+	overflow: hidden;
+	width: 100%;
+	height: 101px;
+}
+#indemo
+{
+	float: left;
+	width: 200%;
+}
+#demo1
+{
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+}
+#demo2
+{
+	float: left;
+}
