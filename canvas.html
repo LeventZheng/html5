@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200" style="border: 1px solid #000000"></canvas>
+
+</body>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext("2d");
+    /*填充*/
+    ctx.fillStyle = "#ff0000";
+    ctx.fillRect(10,10,150,120);
+    /*划线*/
+    ctx.moveTo(0,0);
+    ctx.lineTo(200,200);
+    ctx.stroke();
+    /*画圆*/
+    ctx.beginPath();
+    ctx.arc(95,50,40,0,2*Math.PI);
+    ctx.stroke();
+    /*绘制文本*/
+    ctx.font = "26px Arial";
+    ctx.fillText("hello world", 0, 160);
+    ctx.strokeText("hello world", 0, 190);
+</script>
+</html>
