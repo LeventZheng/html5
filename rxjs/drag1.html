@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>元素拖动drag</title>
+  <style>
+    .red{
+      width: 400px;
+      height: 400px;
+      background: red;
+      position: fixed;
+    }
+    .box {
+      background: greenyellow;
+      width: 200px;
+      height: 200px;
+      position: fixed;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+
+<body>
+  <div class="red">
+    <div class="box"></div>
+  </div>
+  <script>
+    const box = document.querySelector('.box');
+    let getElemenetDrags = el =>
+      el.mouseDowns
+        .map(mouseDown =>
+          document.mouseMoves
+            .takeUntil(document.mouseUps)
+        )
+        .concatAll();
+
+    getElementDrags(div)
+      .forEach(position => img.position = position)
+  </script>
+</body>
+
+</html>

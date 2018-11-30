@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flatMap</title>
+  <style>
+    .box{
+      background: greenyellow;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+  </script>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    const box = document.querySelector('.box');
+    let foo = Rx.Observable.fromEvent(box, 'mousemove');
+    // foo.map((e)=>e.clientX).subscribe((e)=>{console.log(e)});
+    foo.flatMap((e)=>Rx.Observable.of(e.clientX)).subscribe((e)=>{console.log(e)});
+  </script>
+</body>
+</html>

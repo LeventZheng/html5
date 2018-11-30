@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>拖动div</title>
+  <style>
+    .box{
+      cursor: move;
+      background: greenyellow;
+      width: 200px;
+      height: 200px;
+      position: fixed;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    // 此例子来源于stackoverflow
+    
+    // 定义鼠标抬起的事件流，事件发生在移动对象dragTargets上
+    const dragTargets = document.querySelector('.box');
+
+    var mouseup = Rx.Observable.fromEvent(dragTargets, 'mouseup');
+    // 定义鼠标移动的事件流，事件发生在document上
+    var mousemove = Rx.Observable.fromEvent(document,   'mousemove');
+    // 定义鼠标按下的事件流，事件发生在移动对象dragTargets上
+    var mousedown = Rx.Observable.fromEvent(dragTargets, 'mousedown');
+
+    // 转换操作，鼠标按下事件发生的时候，将事件流转换成跟踪鼠标移动事件流
+    var mousedrag = mousedown.flatMap(function (md) {
+      console.log('mousedown');
+      // 计算移动开始时候元素的位置
+      var startX = md.offsetX, startY = md.offsetY;
+
+      // 真正的转换开始
+      return mousemove.map(function (mm) {
+        console.log('mousemove');
+        mm.preventDefault();
+        // 事件里面的值，即最后订阅者可以操作的数据
+        return {
+          left: mm.clientX - startX,
+          top: mm.clientY - startY,
+          target: mm.target,
+        };
+      // 直到鼠标抬起事件发生的时候整个事件流结束
+      }).takeUntil(mouseup);
+    });
+
+    // 订阅者的操作，简单的将元素的style修改即可
+    var subscription = mousedrag.subscribe(function (d) {
+      d.target.style.top = d.top + 'px';
+      d.target.style.left = d.left + 'px';
+    });
+  </script>
+</body>
+</html>
