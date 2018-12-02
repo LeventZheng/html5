@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fromEventPattern</title>
+  <style>
+    .box{
+      background: greenyellow;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <div class="box"><span>去北京</span></div>
+  <script>
+    const box = document.querySelector('.box');
+    function addClickHandler(handler) {
+      box.addEventListener('click', handler);
+    }
+
+    function removeClickHandler(handler) {
+      box.removeEventListener('click', handler);
+    }
+
+    var clicks = Rx.Observable.fromEventPattern(
+      addClickHandler,
+      removeClickHandler
+    );
+    var subscribion = clicks.subscribe(x => {
+      console.log(x)
+      subscribion.unsubscribe();
+    });
+  </script>
+</body>
+</html>

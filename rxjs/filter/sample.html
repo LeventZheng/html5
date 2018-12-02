@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>takeUntil</title>
+  <title>sample</title>
   <style>
     .box{
       background: greenyellow;
@@ -13,21 +13,15 @@
     }
   </style>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
-  <script>
-  </script>
 </head>
 <body>
-  <div class="box"></div>
+  <div class="box"><span>去北京</span></div>
   <script>
     const box = document.querySelector('.box');
-    let click$ = Rx.Observable.fromEvent(box, 'click');
-    let interval$ = Rx.Observable.interval(1000);
-    // interval$.take(10).subscribe((e)=>{console.log(e)});
-    interval$.takeUntil(click$).subscribe({
-      next: (y)=> console.log(y),
-      error: err => console.log(err),
-      complete: () => console.log('complete')
-    });
+    var seconds = Rx.Observable.interval(1000);
+    var clicks = Rx.Observable.fromEvent(box, 'click');
+    var result = seconds.sample(clicks);
+    result.subscribe(x => console.log(x));
   </script>
 </body>
 </html>

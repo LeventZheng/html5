@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>of</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    // Emit 1, 2, 3, then 'a', 'b', 'c', then start ticking every second.
+    var numbers = Rx.Observable.of(1, 2, 3);
+    var letters = Rx.Observable.of('a', 'b', 'c');
+    var interval = Rx.Observable.interval(1000);
+    var result = numbers.concat(letters).concat(interval);
+    result.subscribe(x => console.log(x));
+  </script>
+</head>
+<body>
+</body>
+</html>
