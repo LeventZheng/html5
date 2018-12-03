@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>defaultIfEmpty</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    var clicks = Rx.Observable.fromEvent(document, 'click');
+    var clicksBeforeFive = clicks.takeUntil(Rx.Observable.interval(5000));
+    var result = clicksBeforeFive.defaultIfEmpty(true);  // 如果在5秒内没有点击事件发生,发出"no clicks"
+    result.subscribe(x => console.log(x));
+  </script>
+</head>
+<body>
+</body>
+</html>

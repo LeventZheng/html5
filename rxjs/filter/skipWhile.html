@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>skipWhile</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    let foo$ = Rx.Observable.of(1,3,5,7,2,1,9,10);
+    foo$.skipWhile(x=>x<5).subscribe((data)=>console.log(data));  // 从5开始不满足条件，发出所有项，过滤条件不再生效
+  </script>
+</head>
+<body>
+</body>
+</html>

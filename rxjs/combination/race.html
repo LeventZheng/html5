@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>race</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    var interval1 = Rx.Observable.interval(1000).map(x=>x*2);
+    var interval2 = Rx.Observable.interval(1000).map(x=>x*3).delay(200);
+    var timer = Rx.Observable.timer(2000, 500).mapTo('a');
+    var click = Rx.Observable.fromEvent(document, 'click');
+    var result = interval1.race(interval2).race(timer).race(click); // 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30
+    result.subscribe(x => console.log(x));
+  </script>
+</head>
+<body>
+</body>
+</html>

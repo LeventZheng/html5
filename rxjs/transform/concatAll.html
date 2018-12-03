@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>concatAll</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    var clicks = Rx.Observable.fromEvent(document, 'click');
+    var higherOrder = clicks.map(ev => Rx.Observable.interval(1000).take(4));
+    var firstOrder = higherOrder.concatAll();
+    firstOrder.subscribe(x => console.log(x));
+
+    // 结果如下:
+    // (结果是串行的)
+    // 对于"document"对象上的点击事件，都会以1秒的间隔发出从0到3的值
+    // one click = 1000ms-> 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3
+  </script>
+</body>
+</html>
