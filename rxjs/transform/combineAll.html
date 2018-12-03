@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>combineAll</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    var clicks = Rx.Observable.fromEvent(document, 'click');
+    var higherOrder = clicks.map(ev =>
+      Rx.Observable.interval(Math.random()*2000).take(3)
+    ).take(2);
+    var result = higherOrder.combineAll();
+    result.subscribe(x => console.log(x));
+  </script>
+</body>
+</html>

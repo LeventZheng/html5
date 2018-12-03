@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bufferCount</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    let foo1$ = Rx.Observable.interval(1000);
+    let foo$ = foo1$.bufferCount(3, 3);
+    foo$.subscribe((e)=>{console.log(e)});
+  </script>
+</body>
+</html>
