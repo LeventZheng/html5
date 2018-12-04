@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bufferToggle</title>
+  <style>
+    .box{
+      background: greenyellow;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    var clicks = Rx.Observable.fromEvent(document, 'click');
+    var openings = Rx.Observable.interval(1000);
+    var buffered = clicks.bufferToggle(openings, i =>
+      {
+        console.log(i);
+        return Rx.Observable.timer(500)
+        // return i % 2 ? Rx.Observable.interval(500) : Rx.Observable.empty()
+      }
+    );
+    buffered.subscribe(x => console.log(x));
+  </script>
+</body>
+</html>

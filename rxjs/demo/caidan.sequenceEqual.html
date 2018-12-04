@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>连续按键触发彩蛋 sequenceEqual</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.min.js"></script>
+  <script>
+    const code = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "KeyB",
+      "KeyA",
+      "KeyB",
+      "KeyA"
+    ]
+
+    let code$ = Rx.Observable.from(code);
+
+    Rx.Observable.fromEvent(document, 'keyup')
+      .map(e => e.code)
+      .bufferCount(12, 1)
+      .mergeMap(
+        last12key => Rx.Observable.from(last12key).sequenceEqual(code$)
+      )
+      .subscribe(method => {
+        method?console.log('隐藏的彩蛋 \(^o^)/~'):null;
+      });
+    // 提高： 要求只有在两秒内连续输入秘籍，才能触发彩蛋
+  </script>
+</head>
+<body>
+</body>
+</html>

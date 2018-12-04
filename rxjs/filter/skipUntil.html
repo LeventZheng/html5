@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>skipUntil</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    let foo$ = Rx.Observable.interval(1000);
+    let click$ = Rx.Observable.fromEvent(document, 'click');
+    foo$.skipUntil(click$).subscribe((data)=>console.log(data));  // 直到第一次点击以后开始发出数据，后面再点击不影响
+  </script>
+</head>
+<body>
+</body>
+</html>
