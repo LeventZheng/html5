@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>concatMap</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    
+    var source = Rx.Observable.of(1,2,3);
+    var mf = function(item){
+        return Rx.Observable.range(item,3);
+    };
+    var target = source.concatMap(mf).subscribe(x=>console.log(x)); 
+  </script>
+</head>
+<body>
+</body>
+</html>
