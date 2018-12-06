@@ -11,7 +11,7 @@
   * selector: function(item) { return item.id;}; ect;
   */
 function SectionSort(arr, selector) {
-    selector = selector||JSON.stringify;
+    selector = selector||JSON.parse;
     for (let i=0; i<arr.length; i++) {
         // 寻找[i, n)区间里的最小值
         let minIndex = i;

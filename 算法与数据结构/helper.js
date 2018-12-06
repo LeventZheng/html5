@@ -1,13 +1,23 @@
 var SortTestHelper = {
-    // 生成有n个元素的随机数组，每个元素的随机范围为[rangeL, rangeR)]
+    /**
+     * 生成有length长度的元素的随机数组，每个元素的随机范围为[rangeL, rangeR)
+     * length 数组长度
+     * rangeL 最小值
+     * rangeR 最大值
+     */
     generateRandamArray: (length, rangeL, rangeR) => {
-        console.assert(rangeL < rangeR);
+        console.assert(rangeL < rangeR);    // rangeR要求大于rangeL
         let arr = [];
         for (let i = 0; i < length; i++) {
             arr[i] = rangeL + Math.floor(Math.random() * (rangeR - rangeL + 1));
         }
         return arr;
     },
+    /**
+     * 生成length长度,接近排好序的数组,用于测试一些极端的情况
+     * length 数组长度
+     * swapTimes 打乱的次数
+     */
     genNearOrderArr: (length, swapTimes) => {
         let arr = [];
         for (let i = 0; i < length; i++) {
@@ -26,23 +36,24 @@ var SortTestHelper = {
      * 测试方法
      * 计算算法效率
      * 检查排序结果是否正确
-     * selector 可选入参
+     * selector 可选入参，当数组内容是对象的时候，用于获取比较字段，例如function(item) { return item.id;};
      */
     testSort: (arr, sorter, selector) => {
         console.log(sorter.getName());
         console.time();
         let sortedArr = sorter(arr, selector);
         console.timeEnd();
-        console.log(SortTestHelper.isSorted(arr, selector));
+        console.assert(SortTestHelper.isSorted(arr, selector));
         return sortedArr;
     },
     /**
+     * 判断是否已排序
      * selector 可选入参
      */
     isSorted: (arr, selector) => {
-        selector = selector || JSON.stringify;
-        for (let i = 1; i < arr.length; i++) {
-            if (selector(arr[i]) < selector(arr[i - 1])) {
+        selector = selector || JSON.parse;
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (selector(arr[i]) > selector(arr[i + 1])) {
                 return false;
             }
         }
@@ -54,12 +65,13 @@ var SortTestHelper = {
     }
 }
 
+// 交换数组的两个位置的元素
 Array.prototype.swap = function (i, j) {
     let item = this[i];
     this[i] = this[j];
     this[j] = item;
 }
-
+// 获取 function 名
 Function.prototype.getName = function () {
     return this.name || this.toString().match(/function\s*([^(]*)\(/)[1]
 }
