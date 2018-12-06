@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AsyncSubject</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    var subject = new Rx.AsyncSubject();
+    subject.subscribe(x=>console.log('observerA: ',x));
+    subject.next(1)
+    subject.next(2)
+    subject.next(3)
+    subject.next(4)
+
+    subject.subscribe({
+      next: y=>console.log('observerB: ',y)
+    });
+    subject.next(5)
+    subject.next(6)
+    subject.complete();   // 当 Observable 执行完成时(执行 complete())，才会将最后一个值发送给观察者
+    // observerA:  6
+    // observerB:  6
+  </script>
+</body>
+</html>

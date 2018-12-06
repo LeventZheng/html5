@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BehaviorSubject</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    var subject = new Rx.BehaviorSubject(0);  // 0是初始值, 默认是Undefined
+    subject.subscribe(x=>console.log(x));
+    subject.next(1)
+    subject.next(2)
+
+    // 此处subscribe的时候，能拿到最近一次发出的值
+    subject.subscribe({
+      next: y=>console.log(y)
+    });
+    subject.next(3)
+  </script>
+</body>
+</html>

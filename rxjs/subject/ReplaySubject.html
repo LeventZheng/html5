@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ReplaySubject</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    var subject = new Rx.ReplaySubject(3);  // 为新的订阅者缓冲值3个数，默认缓存全部，0或1缓存1个值，跟BehaviorSubject一样
+    subject.subscribe(x=>console.log(x));
+    subject.next(1)
+    subject.next(2)
+    subject.next(5)
+    subject.next(6)
+
+    // 此处subscribe的时候，能拿到过去所有发出的值
+    subject.subscribe({
+      next: y=>console.log(y)
+    });
+    subject.next(3)
+  </script>
+</body>
+</html>
