@@ -23,10 +23,24 @@ var SortTestHelper = {
         return arr;
     },
     /**
-     * 
+     * 测试方法
+     * 计算算法效率
+     * 检查排序结果是否正确
+     * selector 可选入参
+     */
+    testSort: (arr, sorter, selector) => {
+        console.log(sorter.getName());
+        console.time();
+        let sortedArr = sorter(arr, selector);
+        console.timeEnd();
+        console.log(SortTestHelper.isSorted(arr, selector));
+        return sortedArr;
+    },
+    /**
+     * selector 可选入参
      */
     isSorted: (arr, selector) => {
-        selector = selector || JSON.parse;
+        selector = selector || JSON.stringify;
         for (let i = 1; i < arr.length; i++) {
             if (selector(arr[i]) < selector(arr[i - 1])) {
                 return false;
@@ -34,24 +48,13 @@ var SortTestHelper = {
         }
         return true;
     },
-    /**
-     * 测试方法
-     * 测试算法效率
-     * 测试排序结果是否正确
-     */
-    testSort: (arr, sorter) => {
-        console.log(sorter.getName());
-        console.time();
-        sorter(arr);
-        console.timeEnd();
-        console.log(CommonUtil.isSorted(arr));
-    },
+    // 深拷贝
     clone: (arr) => {
         return JSON.parse(JSON.stringify(arr));
     }
 }
 
-Array.prototype.swop = function (i, j) {
+Array.prototype.swap = function (i, j) {
     let item = this[i];
     this[i] = this[j];
     this[j] = item;
