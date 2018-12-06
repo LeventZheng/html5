@@ -9,42 +9,26 @@
     <script src="./helper.js"></script>
     <script src="./sort.js"></script>
     <script>
-        let n = 20;
-        let arr11 = SortTestHelper.generateRandamArray(n, 0, n);
-        console.log(arr11);
-        // let arrB = SortTestHelper.clone(arr);
-        let arr12 = SortTestHelper.testSort(arr11, SectionSort)
-        console.log(arr12);
-        console.log('\n');
-        
+        let n = 10000;
+        // let arrA = SortTestHelper.generateRandamArray(n, 0, n);
 
-        let arr21 = [1.1,5.2,6.5,3.2,4.3];
-        console.log(arr21);
-        let arr22 = SortTestHelper.testSort(arr21, SectionSort)
-        console.log(arr22);
+        // 在近乎有序的随机数组中，插入排序的效率远远高于选择排序
+        let arrA = SortTestHelper.generateNearlyOrderArr(n, 100);
+        let arrB = SortTestHelper.clone(arrA);
+        // console.log(arr);
+
+        let arrA1 = SortTestHelper.testSort(arrA, InsertionSort2)
+        console.log(arrA1);
         console.log('\n');
 
-        let arr31 = ['D','F','A','E','C','B'];
-        console.log(arr31);
-        let arr32 = SortTestHelper.testSort(arr31, SectionSort)
-        console.log(arr32);
+        let arrB1 = SortTestHelper.testSort(arrB, SectionSort)
+        console.log(arrB1);
         console.log('\n');
 
-        let arr41 = [
-            {age: 15, name: 'TOM'},
-            {age: 12, name: 'LILEI'},
-            {age: 17, name: 'DAVIE'},
-            {age: 14, name: 'ROSE'},
-            {age: 15, name: 'LIO'},
-            {age: 13, name: 'LEON'}
-        ];
-        console.log(arr41);
-        let arr42 = SortTestHelper.testSort(arr41, SectionSort, function(item) { return item.age;})
-        console.log(arr42);
-        console.log('\n');
-
-        // SortTestHelper.testSort(arr, InsertionSort1)
-        arr11 = arr12 = arr21 = arr22 = arr31 = arr32 = arr41 = arr42 = null;
+        delete arrA;
+        delete arrA1;
+        delete arrB;
+        delete arrB1;
     </script>
 </head>
 

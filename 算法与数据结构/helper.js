@@ -14,22 +14,23 @@ var SortTestHelper = {
         return arr;
     },
     /**
-     * 生成length长度,接近排好序的数组,用于测试一些极端的情况
+     * 生成length长度、近乎有序的随机数组,用于测试一些极端的情况
      * length 数组长度
      * swapTimes 打乱的次数
      */
-    genNearOrderArr: (length, swapTimes) => {
+    generateNearlyOrderArr: (length, swapTimes) => {
+        // 先生成完全有序的数组
         let arr = [];
         for (let i = 0; i < length; i++) {
             arr.push(i);
         }
+        // 随机挑选几对元素进行交换
         for (let i = 0; i < swapTimes; i++) {
             const x = Math.floor(Math.random() * length);
             const y = Math.floor(Math.random() * length);
-            console.log(arr);
-            arr.swop(x, y);
-            console.log(arr);
+            arr.swap(x, y);
         }
+        console.log(arr);
         return arr;
     },
     /**
