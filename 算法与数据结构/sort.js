@@ -87,3 +87,36 @@ function InsertionSort2(arr, selector) {
     }
     return arr;
 }
+
+/**
+ * 冒泡排序
+ * 内层从右往左循环，不断对比两个元素大小，后面的比前面的小，就交换位置
+ */
+function BubbleSort(arr, selector) {
+  selector = selector||JSON.parse;
+  for (let i=0; i<arr.length; i++) {
+    for (let j=arr.length-1; j>i; j--) {
+      if (selector(arr[j]) < selector(arr[j-1])) {
+        arr.swap(j, j-1);
+      }
+    }
+  }
+  return arr;
+}
+// 优化：通过赋值取代数组位置交换
+function BubbleSort1(arr, selector) {
+  selector = selector||JSON.parse;
+  for (let i=0; i<arr.length; i++) {
+    let j=arr.length-1;
+    let temp = selector(arr[j]-1);
+    for (; j>i; j--) {
+      if (temp < selector(arr[j-1])) {
+        arr[j] = arr[j-1];
+      } else {
+        arr[j] = temp;
+        temp = arr[j-1];
+      }
+    }
+  }
+  return arr;
+}

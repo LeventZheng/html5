@@ -9,18 +9,26 @@
     <script src="./helper.js"></script>
     <script src="./sort.js"></script>
     <script>
-        let n = 100;
-        let arrA = SortTestHelper.generateRandamArray(n, 0, n);
+        let n = 10000;
+        // let arrA = SortTestHelper.generateRandamArray(n, 0, n);
 
         // 在近乎有序的随机数组中，插入排序的效率远远高于选择排序
-        // let arrA = SortTestHelper.generateNearlyOrderArr(n, 100);
+        let arrA = SortTestHelper.generateNearlyOrderArr(n, 100);
+        let arrB = SortTestHelper.clone(arrA);
+        // console.log(arr);
 
-        let arrA1 = SortTestHelper.testSort(arrA, BubbleSort)
+        let arrA1 = SortTestHelper.testSort(arrA, InsertionSort2)
+        console.log(arrA1);
         console.log('\n');
 
+        let arrB1 = SortTestHelper.testSort(arrB, SectionSort)
+        console.log(arrB1);
+        console.log('\n');
 
         delete arrA;
         delete arrA1;
+        delete arrB;
+        delete arrB1;
     </script>
 </head>
 
