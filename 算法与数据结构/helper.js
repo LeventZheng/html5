@@ -30,7 +30,6 @@ var SortTestHelper = {
             const y = Math.floor(Math.random() * length);
             arr.swap(x, y);
         }
-        console.log(arr);
         return arr;
     },
     /**

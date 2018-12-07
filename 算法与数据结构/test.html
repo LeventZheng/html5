@@ -9,15 +9,15 @@
     <script src="./helper.js"></script>
     <script src="./sort.js"></script>
     <script>
-        let n = 100;
+        let n = 100000;
         // 在近乎有序的随机数组中，插入排序的效率远远高于选择排序
-        // let arrA = SortTestHelper.generateNearlyOrderArr(n, 10);
-        let arrA = SortTestHelper.generateRandamArray(n, 0, n);
+        let arrA = SortTestHelper.generateNearlyOrderArr(n, 10);
+        // let arrA = SortTestHelper.generateRandamArray(n, 0, n);
         let arrB = SortTestHelper.clone(arrA);
 
 
         // SortTestHelper.testSort(arrB, InsertionSort)
-        SortTestHelper.testSort(arrA, QuickSort)
+        SortTestHelper.testSort(arrA, QuickSort2)
 
         delete arrA;
     </script>
