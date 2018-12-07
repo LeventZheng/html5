@@ -220,8 +220,8 @@ function __quickSort(arr, l, r) {
 
 // 返回p,使得arr[l...p-1] < arr[p];arr[p+1...r] > arr[p]
 function __partition(arr, l, r) {
-    
-    arr.swap(l, l+Math.ceil(Math.random()*(r-l+1)))   // 优化2 标定元素改成取l到r之间的随机位置
+    const x = l+Math.ceil(Math.random()*(r-l+1));
+    arr.swap(l, x);
     const v = arr[l];
 
     // arr[l+1...j] < v ; arr[j+1...i) > v
@@ -236,4 +236,35 @@ function __partition(arr, l, r) {
     arr.swap(l, j);
 
     return j;
+}
+function QuickSort2(arr, selector) {
+
+  __quickSort2(arr, 0, arr.length-1);
+}
+function __quickSort2(arr, l, r) {
+    // if (l >= r) return;
+    if (r - l <= 15) {  // 优化1
+      InsertionSort3(arr, l, r);
+      return;
+    }
+
+    let p = __partition2(arr, l, r);
+    __quickSort2(arr, l,p-1);
+    __quickSort2(arr, p+1,r);
+}
+function __partition2(arr, l, r) {
+  arr.swap(l, l+Math.ceil(Math.random()*(r-l+1)))   // 优化2 标定元素改成取l到r之间的随机位置
+  const v = arr[l];
+  // arr[l+1...i] <= v; arr[j...r] >= v
+  let i = l+1, j = r;
+  while(true) {
+    while(i <= r && arr[i] < v) i++;
+    while(j >= l+1 && arr[j] > v) j--;
+    if(i>j) break;
+    arr.swap(i, j);
+    i++;
+    j--;
+  }
+  arr.swap(l, j);
+  return j;
 }
