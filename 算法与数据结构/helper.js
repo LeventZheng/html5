@@ -41,11 +41,14 @@ var SortTestHelper = {
      */
     testSort: (arr, sorter, selector) => {
         console.log(sorter.getName());
+        console.log(arr);
         console.time();
-        let sortedArr = sorter(arr, selector);
+        sorter(arr, selector);
         console.timeEnd();
+        console.log(arr);
+        console.log('-----------------------------------------------------');
+        console.log('\n\n');
         console.assert(SortTestHelper.isSorted(arr, selector));
-        return sortedArr;
     },
     /**
      * 判断是否已排序
