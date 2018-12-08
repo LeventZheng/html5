@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>retry</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    var numbers = Rx.Observable.of(1, 2, 3);
+    var result = numbers.concat(Rx.Observable.throw()).retry(2);
+    result.subscribe(x => console.log(x));
+    // retry 在遇到onerror情况下触发，重新订阅源，订阅次数根据入参确定
+  </script>
+</head>
+<body>
+</body>
+</html>

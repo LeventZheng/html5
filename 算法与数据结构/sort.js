@@ -103,6 +103,31 @@ function BubbleSort(arr, selector) {
   }
   return arr;
 }
+/**
+ * 希尔排序，也叫缩小增量排序
+ *
+ */
+function ShellSort(arr, selector) {
+    //函数功能，希尔排序算法对数字递增排序
+//函数参数，数列起点，数列终点
+void shell_sort(const int start, const int end) {
+    int increment = end - start + 1;    //初始化划分增量
+    int temp{ 0 };
+    do {    //每次减小增量，直到increment = 1
+        increment = increment / 3 + 1;
+        for (int i = start + increment; i <= end; ++i) {    //对每个划分进行直接插入排序
+            if (numbers[i - increment] > numbers[i]) {
+                temp = numbers[i];
+                int j = i - increment;
+                do {    //移动元素并寻找位置
+                    numbers[j + increment] = numbers[j];
+                    j -= increment;
+                } while (j >= start && numbers[j] > temp);
+                numbers[j + increment] = temp;  //插入元素
+            }
+        }
+    } while (increment > 1);
+}
 
 // 对 arr[l...r] 范围的数组进行插入排序
 function InsertionSort3(arr, l, r, selector) {
@@ -235,6 +260,7 @@ function __partition(arr, l, r) {
 
     return j;
 }
+// 优化标定元素的选取、以及等于标定元素情况的平均分配，避免近乎有序或者大部分值相同的情况下导致的退化成O{n^2}时间复杂度
 function QuickSort2(arr, selector) {
 
   __quickSort2(arr, 0, arr.length-1);
@@ -253,7 +279,7 @@ function __quickSort2(arr, l, r) {
 function __partition2(arr, l, r) {
   arr.swap(l, l+Math.floor(Math.random()*(r-l+1)))   // 优化2 标定元素改成取l到r之间的随机位置
   const v = arr[l];
-  // arr[l+1...i] <= v; arr[j...r] >= v
+  // arr[l+1...i) <= v; arr(j...r] >= v
   let i = l+1, j = r;
   while(true) {
     while(i <= r && arr[i] < v) i++;
@@ -265,4 +291,47 @@ function __partition2(arr, l, r) {
   }
   arr.swap(l, j);
   return j;
+}
+
+/**
+ * 三路快速排序
+ * 处理 arr[l...r]
+ * 将arr[l...r]分为 <v; ==v; >v 三部分
+ * 之后递归对 <v ; >v 两部分继续进行三路快速排序
+ */
+function QuickSort3Ways(arr, selector) {
+
+    __quickSort3Ways(arr, 0, arr.length-1);
+}
+function __quickSort3Ways(arr, l, r) {
+    if (r - l <= 15) {
+        InsertionSort3(arr, l, r);
+        return;
+    }
+    
+    // partition
+    arr.swap(l, l+Math.floor(Math.random()*(r-l+1)))
+    const v = arr[l];
+
+    // 检查确认初始的时候各区间为空，保证逻辑有一个正确的开始
+    let lt = l;         // arr[l+1...lt] < v
+    let gt = r + 1;     // arr[gt...r] > v
+    let i = l+1;        // arr[lt+1...i) === v, i是正在考察的元素
+    while(i<gt) {
+        if (arr[i] < v) {
+            arr.swap(i, lt+1);
+            lt++;
+            i++;
+        }
+        else if (arr[i] > v) {
+            arr.swap(i, gt-1);
+            gt--;
+        }
+        else {  // arr[i] == v
+            i++;
+        }
+    }
+    arr.swap(l, lt);
+    __quickSort3Ways(arr, l, lt-1);
+    __quickSort3Ways(arr, gt, r);
 }
