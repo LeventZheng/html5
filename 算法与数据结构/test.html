@@ -8,19 +8,27 @@
     <title>Document</title>
     <script src="./helper.js"></script>
     <script src="./sort.js"></script>
+    <script src="./MaxHeap.js"></script>
     <script>
-        let n = 1000000;
+        // MaxHeap 最大堆
+        // let heap = new MaxHeap(100);
+        // for (let i=0; i<15; i++) {
+        //   heap.insert(Math.ceil(Math.random()*100));
+        // }
+        // while(!heap.isEmpty()){
+        //   console.log(heap.extractMax());
+        // }
+
+
+        let n = 10000;
         // let arrA = SortTestHelper.generateNearlyOrderArr(n, 10); // 生成近乎有序的数组
         // let arrA = SortTestHelper.generateRandamArray(n, 0, 10);    // 生成很多相同值的数组
         let arrA = SortTestHelper.generateRandamArray(n, 0, n);
-        let arrB = SortTestHelper.clone(arrA);
 
-
-        SortTestHelper.testSort(arrA, QuickSort2)
-        SortTestHelper.testSort(arrB, QuickSort3Ways)
-
+        // let maxHeap1 = new MaxHeap1(arrA);
+        SortTestHelper.testSort(arrA, HeapSort2)
         delete arrA;
-        delete arrB;
+        // delete arrB;
     </script>
 </head>
 
