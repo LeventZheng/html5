@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>generate</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    // generate:循环创建
+    Rx.Observable.generate(
+      2,                                 //初始值，相当于for循环中的i=0
+      value=>value<=10,                   //继续的条件，相当于for中的条件判断
+      value=>value+2,                    //每次值得递增
+      value=>value*value                 //产生的结果
+    ).subscribe(x=>console.log(x));
+    // generate类似一个for循环，设定一个初始值，每次递增这个值，指导满足某个条件的时候才终止循环；使用generate，四个参数分别对应了for循环中的不同表达式
+  </script>
+</head>
+<body>
+</body>
+</html>

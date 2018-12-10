@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bindCallback</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    function iCallMyCallbackSynchronously(cb) {
+      console.log(cb);
+      cb();
+    }
+
+    const boundSyncFn = Rx.Observable.bindCallback(iCallMyCallbackSynchronously);
+    const boundAsyncFn = Rx.Observable.bindCallback(iCallMyCallbackSynchronously, null, Rx.Scheduler.async);
+
+    boundSyncFn().subscribe(() => console.log('I was sync!'));
+    boundAsyncFn().subscribe(() => console.log('I was async!'));
+    console.log('This happened...');
+  </script>
+</head>
+<body>
+</body>
+</html>
