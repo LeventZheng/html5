@@ -10,7 +10,7 @@
 <body>
   <script>
     let foo1$ = Rx.Observable.interval(1000);
-    let foo$ = foo1$.bufferCount(3, 3);
+    let foo$ = foo1$.bufferCount(3, 3); // 第二个参数代表新的缓存区，这里3与不填效果相同，都是全部缓存新的数据
     foo$.subscribe((e)=>{console.log(e)});
   </script>
 </body>

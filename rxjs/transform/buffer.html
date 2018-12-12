@@ -15,7 +15,8 @@
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
 </head>
 <body>
-  <div class="box"><span>去北京</span></div>
+  <h3>interval 流被 click 事件流分组，点击的时候才会发出近一组数据</h3>
+  <div class="box"><span>点击发送分组数据</span></div>
   <script>
     const box = document.querySelector('.box');
     let foo1$ = Rx.Observable.fromEvent(box, 'click');
