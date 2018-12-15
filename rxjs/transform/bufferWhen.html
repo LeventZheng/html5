@@ -9,11 +9,16 @@
 </head>
 <body>
   <script>
-    var clicks = Rx.Observable.fromEvent(document, 'click');
-    var buffered = clicks.bufferWhen(() =>
-      Rx.Observable.timer(1000 + Math.random() * 4000)
-    );
-    buffered.subscribe(x => console.log(x));
+    // var clicks = Rx.Observable.fromEvent(document, 'click');
+    // var buffered = clicks.bufferWhen(() =>
+    //   Rx.Observable.timer(1000 + Math.random() * 4000)
+    // );
+    // buffered.subscribe(x => console.log(x));
+
+    Rx.Observable.interval(1000).bufferWhen(()=>
+      Rx.Observable.fromEvent(document, 'click')
+    ).subscribe(x=>console.log(x));
+    // 当点击事件触发的时候，输出缓存的定时数据
   </script>
 </body>
 </html>

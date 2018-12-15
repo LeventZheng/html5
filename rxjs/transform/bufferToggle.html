@@ -21,12 +21,12 @@
     var openings = Rx.Observable.interval(1000);
     var buffered = clicks.bufferToggle(openings, i =>
       {
-        console.log(i);
         return Rx.Observable.timer(500)
         // return i % 2 ? Rx.Observable.interval(500) : Rx.Observable.empty()
       }
     );
     buffered.subscribe(x => console.log(x));
+    // 收集每秒中的前500毫秒的点击事件
   </script>
 </body>
 </html>

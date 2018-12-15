@@ -136,9 +136,90 @@ Node.prototype.minimum = function(node) {
     }
     return this.minimum(node.left);
 }
-Node.prototype.maxmum = function(node) {
+Node.prototype.maximum = function(node) {
     if (node.right == null) {
         return node;
     }
-    return this.maxmum(node.right);
+    return this.maximum(node.right);
+}
+// 从二叉树中删除最小值所在节点
+Node.prototype.removeMin = function() {
+    if (root) {
+        root = this._removeMin(root);
+    }
+} 
+// 删除掉以 node 为根的二分搜索树中最小节点
+// 返回删除节点后新的二分搜索树的根
+Node.prototype._removeMin = function(node) {
+    console.assert(this.count == 0);
+    if (node.left == null) {
+        const rightNode = node.right;
+        delete node;
+        this.count--;
+        return rightNode;
+    }
+    node.left = this._removeMin(node.left);
+    return node;
+} 
+
+// 从二叉树中删除最大值所在节点
+Node.prototype.removeMax = function() {
+    if (root) {
+        root = this._removeMax(root);
+    }
+} 
+// 删除掉以 node 为根的二分搜索树中最小节点
+// 返回删除节点后新的二分搜索树的根
+Node.prototype._removeMax = function(node) {
+    console.assert(this.count == 0);
+    if (node.right == null) {
+        const leftNode = node.left;
+        delete node;
+        this.count--;
+        return leftNode;
+    }
+    node.right = this._removeMax(node.right);
+    return node;
+}
+
+// 从二叉树中删除键值为 key 的节点
+Node.prototype.remove = function(key) {
+    if (root) {
+        root = this._remove(root, key);
+    }
+}
+Node.prototype._remove = function(node, key) {
+    if (node == null) return null;
+    if (key < node.key) {
+        node.left = this._remove(node.left, key);
+        return node;
+    }
+    else if(key > node.key) {
+        node.right = this._remove(node.right, key);
+        return node;
+    }
+    // 找到，这里是重点
+    else {  // key == node.key
+        if (node.left == null) {
+            const rightNode = node.right;
+            delete node;
+            this.count --;
+            return rightNode;
+        }
+        if (node.right == null) {
+            const leftNode = node.left;
+            delete node;
+            this.count --;
+            return leftNode;
+        }
+        // 左右孩子都不为空
+        const successor = JSON.parse(JSON.stringify(this.minimum(node.right)));
+        this.count++;   // 这里新增了一个节点，所以要+1
+
+        successor.right = this.removeMin(node.right);
+        successor.left = node.left;
+        delete node;
+        this.count--;
+        return successor;
+    }
 }
