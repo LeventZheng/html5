@@ -1,23 +1,23 @@
 function UnionFind(n) {
     this.count = n;
-    let id;
+    let parent = [];
+    // 初始时候，两两元素互不连接
     for (let i=0; i<n; i++) {
-        id[i] = i;
+        parent[i] = i;
     }
 }
 UnionFind.prototype.find = function(p) {
-    return this.id[p];
+    console.assert(p >= 0 && p < this.count);
+    while(p != this.parent[p])
+        p = this.parent[p];
+    return p;
 }
 UnionFind.prototype.isConnected = function(p, q) {
     return this.find(p) == this.find(q);
 }
 UnionFind.prototype.unionElements = function(p, q) {
-    let pID = this.find(p);
-    let qID = this.find(q);
-    if (pID == qID) return;
-    for (let i=0; i< this.count; i++) {
-        if (this.id[i] == pID) {
-            id[i] = qID;
-        }
-    }
+    let pRoot = this.find(p);
+    let qRoot = this.find(q);
+    if (pRoot == qRoot) return;
+    this.parent[pRoot] = qRoot;
 }
