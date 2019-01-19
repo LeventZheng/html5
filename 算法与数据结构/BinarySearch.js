@@ -1,4 +1,4 @@
-// 二分查找发，在有序数组arr中，查找 target
+// 二分查找法，在有序数组arr中，查找 target
 // 如果找到target,返回相应的索引 index
 // 如果没有找到 target，返回 -1
 function BinarySearch(arr, selector) {

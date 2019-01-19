@@ -45,9 +45,10 @@ var SortTestHelper = {
         sorter(arr, selector);
         console.timeEnd();
         console.log(arr);
+        console.log('是否有序:'+SortTestHelper.isSorted(arr, selector));
+        delete arr;
         console.log('-----------------------------------------------------');
-        console.log('\n\n');
-        console.assert(SortTestHelper.isSorted(arr, selector));
+        console.log('\n');
     },
     /**
      * 判断是否已排序

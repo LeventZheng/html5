@@ -1,3 +1,6 @@
+/**
+ * 最大堆
+ */
 function MaxHeap(capacity) {
     this.count = 0;
     this.capacity = capacity;

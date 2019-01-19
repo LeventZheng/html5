@@ -1,3 +1,6 @@
+/**
+ * 索引堆
+ */
 function IndexMaxHeap(capacity) {
     this.count = 0;
     this.capacity = capacity;

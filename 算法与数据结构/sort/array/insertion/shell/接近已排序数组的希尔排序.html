@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>希尔排序</title>
+    <script src="./../../helper.js"></script>
+    <script src="./sort.js"></script>
+    <script>
+        let n0 = 10;
+        let arr = SortTestHelper.generateNearlyOrderArr(n0, 5);
+        SortTestHelper.testSort(arr, ShellSort)  // default: 0.114013671875ms
+        let n1 = 100;
+        let arrA = SortTestHelper.generateNearlyOrderArr(n1, 5);
+        SortTestHelper.testSort(arrA, ShellSort); // default: 0.19287109375ms
+        let n2 = 1000;
+        let arrB = SortTestHelper.generateNearlyOrderArr(n2, 5);
+        SortTestHelper.testSort(arrB, ShellSort); // default: 7.02001953125ms
+        let n3 = 10000;
+        let arrC = SortTestHelper.generateNearlyOrderArr(n3, 5);
+        SortTestHelper.testSort(arrC, ShellSort)  // default: 27.988037109375ms
+        let n4 = 100000;
+        let arrD = SortTestHelper.generateNearlyOrderArr(n4, 5);
+        SortTestHelper.testSort(arrD, ShellSort)  // default: 458.56298828125ms
+        // 分析：希尔排序对接近有序的数组进行排序，效率变低，因为多了一重循环
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

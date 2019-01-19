@@ -6,29 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="./helper.js"></script>
+    <script src="./../helper.js"></script>
     <script src="./sort.js"></script>
     <script>
         let n = 20;
         let arr11 = SortTestHelper.generateRandamArray(n, 0, n);
-        console.log(arr11);
         // let arrB = SortTestHelper.clone(arr);
         let arr12 = SortTestHelper.testSort(arr11, SectionSort)
-        console.log(arr12);
-        console.log('\n');
-        
 
         let arr21 = [1.1,5.2,6.5,3.2,4.3];
-        console.log(arr21);
         let arr22 = SortTestHelper.testSort(arr21, SectionSort)
-        console.log(arr22);
-        console.log('\n');
 
         let arr31 = ['D','F','A','E','C','B'];
-        console.log(arr31);
         let arr32 = SortTestHelper.testSort(arr31, SectionSort, JSON.stringify)
-        console.log(arr32);
-        console.log('\n');
 
         let arr41 = [
             {age: 15, name: 'TOM'},
@@ -38,10 +28,7 @@
             {age: 15, name: 'LIO'},
             {age: 13, name: 'LEON'}
         ];
-        console.log(arr41);
-        let arr42 = SortTestHelper.testSort(arr41, SectionSort, function(item) { return item.age;})
-        console.log(arr42);
-        console.log('\n');
+        let arr42 = SortTestHelper.testSort(arr41, SectionSort, function(item) { return item.age;});
         arr11 = arr12 = arr21 = arr22 = arr31 = arr32 = arr41 = arr42 = null;
     </script>
 </head>
