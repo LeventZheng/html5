@@ -1,0 +1,8 @@
+{
+    "presets": ["@babel/preset-env", {
+        "targets": {
+            "browser": ["last 2 versions"]
+        }
+    }],
+    "plugins": ["@babel/transform-runtime"] 
+}
