@@ -179,7 +179,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./dist/";
 /******/
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
@@ -218,7 +218,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nundefined/*! require.include ./moduleA */ \r\n\r\n// import './subPageA';\r\n// import './subPageB';\r\nvar page = 'subPageA';\r\nif (page === 'subPageA') {\r\n    // require.ensure(['./subPageA'], function() {\r\n    //     var subPageA = require('./subPageA');\r\n    // }, 'subPageA');\r\n    __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./subPageA */ \"./src/subPageA.js\")).then(function(subPageA) {\r\n        console.log(subPageA);\r\n    });\r\n} else if (page === 'subPageB') {\r\n    // require.ensure(['./subPageB'], function() {\r\n    //     var subPageB = require('./subPageB');\r\n    // }, 'subPageB');\r\n    __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./subPageB */ \"./src/subPageB.js\")).then(function(subPageB) {\r\n        console.log(subPageB);\r\n    });\r\n}\r\n\r\n\r\n// 第一个 lodash 是加载但不执行，可不写\r\n// require 的时候才真正的执行\r\n__webpack_require__.e(/*! require.ensure | vendor */ \"vendors~vendor\").then((function() {\r\n    var _ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\r\n    _.chunk([1,2,3], 2);\r\n}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);\r\n// import * as _ from 'lodash';\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ('pageA');\n\n//# sourceURL=webpack:///./src/pageA.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nundefined/*! require.include ./moduleA */\r\n\r\n// import './subPageA';\r\n// import './subPageB';\r\nvar page = 'subPageA';\r\nif (page === 'subPageA') {\r\n    // require.ensure(['./subPageA'], function() {\r\n    //     var subPageA = require('./subPageA');\r\n    // }, 'subPageA');\r\n    __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./subPageA */ \"./src/subPageA.js\")).then(function(subPageA) {\r\n        console.log(subPageA);\r\n    });\r\n} else if (page === 'subPageB') {\r\n    // require.ensure(['./subPageB'], function() {\r\n    //     var subPageB = require('./subPageB');\r\n    // }, 'subPageB');\r\n    __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./subPageB */ \"./src/subPageB.js\")).then(function(subPageB) {\r\n        console.log(subPageB);\r\n    });\r\n}\r\n\r\n\r\n// 第一个 lodash 是加载但不执行，可不写\r\n// require 的时候才真正的执行\r\n__webpack_require__.e(/*! require.ensure | vendor */ \"vendors~vendor\").then((function() {\r\n    var _ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\r\n    _.chunk([1,2,3], 2);\r\n}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);\r\n// import * as _ from 'lodash';\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ('pageA');\n\n//# sourceURL=webpack:///./src/pageA.js?");
 
 /***/ })
 
