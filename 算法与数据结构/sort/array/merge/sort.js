@@ -11,7 +11,7 @@
  */
 function MergeSort(arr, selector) {
     selector = selector || JSON.parse;
-    return _MergeSort(arr, 0, arr.length-1);
+    return _MergeSort(arr, 0, arr.length-1, selector);
 }
 /**
  * 递归结束的条件是 l>=r (正常是l==r即结束)
@@ -19,17 +19,17 @@ function MergeSort(arr, selector) {
  * @param {*} l 左边界
  * @param {*} r 右边界
  */
-function _MergeSort(arr, l, r) {
+function _MergeSort(arr, l, r, selector) {
     if (l < r) {
         let middle = Math.floor((l + r) / 2);
         // 切分的范围是 [l, middle] 和 (middle, r];
-        _MergeSort(arr, l, middle);  // 获取左边归并排序后的数组
-        _MergeSort(arr, middle+1, r); // 获取右边归并排序后的数组
+        _MergeSort(arr, l, middle, selector);  // 获取左边归并排序后的数组
+        _MergeSort(arr, middle+1, r, selector); // 获取右边归并排序后的数组
 
         // 判断是否需要归并
         // 当左边的最后一个元素比右边的第一个小，说明左边部分全部比右边小，两边都已经排好序了
         if (arr[middle] > arr[middle+1]) {
-            _Merge(arr, l, middle, r)
+            _Merge(arr, l, middle, r, selector)
         }
     }
 }
@@ -40,14 +40,14 @@ function _MergeSort(arr, l, r) {
  * @param {*} middle 中间点，将排序区间切分成[l, middle] 和 [middle+1, r]
  * @param {*} r 右边界
  */
-function _Merge(arr, l, middle, r) {
+function _Merge(arr, l, middle, r, selector) {
     let mergeArr = new Array(); // 数组长度是 l + r -1
     let k = 0;  // 当前存放对比值存放在 mergeArr 中的位置
     let i = l, j = middle + 1;
 
     // 遍历正常的情况
     while (i <= middle && j <= r) {
-        if (arr[i] > arr[j]) {
+        if (selector(arr[i]) > selector(arr[j])) {
             mergeArr[k] = arr[j];
             k++;
             j++;
@@ -84,34 +84,52 @@ function _Merge(arr, l, middle, r) {
  */
 function MergeSortOptimize(arr, selector) {
     selector = selector || JSON.parse;
-    return _MergeSort(arr, 0, arr.length-1);
+    return _MergeSort(arr, 0, arr.length-1, selector);
 }
-function _MergeSortOptimize(arr, l, r) {
+function _MergeSortOptimize(arr, l, r, selector) {
     if (r - l < 8) {
-        _InsertionSort(arr, l, r);
+        _InsertionSort(arr, l, r, selector);
         return;
     }
     let middle = Math.floor((l + r) / 2);
     // 切分的范围是 [l, middle] 和 (middle, r];
-    _MergeSortOptimize(arr, l, middle);  // 获取左边归并排序后的数组
-    _MergeSortOptimize(arr, middle+1, r); // 获取右边归并排序后的数组
+    _MergeSortOptimize(arr, l, middle, selector);  // 获取左边归并排序后的数组
+    _MergeSortOptimize(arr, middle+1, r, selector); // 获取右边归并排序后的数组
 
     // 判断是否需要归并
     // 当左边的最后一个元素比右边的第一个小，说明左边部分全部比右边小，两边都已经排好序了
     if (arr[middle] > arr[middle+1]) {
-        _Merge(arr, l, middle, r)
+        _Merge(arr, l, middle, r, selector)
     }
 }
-function _InsertionSort(arr, l, r) {
+function _InsertionSort(arr, l, r, selector) {
     for (let i=l; i<=r; i++) {
-        let target = arr[i];
+        let target = selector(arr[i]);
         for (j=i-1; j>=0; j--) {
-            if (arr[j]>arr[j+1]) {
+            if (selector(arr[j]) > selector(arr[j+1])) {
                 arr[j+1] = arr[j];
             } else {
                 arr[j+1] = target;
                 break;
             }
+        }
+    }
+}
+
+/**
+ * 归并排序-自底向上
+ * @param {*} arr 
+ * @param {*} selector 
+ */
+function MergeSortBU(arr, selector) {
+    selector = selector || JSON.parse;
+    for (let size=2; size < arr.length; size*=2) {
+        for (let i=0; i<arr.length; i+=size) {
+            let l = i;
+            let r = i+size-1;
+            if (r>arr.length-1) r = arr.length-1;
+            let middle = Math.floor((r+l)/2);
+            _Merge(arr, l, middle, r, selector)
         }
     }
 }

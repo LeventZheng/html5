@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>归并排序</title>
+    <script src="./../helper.js"></script>
+    <script src="./sort.js"></script>
+    <script>
+        let n0 = 10;
+        let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
+        SortTestHelper.testSort(arr, MergeSortBU)  // default: 0.215087890625ms
+        // let n1 = 100;
+        // let arrA = SortTestHelper.generateRandamArray(n1, 0, n1);
+        // SortTestHelper.testSort(arrA, MergeSortBU); // default: 0.287109375ms
+        // let n2 = 1000;
+        // let arrB = SortTestHelper.generateRandamArray(n2, 0, n2);
+        // SortTestHelper.testSort(arrB, MergeSortBU); // default: 5.97119140625ms
+        // let n3 = 10000;
+        // let arrC = SortTestHelper.generateRandamArray(n3, 0, n3);
+        // SortTestHelper.testSort(arrC, MergeSortBU)  // default: 6.468994140625ms
+        // 分析：n越大时，n 每增加十倍，时间复杂度增加不大，为 nlog(n)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
