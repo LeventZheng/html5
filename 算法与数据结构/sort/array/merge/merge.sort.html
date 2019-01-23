@@ -10,18 +10,17 @@
     <script>
         let n0 = 10;
         let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
-        SortTestHelper.testSort(arr, MergeSort)  // default: 0.112060546875ms
+        SortTestHelper.testSort(arr, MergeSort)  // default: 0.215087890625ms
         let n1 = 100;
         let arrA = SortTestHelper.generateRandamArray(n1, 0, n1);
-        SortTestHelper.testSort(arrA, MergeSort); // default: 0.504150390625ms
+        SortTestHelper.testSort(arrA, MergeSort); // default: 0.287109375ms
         let n2 = 1000;
         let arrB = SortTestHelper.generateRandamArray(n2, 0, n2);
-        SortTestHelper.testSort(arrB, MergeSort); // default: 37.32568359375ms
+        SortTestHelper.testSort(arrB, MergeSort); // default: 5.97119140625ms
         let n3 = 10000;
         let arrC = SortTestHelper.generateRandamArray(n3, 0, n3);
-        SortTestHelper.testSort(arrC, MergeSort)  // default: 2275.319091796875ms
-        // 分析：n 增加十倍，时间复杂度增加100倍
-        // 经过优化后，插入排序的性能比选择排序高3~4倍
+        SortTestHelper.testSort(arrC, MergeSort)  // default: 6.468994140625ms
+        // 分析：n越大时，n 每增加十倍，时间复杂度增加不大，为 nlog(n)
     </script>
 </head>
 <body>
