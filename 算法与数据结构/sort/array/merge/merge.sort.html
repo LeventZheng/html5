@@ -21,6 +21,20 @@
         let arrC = SortTestHelper.generateRandamArray(n3, 0, n3);
         SortTestHelper.testSort(arrC, MergeSort)  // default: 6.468994140625ms
         // 分析：n越大时，n 每增加十倍，时间复杂度增加不大，为 nlog(n)
+
+        let o0 = 10;
+        let oarr = SortTestHelper.generateRandamArray(o0, 0, o0);
+        SortTestHelper.testSort(oarr, MergeSortOptimize)  // default: 0.052978515625ms
+        let o1 = 100;
+        let oarrA = SortTestHelper.generateRandamArray(o1, 0, o1);
+        SortTestHelper.testSort(oarrA, MergeSortOptimize); // default: 0.0810546875ms
+        let o2 = 1000;
+        let oarrB = SortTestHelper.generateRandamArray(o2, 0, o2);
+        SortTestHelper.testSort(oarrB, MergeSortOptimize); // default: 0.201904296875ms
+        let o3 = 10000;
+        let oarrC = SortTestHelper.generateRandamArray(o3, 0, o3);
+        SortTestHelper.testSort(oarrC, MergeSortOptimize)  // default: 2.735107421875ms
+        // 分析：归并区间小于8(log8=3)的时候，区间内使用插入排序，可以优化归并排序
     </script>
 </head>
 <body>
