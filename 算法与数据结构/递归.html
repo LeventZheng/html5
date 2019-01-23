@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>递归算法</title>
+    <script>
+        // 题目1：编写一个函数求n的阶乘。
+        function Factorial(n) {
+            if (n==1) return n;
+            return n*Factorial(n-1);
+        }
+        // console.log(Factorial(5));
+
+        // 题目2：一个人赶着鸭子去每个村庄卖，每经过一个村子卖去所赶鸭子的一半又一只。
+        // 这样他经过了七个村子后还剩两只鸭子，问他出发时共赶多少只鸭子？经过每个村子卖出多少只鸭子？
+        var count = 0;
+        function Duck(n) {
+            n = 2*(n+1);
+            console.log(n);
+            count++;
+            if (count==7) return;
+            Duck(n);
+        }
+        // Duck(2);
+
+        // 题目3：角谷定理。输入一个自然数，若为偶数，则把它除以2，若为奇数，则把它乘以3加1。
+        // 经过如此有限次运算后，总可以得到自然数值1。求经过多少次可得到自然数1
+        var count1 = 0;
+        function Kakutani(n) {
+            if (n==1) {
+                console.log(count);
+                return n;
+            };
+            if (n%2 == 0) {
+                n = n/2;
+            } else {
+                n = n*3 + 1;
+            }
+            count++;
+            Kakutani(n);
+        }
+
+        // 题目4：编写一个函数，可以分别打印一个整数十进制的每一位。
+        function Print(n) {
+            console.log(n%10);
+            if (n<10) {
+                return;
+            };
+            Print(Math.floor(n/10));
+        }
+        // Print(15465468);
+
+        // 题目：编写一个函数实现n^k，使用递归实现。
+        function Power(n, k) {
+            if (k==0) {
+                return 1;
+            }
+            if (k==1) {
+                return n;
+            }
+            return n*Power(n, k-1);
+        }
+        console.log(Power(2,10));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
