@@ -32,6 +32,16 @@ module.exports = {
                             // localIdentName: '[path][name]_[local]--[hash:base:5]' 报错
                         }
                         // loader: 'file-loader'
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                require('autoprefixer')(),
+                                require('postcss-cssnext')()
+                            ]
+                        }
                     }
                 ]
             }
