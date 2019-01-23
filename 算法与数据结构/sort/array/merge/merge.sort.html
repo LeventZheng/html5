@@ -35,6 +35,7 @@
         let oarrC = SortTestHelper.generateRandamArray(o3, 0, o3);
         SortTestHelper.testSort(oarrC, MergeSortOptimize)  // default: 2.735107421875ms
         // 分析：归并区间小于8(log8=3)的时候，区间内使用插入排序，可以优化归并排序
+        // 因为插入排序的常数系数比归并排序的要小，当n比较小的时候，常数系数的作用明显
     </script>
 </head>
 <body>

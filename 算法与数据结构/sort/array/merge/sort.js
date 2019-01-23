@@ -1,5 +1,11 @@
 /**
- * 数组排序-归并排序
+ * 数组排序-归并排序-自顶向下
+ * 时间复杂度 O{nlog(n)}
+ * 空间复杂度 O{n} 需要n个额外空间的数组
+ * 用到递归算法
+ * 将数组的排序区间 [0, arr.length] 不断切分，直到最小粒度，要满足 l<r
+ * 切分好了以后开始回溯，将左右两部分全部合并成到新的数组空间后，再复制回原数组相应的区间中
+ * 回溯完毕后，数组完成排序过程
  * @param {*} arr 
  * @param {*} selector 
  */
@@ -8,8 +14,8 @@ function MergeSort(arr, selector) {
     return _MergeSort(arr, 0, arr.length-1);
 }
 /**
- * 
- * @param {*} arr 归并的数组
+ * 递归结束的条件是 l>=r (正常是l==r即结束)
+ * @param {*} arr 归并排序的数组 [l,r]
  * @param {*} l 左边界
  * @param {*} r 右边界
  */
@@ -27,8 +33,14 @@ function _MergeSort(arr, l, r) {
         }
     }
 }
+/**
+ * 将数组arr的 [l, middle](已排序) 和 [middle+1, r](已排序) 两个区间合并成一个排好序的区间
+ * @param {*} arr 归并排序的数组 [l, r]
+ * @param {*} l 左边界
+ * @param {*} middle 中间点，将排序区间切分成[l, middle] 和 [middle+1, r]
+ * @param {*} r 右边界
+ */
 function _Merge(arr, l, middle, r) {
-    // 合并左右数组
     let mergeArr = new Array(); // 数组长度是 l + r -1
     let k = 0;  // 当前存放对比值存放在 mergeArr 中的位置
     let i = l, j = middle + 1;
