@@ -130,10 +130,10 @@ function _InsertionSort(arr, l, r, selector) {
  */
 function MergeSortBU(arr, selector) {
     selector = selector || JSON.parse;
-    for (let size=1; size < arr.length; size*=2) {
-        for (let start=0; start<arr.length; start+=2*size) {
+    for (let step=1; step < arr.length; step*=2) {
+        for (let start=0; start<arr.length; start+=2*step) {
             let l = start;
-            let r = start+2*size-1;
+            let r = start+2*step-1;
             let middle = Math.floor((r+l)/2); // 这里和下一步的前后顺序，先计算middle值以后再判断改变r的值
             if (r>arr.length-1) r = arr.length-1;
             if (arr[middle] > arr[middle+1]) {
