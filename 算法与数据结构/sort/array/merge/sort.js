@@ -21,7 +21,8 @@ function MergeSort(arr, selector) {
  */
 function _MergeSort(arr, l, r, selector) {
     if (l < r) {
-        let middle = Math.floor((l + r) / 2);
+        // let middle = Math.floor((l + r) / 2);
+        let middle = Math.floor(l + ( r - l) / 2);
         // 切分的范围是 [l, middle] 和 (middle, r];
         _MergeSort(arr, l, middle, selector);  // 获取左边归并排序后的数组
         _MergeSort(arr, middle+1, r, selector); // 获取右边归并排序后的数组
@@ -72,8 +73,12 @@ function _Merge(arr, l, middle, r, selector) {
 
     t = 0;
     //将 mergeArr 中的元素全部拷贝到原数组中
-    while(l <= r){
-        arr[l++] = mergeArr[t++];
+    // while(l <= r){
+    //     arr[l++] = mergeArr[t++];
+    // }
+    while(t <= r-l) {
+        arr[l+t] = mergeArr[t];
+        t++;
     }
 }
 
@@ -118,18 +123,22 @@ function _InsertionSort(arr, l, r, selector) {
 
 /**
  * 归并排序-自底向上
+ * 先2个为一组，进行组内排序，再4个为一组排序，分组的长度不超过数组长度
+ * 组内通过计算得出middle，分左右两部分，将左右部分通过_merge合并成一组
  * @param {*} arr 
  * @param {*} selector 
  */
 function MergeSortBU(arr, selector) {
     selector = selector || JSON.parse;
-    for (let size=2; size < arr.length; size*=2) {
-        for (let i=0; i<arr.length; i+=size) {
-            let l = i;
-            let r = i+size-1;
+    for (let size=1; size < arr.length; size*=2) {
+        for (let start=0; start<arr.length; start+=2*size) {
+            let l = start;
+            let r = start+2*size-1;
+            let middle = Math.floor((r+l)/2); // 这里和下一步的前后顺序，先计算middle值以后再判断改变r的值
             if (r>arr.length-1) r = arr.length-1;
-            let middle = Math.floor((r+l)/2);
-            _Merge(arr, l, middle, r, selector)
+            if (arr[middle] > arr[middle+1]) {
+              _Merge(arr, l, middle, r, selector)
+            }
         }
     }
 }
