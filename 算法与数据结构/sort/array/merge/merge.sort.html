@@ -10,30 +10,30 @@
     <script>
         let n0 = 10;
         let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
-        SortTestHelper.testSort(arr, MergeSort)  // default: 0.215087890625ms
+        SortTestHelper.testSort(arr, MergeSort)  // default: 0.460693359375ms
         let n1 = 100;
         let arrA = SortTestHelper.generateRandamArray(n1, 0, n1);
-        SortTestHelper.testSort(arrA, MergeSort); // default: 0.287109375ms
+        SortTestHelper.testSort(arrA, MergeSort); // default: 0.681884765625ms
         let n2 = 1000;
         let arrB = SortTestHelper.generateRandamArray(n2, 0, n2);
-        SortTestHelper.testSort(arrB, MergeSort); // default: 5.97119140625ms
+        SortTestHelper.testSort(arrB, MergeSort); // default: 16.991943359375ms
         let n3 = 10000;
         let arrC = SortTestHelper.generateRandamArray(n3, 0, n3);
-        SortTestHelper.testSort(arrC, MergeSort)  // default: 6.468994140625ms
+        SortTestHelper.testSort(arrC, MergeSort)  // default: 74.424072265625ms
         // 分析：n越大时，n 每增加十倍，时间复杂度增加不大，为 nlog(n)
 
         let o0 = 10;
         let oarr = SortTestHelper.generateRandamArray(o0, 0, o0);
-        SortTestHelper.testSort(oarr, MergeSortOptimize)  // default: 0.052978515625ms
+        SortTestHelper.testSort(oarr, MergeSortOptimize)  // default: 0.126953125ms
         let o1 = 100;
         let oarrA = SortTestHelper.generateRandamArray(o1, 0, o1);
-        SortTestHelper.testSort(oarrA, MergeSortOptimize); // default: 0.0810546875ms
+        SortTestHelper.testSort(oarrA, MergeSortOptimize); // default: 0.19921875ms
         let o2 = 1000;
         let oarrB = SortTestHelper.generateRandamArray(o2, 0, o2);
-        SortTestHelper.testSort(oarrB, MergeSortOptimize); // default: 0.201904296875ms
+        SortTestHelper.testSort(oarrB, MergeSortOptimize); // default: 2.328125ms
         let o3 = 10000;
         let oarrC = SortTestHelper.generateRandamArray(o3, 0, o3);
-        SortTestHelper.testSort(oarrC, MergeSortOptimize)  // default: 2.735107421875ms
+        SortTestHelper.testSort(oarrC, MergeSortOptimize)  // default: 50.5478515625ms
         // 分析：归并区间小于8(log8=3)的时候，区间内使用插入排序，可以优化归并排序
         // 因为插入排序的常数系数比归并排序的要小，当n比较小的时候，常数系数的作用明显
     </script>

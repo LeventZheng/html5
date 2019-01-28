@@ -10,17 +10,17 @@
     <script>
         let n0 = 10;
         let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
-        SortTestHelper.testSort(arr, MergeSortBU)  // default: 0.215087890625ms
+        SortTestHelper.testSort(arr, MergeSortBU)  // default: 0.3349609375ms
         let n1 = 100;
         let arrA = SortTestHelper.generateRandamArray(n1, 0, n1);
-        SortTestHelper.testSort(arrA, MergeSortBU); // default: 0.287109375ms
+        SortTestHelper.testSort(arrA, MergeSortBU); // default: 0.64599609375ms
         let n2 = 1000;
         let arrB = SortTestHelper.generateRandamArray(n2, 0, n2);
-        SortTestHelper.testSort(arrB, MergeSortBU); // default: 5.97119140625ms
+        SortTestHelper.testSort(arrB, MergeSortBU); // default: 12.30224609375ms
         let n3 = 10000;
         let arrC = SortTestHelper.generateRandamArray(n3, 0, n3);
-        SortTestHelper.testSort(arrC, MergeSortBU)  // default: 6.468994140625ms
-        // 分析：n越大时，n 每增加十倍，时间复杂度增加不大，为 nlog(n)
+        SortTestHelper.testSort(arrC, MergeSortBU)  // default: 57.115234375ms
+        // 分析：自底向上的归并排序比自顶向下的效率要低，适合用于对链表的排序
     </script>
 </head>
 <body>
