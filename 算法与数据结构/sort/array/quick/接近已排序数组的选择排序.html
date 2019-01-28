@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择排序</title>
+    <script src="./../helper.js"></script>
+    <script src="./sort.js"></script>
+    <script>
+        let n0 = 10;
+        let arr = SortTestHelper.generateNearlyOrderArr(n0, 5);
+        SortTestHelper.testSort(arr, SectionSort)  // default: 0.130126953125ms
+        let n1 = 100;
+        let arrA = SortTestHelper.generateNearlyOrderArr(n1, 5);
+        SortTestHelper.testSort(arrA, SectionSort); // default: 1.6201171875ms
+        let n2 = 1000;
+        let arrB = SortTestHelper.generateNearlyOrderArr(n2, 5);
+        SortTestHelper.testSort(arrB, SectionSort); // default: 91.136962890625ms
+        let n3 = 10000;
+        let arrC = SortTestHelper.generateNearlyOrderArr(n3, 5);
+        SortTestHelper.testSort(arrC, SectionSort)  // default: 9096.199951171875ms
+        // 分析：选择排序对接近有序的数组进行排序，时间复杂度区别不大
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
