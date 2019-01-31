@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试按住时间</title>
+</head>
+<body>
+    <button id="button">按住测时间</button>
+    <div id="holdTime"></div>
+    <div id="rank"></div>
+    <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+    <script>
+        const buttonDom = document.querySelector('#button');
+        const mouseDown$ = Rx.Observable.fromEvent(buttonDom, 'mousedown');
+        const mouseUp$ = Rx.Observable.fromEvent(buttonDom, 'mouseup');
+        const holdTime$ = mouseUp$.timestamp().withLatestFrom(mouseDown$.timestamp(), (mouseUpEvent, mouseDownEvent)=>{
+            return mouseUpEvent.timestamp - mouseDownEvent.timestamp;
+        });
+        holdTime$.subscribe((ms)=>{
+            document.querySelector('#holdTime').innerText = ms;
+        });
+        holdTime$.flatMap(ms => Rx.Observable.ajax('https://timing-sense-score-board.herokuapp.com/score/' + ms))
+        .map(e => e.response)
+        .subscribe(res => {
+            document.querySelector('#rank').innerText = '你超过了' + res.rank + '%的用户';
+        })
+    </script>
+</body>
+</html>
