@@ -7,12 +7,10 @@
   <title>zip</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
-    var from = Rx.Observable.from([9,8,7,6,5,4]);
-    var interval = Rx.Observable.interval(3000);
-    var click$ = Rx.Observable.fromEvent(document, 'click');
-    // var result = click$.zip(interval).map(arr=>arr[0]);
-    var result = click$.zip(interval, from);
-    result.subscribe(
+    let foo1$ = Rx.Observable.interval(1000);
+    let foo2$ = Rx.Observable.fromEvent(document, 'click');
+    let foo$ = foo1$.zip(foo2$).map(arr=>arr[1]);
+    foo$.subscribe(
       console.log,
       null,
       () => console.log('complete')

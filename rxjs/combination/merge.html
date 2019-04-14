@@ -13,6 +13,7 @@
     var result = click$.merge(interval);
     // result.subscribe(x => console.log(x));
 
+    // 验证of 生成的数据是同步数据
     var of1 = Rx.Observable.of(9,8,7,6,5);
     var of2 = Rx.Observable.of(0,1,2,3,4);
     var result2 = of1.merge(of2);

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>merge</title>
+  <title>zip缓存窗口</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
-    let foo1$ = Rx.Observable.interval(1000);
-    let foo2$ = Rx.Observable.interval(1000).delay(500);
-    let foo$ = Rx.Observable.merge(foo1$, foo2$).subscribe(
-      data => console.log(data));
+    let foo1$ = Rx.Observable.timer(1000, 2000);
+    let foo2$ = Rx.Observable.timer(0, 100).map(val=>'a' + val);
+    let foo$ = foo1$.zip(foo2$.bufferTime(500));
+    foo$.subscribe(x => console.log(x));  // 多余的没有组对不发出
   </script>
 </head>
 <body>

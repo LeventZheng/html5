@@ -7,7 +7,7 @@
   <title>concatMap</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
-    
+    // 对高阶Observable进行操作，等于map + concatAll
     var source = Rx.Observable.of(1,2,3);
     var mf = function(item){
         return Rx.Observable.range(item,3);
