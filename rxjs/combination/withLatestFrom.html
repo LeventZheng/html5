@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>withLatestFrom</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    const source1$ = Rx.Observable.timer(0, 2000).map(x => 100 * x);
+    const source2$ = Rx.Observable.timer(500, 1000);
+    const result$ = source1$.withLatestFrom(source2$, (a,b)=> a+b);
+    result$.subscribe(
+      console.log,
+      null,
+      () => console.log('complete')
+    );
+
+
+    // 解决glitch
+    const original$ = Observable.timer(0, 1000);
+    const source1$ = original$.map(x => x+'a');
+    const source2$ = original$.map(x => x+'b');
+    const result$ = source1$.withLatestFrom(source2$);
+    result$.subscribe(
+      console.log,
+      null,
+      () => console.log('complete')
+    );
+  </script>
+</head>
+<body>
+</body>
+</html>

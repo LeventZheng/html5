@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>filter</title>
+  <title>debounce</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
+    // 相当于debounceTime的durTime时间可以控制，变成不是固定时间，throttle和audit也是一样的差别
     let foo1$ = Rx.Observable.fromEvent(document, 'click');
     let foo2$ = Rx.Observable.interval(1000*Math.random());
+    // 当 foo2$ = Rx.Observable.interval(1000);
+    // 就和 foo1$.debounceTime(1000)一样了
     let foo$ = foo1$.debounce(()=>foo2$);
-    // let foo$ = foo1$.debounceTime(1000); // debounceTime 实现功能差不多，写法更简洁
     foo$.subscribe((data)=>console.log(data));
   </script>
 </head>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bufferTime</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+</head>
+<body>
+  <script>
+    const source$ = Observable.timer(0, 100);
+    const result$ = source$.bufferTime(400, 200);
+    result$.subscribe(
+      console.log,
+      null,
+      ()=>{
+        console.log('complete');
+      }
+    );
+    // 第二个参数制定了区间间隔，当第二个参数比第一个参数小，会出现数据重叠
+    // [0,1,2,3] [2,3,4,5] [4,5,6,7] ...
+
+    // 当第二个参数比第一个参数大，可能出现数据丢失，丢失的是间隔时间大于时间区间的部分数据
+    // [0,1,2,3] [6,7,8,9] [12,13,14,15] ...
+
+    source$.bufferTime(400, 200);
+    // 不传第二个数据，相当于bufferTime(400,400);
+
+  </script>
+</body>
+</html>

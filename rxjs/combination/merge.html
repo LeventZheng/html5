@@ -16,7 +16,11 @@
     var of1 = Rx.Observable.of(9,8,7,6,5);
     var of2 = Rx.Observable.of(0,1,2,3,4);
     var result2 = of1.merge(of2);
-    result2.subscribe(x => console.log(x));
+    result2.subscribe(
+      console.log,
+      null,
+      () => console.log('complete')
+    );
   </script>
 </head>
 <body>

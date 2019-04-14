@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>throttleTime</title>
+  <title>auditTime</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
-    // 限制上游数据，将每个duration时间范围内的第一个数据传到下游
+    // 从一个数据发出后，取2秒内的发出的最后一个数据，传给下游
+    // 做throttle类似的⼯作，不同的是在“节流时间”范围内，throttle把第⼀个数据传给下游，audit是把最后⼀个数据传给下游
     let foo$ = Rx.Observable.fromEvent(document, 'click');
-    foo$.throttleTime(2000).subscribe(
+    foo$.auditTime(2000).subscribe(
       console.log,
       null,
       () => console.log('complete')

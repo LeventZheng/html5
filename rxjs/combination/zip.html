@@ -12,7 +12,11 @@
     var click$ = Rx.Observable.fromEvent(document, 'click');
     // var result = click$.zip(interval).map(arr=>arr[0]);
     var result = click$.zip(interval, from);
-    result.subscribe(x => console.log(x));
+    result.subscribe(
+      console.log,
+      null,
+      () => console.log('complete')
+    );
   </script>
 </head>
 <body>

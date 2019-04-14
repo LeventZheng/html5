@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>高阶</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    const ho$ = Rx.Observable.interval(1000)
+    .take(2)
+    .concat(Rx.Observable.never())  // 添加了一个never数据流
+    .map(x => Rx.Observable.interval(1500).map(y => x+':'+y).take(3));
+    // ho$.subscribe(
+    //   console.log,
+    //   null,
+    //   () => console.log('complete')
+    // );
+
+    // concatAll会对其中的内部Observable对象做concat的操作,mergeAll\zipAll同理
+    ho$.zipAll().subscribe(
+      console.log,
+      null,
+      () => console.log('complete')
+    );
+    // 使用zipAll,因为第三个数据源没有数据发出，所有最终没有数据发出来
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -11,6 +11,7 @@
       width: 200px;
       height: 200px;
       position: fixed;
+      cursor: move;
     }
   </style>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
@@ -24,35 +25,22 @@
     const mousedown$ = Rx.Observable.fromEvent(box, 'mousedown');
     const mousemove$ = Rx.Observable.fromEvent(box, 'mousemove');
     const mouseup$ = Rx.Observable.fromEvent(box, 'mouseup');
+    const mouseout$ = Rx.Observable.fromEvent(box, 'mouseout$');
 
-    mousedown$.flatMap((md) => {
-      return mousemove$.map((mm) =>{
+    mousedown$.mergeMap((md) => {
+      const stop$ = mouseup$.merge(mouseout$);
+      return mousemove$.takeUntil(stop$).map((mm) =>{
         return {
           target: md.target,
           x: mm.clientX - md.offsetX,
           y: mm.clientY - md.offsetY
         }
-      }).takeUntil(mouseup$);
+      });
     }).subscribe((obj) => {
       console.log(obj);
       obj.target.style.top = obj.y + 'px';
       obj.target.style.left = obj.x + 'px';
     });
-
-    // 补充优化
-    // const mousemoveD$ = Rx.Observable.fromEvent(document, 'mousemove');
-    // const mouseupD$ = Rx.Observable.fromEvent(document, 'mouseup');
-    // const mouseout$ = Rx.Observable.fromEvent(box, 'mouseout').flatMap((mo) => {
-    //   return mousemoveD$.map((mmd) => {
-    //     return {
-    //       x: mmd.clientX - mo.offsetX,
-    //       y: mmd.clientY - mo.offsetY
-    //     }
-    //   });
-    // }).takeUntil(mouseupD$).subscribe((obj) => {
-    //   box.style.top = obj.y + 'px';
-    //   box.style.left = obj.x + 'px';
-    // });
   </script>
 </body>
 </html>

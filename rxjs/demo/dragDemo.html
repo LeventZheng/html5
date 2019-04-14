@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>拖动div</title>
+  <title>拖动div优化</title>
   <style>
     .box{
       cursor: move;
@@ -32,7 +32,7 @@
     var mousedown = Rx.Observable.fromEvent(dragTargets, 'mousedown');
 
     // 转换操作，鼠标按下事件发生的时候，将事件流转换成跟踪鼠标移动事件流
-    var mousedrag = mousedown.flatMap(function (md) {
+    var mousedrag = mousedown.mergeMap(function (md) {
       console.log('mousedown');
       // 计算移动开始时候元素的位置
       var startX = md.offsetX, startY = md.offsetY;
@@ -56,6 +56,21 @@
       d.target.style.top = d.top + 'px';
       d.target.style.left = d.left + 'px';
     });
+
+    // 补充优化
+    // const mousemoveD$ = Rx.Observable.fromEvent(document, 'mousemove');
+    // const mouseupD$ = Rx.Observable.fromEvent(document, 'mouseup');
+    // const mouseout$ = Rx.Observable.fromEvent(box, 'mouseout').flatMap((mo) => {
+    //   return mousemoveD$.map((mmd) => {
+    //     return {
+    //       x: mmd.clientX - mo.offsetX,
+    //       y: mmd.clientY - mo.offsetY
+    //     }
+    //   });
+    // }).takeUntil(mouseupD$).subscribe((obj) => {
+    //   box.style.top = obj.y + 'px';
+    //   box.style.left = obj.x + 'px';
+    // });
   </script>
 </body>
 </html>

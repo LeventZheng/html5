@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>throttleTime</title>
+  <title>debounceTime</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
-    // 限制上游数据，将每个duration时间范围内的第一个数据传到下游
+    // 限制上游数据，在一个数据发出之后的dueTime之内没有新的数据发出，就将这个数据传给下游
     let foo$ = Rx.Observable.fromEvent(document, 'click');
-    foo$.throttleTime(2000).subscribe(
+    foo$.debounceTime(2000).subscribe(
       console.log,
       null,
       () => console.log('complete')
