@@ -7,6 +7,7 @@
   <title>withLatestFrom</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
+    // withLatestFrom是不论source1$还是source2$，只要任一数据源有数据更新，同时两个数据源都有数据，就取两个数据源的最新数据组成数组会向下游发出
     // 多重依赖问题
     const original$ = Observable.timer(0, 1000);
     const source1$ = original$.map(x => x+'a');

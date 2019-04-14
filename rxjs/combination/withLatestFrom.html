@@ -7,6 +7,7 @@
   <title>withLatestFrom</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
+    // source1$是主数据源，只有当source1$更新，同时source2$有数据，才取source1$和source2$最新数据组成数组向下游发出
     const source1$ = Rx.Observable.timer(0, 2000).map(x => 100 * x);
     const source2$ = Rx.Observable.timer(500, 1000);
     const result$ = source1$.withLatestFrom(source2$, (a,b)=> a+b);
