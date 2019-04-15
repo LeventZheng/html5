@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义makeHot</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    // 绍makeHot是为了让⼤家体会利⽤Subject构建多播操作
+    // 符的原理，实际项⽬中，我们不需要使⽤⾃⼰定制的makeHot，因为RxJS
+    // 已经提供了⼀套操作符来⽀持多播
+    Rx.Observable.prototype.makeHot = function() {
+      const cold$ = this;
+      const subject$ = new Rx.Subject();
+      cold$.subscribe(subject$);
+      return subject$;
+    }
+
+    var interval$ = Rx.Observable.interval(500).makeHot();
+
+    interval$.map(val=>'a'+val).subscribe(x => console.log(x));
+    setTimeout(()=>{
+      interval$.map(val=>'b'+val).subscribe(x => console.log(x));
+    }, 2000);
+  </script>
+</head>
+<body>
+</body>
+</html>

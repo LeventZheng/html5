@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>冷与热</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    var interval$ = Rx.Observable.interval(500);
+
+    // interval$.map(val=>'a'+val).subscribe(x => console.log(x));
+    // setTimeout(()=>{
+    //   interval$.map(val=>'b'+val).subscribe(x => console.log(x));
+    // }, 2000);
+
+    const subject$ = new Rx.Subject();
+    interval$.subscribe(subject$);
+    subject$.map(val=>'a'+val).subscribe(x => console.log(x));
+    setTimeout(() => {
+      subject$.map(val=>'b'+val).subscribe(x => console.log(x));
+    }, 1500);
+  </script>
+</head>
+<body>
+</body>
+</html>
