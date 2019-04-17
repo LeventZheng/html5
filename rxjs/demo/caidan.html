@@ -27,6 +27,7 @@
       .map(e => e.code)
       .bufferCount(12, 1)
       .subscribe(last12key => {
+        console.log(last12key);
         if (_.isEqual(last12key, code)) {
           console.log('隐藏的彩蛋 \(^o^)/~')
         }

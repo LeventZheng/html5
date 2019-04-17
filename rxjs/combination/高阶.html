@@ -7,6 +7,7 @@
   <title>高阶</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
+    // 生成
     const ho$ = Rx.Observable.interval(1000)
     .take(2)
     .concat(Rx.Observable.never())  // 添加了一个never数据流
@@ -17,6 +18,7 @@
     //   () => console.log('complete')
     // );
 
+    // 打平
     // concatAll会对其中的内部Observable对象做concat的操作,mergeAll\zipAll同理
     ho$.zipAll().subscribe(
       console.log,

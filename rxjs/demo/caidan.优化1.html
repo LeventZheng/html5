@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>连续按键触发彩蛋</title>
+  <title>彩蛋优化</title>
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.min.js"></script>
   <script>
@@ -23,10 +23,10 @@
       "KeyA"
     ]
 
-    Rx.Observable.fromEvent(document, 'keyup')
-      .map(e => e.code)
+    const keyup$ = Rx.Observable.fromEvent(document, 'keyup');
+    keyup$.map(e => e.code)
       // .bufferCount(12, 1)
-      .bufferToggle(Rx.Observable.interval(2000), i=>Rx.Observable.interval(2000))
+      .bufferToggle(Rx.Observable.timer(0, 3000), i=>Rx.Observable.interval(3000))
       .subscribe(last12key => {
         console.log(last12key);
         if (_.isEqual(last12key, code)) {

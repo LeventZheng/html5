@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>买房收租</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.min.js"></script>
+  <script>
+    const house$ = new Rx.Subject();
+    const housecount$ = house$.scan((has, one) => has = has+one, 0).startWith(0);
+
+    const month$ = Rx.Observable.interval(1000);
+    const salary$ = month$.mapTo(1);
+    const rent$ = month$.withLatestFrom(housecount$).map(arr=>arr[1]*0.5);
+
+    // 月收入累加
+    const income$ = salary$.merge(rent$);
+
+    const cash$ = income$.scan((has, one)=>{
+      has = has + one;
+      if (has >= 100) {
+        has -= 100;
+        console.log('买房啦');
+        house$.next(1);
+      }
+      return has;
+    }, 0)
+
+    cash$.subscribe(
+      (data)=>{
+        console.log('进账,余额:',data)
+      },
+      null,
+      ()=>{
+        console.log('complete');
+      }
+    )
+  </script>
+</head>
+<body>
+</body>
+</html>

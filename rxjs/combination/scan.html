@@ -8,10 +8,12 @@
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
     let foo$ = Rx.Observable.interval(1000);
+    // acc 为上次返回值
+    // cur 更新的值，此处由foo$提供
     foo$.scan((acc, cur) => {
       console.log('acc', acc);
       console.log('cur', cur);
-      return cur;
+      return 0
     }, 0).subscribe((data)=>console.log(data));
   </script>
 </head>
