@@ -13,7 +13,7 @@
     foo$.scan((acc, cur) => {
       console.log('acc', acc);
       console.log('cur', cur);
-      return 0
+      return cur
     }, 0).subscribe((data)=>console.log(data));
   </script>
 </head>

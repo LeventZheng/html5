@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Subscription内部操作</title>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script>
+    var observ1 = Rx.Observable.interval(500)
+    var observ2 = Rx.Observable.interval(800)
+    var observ3 = Rx.Observable.interval(800)
+
+    var subsc1 = observ1.subscribe(x => console.log('first: ' + x))
+    var subsc2 = observ2.subscribe(x => console.log('second: ' + x))
+    var subsc3 = observ3.subscribe(x => console.log('three: ' + x))
+
+    subsc1.add(subsc2)
+    subsc1.add(subsc3)
+
+    setTimeout(() => {
+      subsc1.remove(subsc2)
+      subsc1.unsubscribe()
+    }, 1100)
+    // 
+  </script>
+</head>
+<body>
+</body>
+</html>

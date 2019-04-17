@@ -10,9 +10,9 @@
     // Emit 1, 2, 3, then 'a', 'b', 'c', then start ticking every second.
     var numbers = Rx.Observable.of(1, 2, 3);
     var letters = Rx.Observable.of('a', 'b', 'c');
-    var interval = Rx.Observable.interval(1000);
+    var interval = Rx.Observable.interval(1000).take(3);
     var result = numbers.concat(letters).concat(interval);
-    result.subscribe(x => console.log(x));
+    result.toArray().subscribe(x => console.log(x));
   </script>
 </head>
 <body>
