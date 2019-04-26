@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 命令式
+    // how：写for循环一一处理
+    function double(arr) {
+      const results = []
+      for (let i = 0; i < arr.length; i++){
+      results.push(arr[i] * 2)
+      }
+      return results
+    }
+    function addOne(arr) {
+      const results = []
+      for (let i = 0; i < arr.length; i++){
+      results.push(arr[i] + 1)
+      }
+      return results
+    }
+    // 声明式
+    // what：通过map把每一项加倍或+1，不关注内部实现
+    function double(arr) {
+      return arr.map(function(item) {return item * 2});
+    } function addOne(arr) {
+      return arr.map(function(item) {return item + 1});
+    }
+  </script>
+</body>
+</html>
