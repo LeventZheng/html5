@@ -8,12 +8,13 @@
   <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
   <script>
     var interval$ = Rx.Observable.interval(500);
-
+    // Cold Observable
     // interval$.map(val=>'a'+val).subscribe(x => console.log(x));
     // setTimeout(()=>{
     //   interval$.map(val=>'b'+val).subscribe(x => console.log(x));
     // }, 2000);
 
+    // Hot Observable
     const subject$ = new Rx.Subject();
     interval$.subscribe(subject$);
     subject$.map(val=>'a'+val).subscribe(x => console.log(x));

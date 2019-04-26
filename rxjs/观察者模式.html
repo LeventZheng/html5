@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>观察者模式</title>
+  <script>
+    // Subject
+    function Observable() {
+      this.observers = [];
+      this.data = 'data update';
+
+      // 用于关联observer
+      this.addObserve = function(observe) {
+        this.observers.push(observe)
+      };
+      // 用于取消关联observer
+      this.removeObserve = function(observe) {
+        const index = this.observers.findIndex(item => item == observe);
+        this.observers.splice(index,1);
+      }
+      this.notifyObservers = function () {
+        for (let i=0; i<this.observers.length; i++) {
+          this.observers[i].update(this.data);
+        }
+      }
+      // 用于发送更新数据到observer
+      this.updateData = function(data) {
+        this.data = data;
+        this.notifyObservers();
+      }
+    }
+
+    function Observer() {
+      this.update = function (data) {
+        console.log(data);
+      }
+    }
+
+    const observable = new Observable();
+    const observer1 = new Observer();
+    const observer2 = new Observer();
+    // 建立关联
+    observable.addObserve(observer1);
+    observable.addObserve(observer2);
+    observable.notifyObservers();
+    observable.updateData(123);
+  </script>
+</head>
+<body>
+</body>
+</html>

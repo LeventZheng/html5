@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>迭代器模式</title>
+  <script>
+    function Iterator(list) {
+      this.list = list;
+      this.porsition = 0;
+      this.hasNext = function() {
+        if (this.porsition > this.list.length || this.list[porsition] === null) return false;
+        return true;
+      }
+      this.next = function() {
+        const item = this.list[this.porsition];
+        this.porsition++;
+        return item;
+      }
+      this.isDone = function() {
+        return this.porsition >= this.list.length;
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
