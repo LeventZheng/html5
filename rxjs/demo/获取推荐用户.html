@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>获取推荐用户</title>
+  <style>
+    .flex { display: flex; }
+    .flex-row { flex-direction: row; }/* 主轴为从左到右，默认值 */
+    .flex-col { flex-direction: column; }/* 主轴为从上到下 */
+    .flex-inline { display: inline-flex; }/* 行内元素使用flex布局 */
+    .flex-1 { flex:1; }
+    .flex-068 { flex:0.68; }
+    .flex-1p5 { flex:1.5; }
+    .flex-2 { flex:2; }
+    .flex-3 {flex: 3;}
+    .flex-justify-center { justify-content: center; }/* 沿主轴居中对齐 */
+    .flex-justify-end { justify-content: flex-end; }/* 沿主轴末尾对齐 */
+    .flex-align-center { align-items: center; }/* 垂直居中 */
+    .flex-align-start { align-items: flex-start; }/* 垂直顶部对齐 */
+    .flex-align-end { align-items: flex-end; }/* 垂直底部对齐 */
+    .flex-center { justify-content: center; align-items: center; }
+    .flex-between { justify-content: space-between; }/* 两端对齐 */
+    .flex-around { justify-content: space-around; }/* 各元素间隔相等 */
+    .flex-wrap { flex-wrap: wrap; }/* 子元素换行排布，第一行在上方 */
+
+    .suggestion-column{ margin-top: 40px;}
+    .suggestion{ width: 300px; border: solid 1px #ededed; margin-top: 5px;}
+    .suggestion img{
+      width: 50px;
+    }
+    .suggestion .name{ margin-left: 5px;}
+    .suggestion .close{ font-size: 24px; margin-right: 20px; cursor: pointer;}
+  </style>
+</head>
+<body>
+  <button class="refresh">refresh</button>
+  <div class="suggestion-column flex flex-col">
+    <div class="suggestion suggestion1 flex flex-between flex-align-center">
+      <div class="flex flex-align-center info"></div>
+      <div class="close">x</div>
+    </div>
+    <div class="suggestion suggestion2 flex flex-between flex-align-center">
+      <div class="flex flex-align-center info"></div>
+      <div class="close">x</div>
+    </div>
+    <div class="suggestion suggestion3 flex flex-between flex-align-center">
+      <div class="flex flex-align-center info"></div>
+      <div class="close">x</div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+  <script>
+    // var requestStream = Rx.Observable.of('https://api.github.com/users');
+    // // 1.原始获取推荐用户
+    // // requestStream.subscribe((requestUrl)=>{
+    // //   var responseStream = Rx.Observable.create((observer) => {
+    // //     jQuery.getJSON(requestUrl)
+    // //     .done(function(response) { observer.next(response); })
+    // //     .fail(function(jqXHR, status, error) { observer.error(error); })
+    // //     .always(function() { observer.complete(); });
+    // //   });
+    // //   responseStream.subscribe({
+    // //     next: (y)=> console.log(y),
+    // //     error: err => console.log(err),
+    // //     complete: () => console.log('complete')
+    // //   });
+    // // });
+    // 2.改进1，将字符串映射成一个请求数据的流后再打平
+    // // 每一个请求URL都映射到一个指向包含响应数据的promise数据流
+    // var responseStream = requestStream
+    //   .mergeMap((requestUrl)=>{
+    //     return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
+    //   });
+
+    // responseStream.subscribe({
+    //   next: (y)=> console.log(y),
+    //   error: err => console.log(err),
+    //   complete: () => console.log('complete')
+    // });
+
+    // 3. 改进2，将初始化请求与刷新按钮事件请求合并，避免出现重复代码
+    // 刷新按钮
+    var refreshButton = document.querySelector('.refresh');
+    var refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
+
+    var close1Button = document.querySelector('.suggestion1 .close');
+    var close1ClickStream = Rx.Observable.fromEvent(close1Button, 'click');
+    var close2Button = document.querySelector('.suggestion2 .close');
+    var close2ClickStream = Rx.Observable.fromEvent(close2Button, 'click');
+    var close3Button = document.querySelector('.suggestion3 .close');
+    var close3ClickStream = Rx.Observable.fromEvent(close3Button, 'click');
+
+    var requestStream = refreshClickStream.startWith('startup click')
+      .map(function() {
+        var randomOffset = Math.floor(Math.random()*500);
+        return 'https://api.github.com/users?since=' + randomOffset;
+      });
+      
+    var responseStream = requestStream
+      .mergeMap((requestUrl)=>{
+        return Rx.Observable.fromPromise($.ajax({url: requestUrl}));
+      });
+
+    var suggestion1Stream = close1ClickStream.startWith('startup click')
+      // .map(function(listUsers) {
+      //   // 从 listUsers 中获取一个随机用户
+      //   return listUsers[Math.floor(Math.random()*listUsers.length)];
+      // })
+      .combineLatest(responseStream,             
+        function(click, listUsers) {
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        }
+      )
+      .merge(
+        refreshClickStream.map(function(){ return null; })
+      )
+      .startWith(null);
+      
+    suggestion1Stream.subscribe(function(suggestion) {
+      console.log(suggestion);
+      if (suggestion === null) {
+        // 隐藏第一个推荐 DOM 元素
+        clear(1);
+      }
+      else {
+        // 显示第一个推荐 DOM 元素，渲染数据
+        render(1, suggestion);
+      }
+    });
+
+    var suggestion2Stream = close2ClickStream.startWith('startup click')
+      // .map(function(listUsers) {
+      //   // 从 listUsers 中获取一个随机用户
+      //   return listUsers[Math.floor(Math.random()*listUsers.length)];
+      // })
+      .combineLatest(responseStream,             
+        function(click, listUsers) {
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        }
+      )
+      .merge(
+        refreshClickStream.map(function(){ return null; })
+      )
+      .startWith(null);;
+    var suggestion3Stream = close3ClickStream.startWith('startup click')
+      // .map(function(listUsers) {
+      //   // 从 listUsers 中获取一个随机用户
+      //   return listUsers[Math.floor(Math.random()*listUsers.length)];
+      // })
+      .combineLatest(responseStream,             
+        function(click, listUsers) {
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        }
+      )
+      .merge(
+        refreshClickStream.map(function(){ return null; })
+      )
+      .startWith(null);;
+    suggestion2Stream.subscribe(function(suggestion) {
+      console.log(suggestion);
+      if (suggestion === null) {
+        // 隐藏第一个推荐 DOM 元素
+        clear(2);
+      }
+      else {
+        // 显示第一个推荐 DOM 元素，渲染数据
+        render(2, suggestion);
+      }
+    });
+    suggestion3Stream.subscribe(function(suggestion) {
+      console.log(suggestion);
+      if (suggestion === null) {
+        // 隐藏第一个推荐 DOM 元素
+        clear(3);
+      }
+      else {
+        // 显示第一个推荐 DOM 元素，渲染数据
+        render(3, suggestion);
+      }
+    });
+    function clear(position) {
+      document.querySelector(`.suggestion${position} .info`).innerHTML="";
+    }
+    function render(position, suggestion) {
+      clear(position);
+      const dom = `
+      <div><img src="${suggestion.avatar_url}"></div>
+      <div class="name">${suggestion.login}</div>
+      `;
+      console.log($(document.querySelector(`.suggestion${position} .info`)));
+      $(document.querySelector(`.suggestion${position} .info`)).append(dom);
+    }
+  </script>
+</body>
+</html>
