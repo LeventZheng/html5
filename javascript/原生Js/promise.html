@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promise</title>
+    <script>
+      var p = new Promise((resolve, reject) => {
+        console.log("new Promise");
+        setTimeout(() => {
+          // 执行异步回调成功
+          resolve("resolve");
+        }, 1000);
+      });
+      p.then(data => {
+        console.log(data);
+      });
+
+      Promise.all = promises => {
+        let arr = [];
+        i = 0;
+        function process(data, index, resolve) {
+          arr[index] = data;
+          i++;
+          if (i === arr.length) {
+            resolve(arr);
+          }
+        }
+
+        return new Promise((resolve, reject) => {
+          for (let i = 0; i < promises.length; i++) {
+            promises[i].then(data => {
+              process(data, i, resolve);
+            }, reject);
+          }
+        });
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

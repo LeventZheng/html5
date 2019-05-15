@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+  // 定义这个方法为myBind
+  Function.prototype.myBind = function(thisArg) {
+    if (typeof this !== 'function') {
+      return;
+    }
+    var _self = this;
+    var args = Array.prototype.slice.call(arguments, 1) //从第二个参数截取
+
+    // 返回一个函数，函数执行才触发apply
+    var fnBound = function() {
+      // 注意，这里的arguments是return的这个function的入参，与上面的arguments不是同一个
+      // 这里是bind的额外入参与return函数的入参合并，作为apply的入参
+      return _self.apply(thisArg, args.concat(Array.prototype.slice.call(arguments)));
+    }
+
+    fnBound.prototype = Object.create(this.prototype);
+
+    return fnBound;
+  }
+
+  function foo(name) {
+    this.name = name;
+  }
+
+  var obj = {}
+
+  //上下文 功能  done
+  var bar = foo.myBind(obj)
+  bar('jack')
+  console.log(obj.name) //'jack'
+
+  // 参数 功能   done
+  var tar = foo.myBind(obj, 'rose');
+  tar()
+  console.log(obj.name) //'rose'
+  // new 功能   error
+  var alice = new bar('alice')
+  console.log(obj.name) //alice   obj name should be 'rose'
+  console.log(alice.name) //undefined, alice name should be 'alice'
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
