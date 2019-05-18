@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var name = "tom";
+        function M() {
+            console.log(this);
+        }
+        M();    // window
+        var o1 = {
+            name: 'o1',
+            fun: M
+        }
+        o1.fun();  // o1
+        var o2 = {
+            name: 'o2',
+            o3 : {
+                name: 'o3'
+            }
+        }
+        o2.o3.fun = M;
+        o2.o3.fun();    // o3
+    </script>
+
+    <script>
+        function M1() {
+            return {
+                name: 'M1'
+            }
+        }
+        function M2() {
+            return 1;
+        }
+        function M3() {
+            return null;
+        }
+        var m1 = new M1();  // {name: 'M1'}
+        var m2 = new M2();  // M2
+        var m3 = new M3();  // M3,虽然typeof null='object',但是在这里this还是指向那个函数的实例，因为null比较特殊
+    </script>
+</head>
+<body>
+    
+</body>
+</html>   

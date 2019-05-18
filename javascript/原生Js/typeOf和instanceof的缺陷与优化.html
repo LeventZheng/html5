@@ -31,7 +31,7 @@
       在这里需要特别注意的是，instanceof检测的是原型，<br />
       如下模拟原型检测内部执行<br />
       instanceof(A,B) = {<br />
-      &emsp;var L = A.__proto__;<br />
+      &emsp;var L = A.__proto__;<br />(var L = Object.getPrototypeOf(A);)
       &emsp;var R = B.prototype;<br />
       &emsp;if(L == R){<br />
       &emsp;&emsp;//A的内部属性__proto__指向B的原型对象<br />

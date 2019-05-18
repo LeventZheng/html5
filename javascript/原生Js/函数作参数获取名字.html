@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        Function.prototype.getName = function(){
+            return this.name || this.toString().match(/function\s*([^(]*)\(/)[1]
+        }
+        function abc() {}
+        function ddd(abc) {
+            console.log(abc.getName())
+        }
+        ddd(abc)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
