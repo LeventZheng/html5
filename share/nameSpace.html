@@ -1,57 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-</head>
-<script type="text/javascript">
-	(function () {
-            var _NS = function () {
-              
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+  </head>
+  <script type="text/javascript">
+    (function() {
+      var _NS = function() {};
+
+      _NS.prototype.select = function(selector, context) {
+        var context = context || document;
+        return context.querySelectorAll(selector);
+      };
+
+      _NS.prototype.isArrayLike = function(obj) {
+        if (obj instanceof Array) {
+          return true;
+        }
+
+        var length = obj.length;
+        if (obj.nodeType === 1 && length) {
+          return true;
+        }
+        return false;
+      };
+
+      _NS.prototype.html = function(obj, value) {
+        var isArray = this.isArrayLike(obj),
+          i = 0;
+
+        if (typeof value == "string") {
+          if (!isArray) {
+            obj.innerHTML = value;
+          } else {
+            var length = obj.length;
+            while (i < length) {
+              obj[i].innerHTML = value;
+              i += 1;
             }
-         
-            _NS.prototype.select = function (selector,context) {
-                var context = context || document;
-                return context.querySelectorAll(selector);
-            }
+          }
+        } else {
+          if (!isArray) {
+            return obj.innerHTML;
+          } else {
+            return obj[0].innerHTML;
+          }
+        }
+      };
 
-            _NS.prototype.isArrayLike=function(obj){
-                if(obj instanceof Array){
-                    return true;
-                }
-
-                var length=obj.length;
-                if ( obj.nodeType === 1 && length ) {
-                    return true;
-                }
-                return false;
-            }
-
-            _NS.prototype.html = function (obj,value) {
-                var isArray=this.isArrayLike(obj), i=0;
-
-                if (typeof value == 'string') {
-                    if (!isArray) {
-                        obj.innerHTML = value;
-                    } else {
-                        var length = obj.length;
-                        while (i < length) {
-                            obj[i].innerHTML = value;
-                            i += 1;
-                        }
-                    }
-                } else {
-                    if (!isArray) {
-                        return obj.innerHTML;
-                    } else {
-                        return obj[0].innerHTML;
-                    }
-                }
-            }
-
-            window.NS = new _NS();
-        })();
-</script>
-<body>
-</body>
+      window.NS = new _NS();
+    })();
+  </script>
+  <body></body>
 </html>

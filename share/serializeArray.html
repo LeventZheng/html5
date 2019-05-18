@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
+  <head lang="en">
+    <meta charset="UTF-8" />
     <title></title>
     <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
     <script type="text/javascript">
-        $(function(){
-            $('.submit').click(function(){
-                var array = $('#form').serializeArray();
-
-            });
+      $(function() {
+        $(".submit").click(function() {
+          var array = $("#form").serializeArray();
         });
+      });
 
-        //将一个表单的数据返回成JSON对象
-        $.fn.serializeObject = function() {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function() {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [ o[this.name] ];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-
+      //将一个表单的数据返回成JSON对象
+      $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+          if (o[this.name]) {
+            if (!o[this.name].push) {
+              o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || "");
+          } else {
+            o[this.name] = this.value || "";
+          }
+        });
+        return o;
+      };
     </script>
-</head>
-<body>
-<div>
-    <form action="" id="form">
-        <input type="text" name="student.id"/>
-        <input type="text" name="student.name"/>
-    </form>
-    <button class="submit">提交</button>
-</div>
-</body>
+  </head>
+  <body>
+    <div>
+      <form action="" id="form">
+        <input type="text" name="student.id" />
+        <input type="text" name="student.name" />
+      </form>
+      <button class="submit">提交</button>
+    </div>
+  </body>
 </html>
