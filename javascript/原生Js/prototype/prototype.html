@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Parent() {}
+      Parent.prototype.parentMethod = function parentMethod() {};
+
+      function Child() {}
+      Child.prototype = Object.create(Parent.prototype);
+
+      Child.prototype.constructor = Child;
+      // 这句之前child.constructor==Parent
+
+      var child = new Child();
+      console.log(child.constructor);
+    </script>
+  </body>
+</html>

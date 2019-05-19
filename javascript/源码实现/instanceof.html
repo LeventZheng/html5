@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>instanceof运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置</p>
+  <script>
+    function instanceof1(L, R) {
+      var o = R.prototype;
+      L = Object.getPrototypeOf(L);
+      while(L !== o) {
+        if (L === null) return false;
+        L = Object.getPrototypeOf(L);
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
