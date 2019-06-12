@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function* gen1(){
+        yield 2;
+        yield 3;
+    }
+    
+    function* gen2(){
+        yield 1;
+        yield* gen1();
+        yield 4;
+    }
+    
+    var g2 = gen2();
+    console.log(g2.next().value); // 1
+    console.log(g2.next().value); // 2
+    console.log(g2.next().value); // 3
+    console.log(g2.next().value); // 4
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
