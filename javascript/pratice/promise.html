@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    const p1 = new Promise((resolve, reject) => {
+      console.log("new Promise");
+      // 异步处理
+      setTimeout(() => {
+        // 处理结束后,调用resolve 或 reject
+        resolve("resolve");
+      }, 1000);
+    });
+    var p2 = new Promise((resolve, reject) => {
+      resolve('promise 2');
+    });
+
+    const p3 = p1.then(data => {
+      console.log(data);
+      return p2;
+    }).then(data1 => {
+      // 这里回调中返回的参数是上一个then中return的promise中resolve传入的参数值
+      console.log(data1);
+    }).then(data2 => {
+      console.log(data2); // 因为上一个then没返回data所以这里是undefined
+      return 'data2';
+    })/* .then(data3 => {
+      console.log(data3);
+    }) */;
+    
+    console.log(p3);
+
+    p3.then( data4 => {
+      console.log(data4);
+      return 'data4';
+    })
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>柯里化</title>
+</head>
+<body>
+  <script>
+    function currying(cb) {
+      let allArgs = [];
+      function next() {
+        let args = Array.prototype.slice.call(arguments);
+        allArgs = allArgs.concat(args);
+        return next;
+      }
+
+      // 字符类型
+      next.toString = function(){
+          return cb.apply(null, allArgs);
+      };
+
+      // 数值类型
+      next.valueOf = function() {
+        return cb.apply(null, allArgs);
+      }
+
+      return next;
+    }
+    let add = currying(function() {
+      let sum = 0;
+      for(let i=0; i<arguments.length; i++) {
+        sum += arguments[i];
+      }
+      return sum;
+    });
+    console.log(add(1)(2,3)(4,5));
+    
+  </script>
+</body>
+</html>
