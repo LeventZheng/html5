@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Array 操作符</title>
+  <script>
+    const arr = [1,2,3,4,5,6,7];
+
+    Array.prototype._includes = function(i) {}
+
+    arr.reduce((result, cur) => {
+      return cur;
+    }, 0);
+    Object.prototype.isType = (type) => {
+      return Object.prototype.toString.call(this) === `[Object ${type}]`;
+    }
+    Array.prototype._reduce = function (cb, initVal) {
+      let i = 0;
+      let result = initVal;
+      if (initVal.isType('Null') || initVal.isType('Undefined')) {
+        result = this[0];
+        i++;
+      }
+      for (i; i<this.length; i++) {
+        result = cb(result, this[i]);
+      }
+      return result;
+    }
+    
+    // arr._reduce((result, cur) => {
+    //   console.log(result);
+    //   return cur;
+    // }, 0)
+
+    Array.prototype._some = function(cb) {
+      let res = false;
+      for (let i=0; i<this.length; i++) {
+        res = cb(this[i]);
+        if (res) return true;
+      }
+      return res;
+    }
+
+    // const res = arr._some(item => item === 1);
+    // console.log(res);
+
+    Array.prototype._every = function(cb) {
+      let res = true;
+      for (let i=0; i<this.length; i++) {
+        res = cb(this[i]);
+        if (!res) return false;
+      }
+      return res;
+    }
+    // const res = arr._every(item => item > 0);
+    // console.log(res);
+
+    const characters = [
+      { id: 1, name: 'ironman' },
+      { id: 2, name: 'black_widow' },
+      { id: 3, name: 'captain_america' },
+      { id: 4, name: 'captain_america' },
+    ];
+    function getCharacter(name) {
+      return character => character.name === name;
+    }
+    
+    Array.prototype._find = function(cb) {
+      let res;
+      for (let i=0; i<this.length; i++) {
+        const item = this[i];
+        if (cb(item)) {
+          res = item;
+        }
+      }
+      return res;
+    }
+    const res = characters._find(getCharacter('captain_america'));
+    // console.log(res);
+
+
+    Array.prototype._filter = function(cb) {
+      const resArr = [];
+      for (let i=0; i<this.length; i++) {
+        const item = this[i];
+        if (cb(item)) {
+          resArr.push(item);
+        }
+      }
+      return resArr;
+    }
+    const fArr = characters._filter(item => {
+      return item.id > 2;
+    });
+    // console.log(fArr);
+    
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
