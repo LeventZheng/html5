@@ -1,62 +1,39 @@
 function MergeSort(arr) {
   _MergeSort(arr, 0, arr.length-1);
 }
-function _MergeSort(arr, left, right) {
-  var middle = parseInt((left+right)/2);
-  if (left+1 < right) {
-    _MergeSort(arr, left, middle);
-    _MergeSort(arr, middle+1, right);
+
+function _MergeSort(arr, l, r) {
+  if (l<r) {
+    var middle = parseInt((l+(r-l)/2));
+    _MergeSort(arr, l, middle);
+    _MergeSort(arr, middle+1, r);
   }
-  if (arr[middle]>arr[middle+1]) {
-    _Merge(arr, left, middle, right);
-  }
+  // [l...middle] [middle+1,r]
+  _Merge(arr, l, middle, r);
 }
 
-function _Merge(arr, left, middle, right) {
-  var tempArr = [], index = 0;
-  var i = left, j = middle+1;
-  while(i<=middle && j<=right) {
-    if (arr[i] < arr[j]) {
-      tempArr[index] = arr[i];
+function _Merge(arr, l, middle, r) {
+  var i=l;
+  var j=middle+1;
+  var sortedArr = [];
+  while(i<middle&&j<r) {
+    if (arr[i]<=arr[j]) {
+      sortedArr.push(arr[i]);
       i++;
     } else {
-      tempArr[index] = arr[j];
+      sortedArr.push(arr[j]);
       j++;
     }
-    index++;
   }
-  while(i<=middle) {
-    tempArr[index] = arr[i];
+  while(i<middle) {
+    sortedArr.push(arr[i]);
     i++;
-    index++;
   }
-  while(j<=right) {
-    tempArr[index] = arr[j];
+  while(j<r) {
+    sortedArr.push(arr[j]);
     j++;
-    index++;
   }
-  for(var k=0; k<tempArr.length; k++) {
-    arr[left+k] = tempArr[k];
+  for (var k=0; k<sortedArr.length; k++) {
+    arr[l+k] = sortedArr[k];
   }
-}
-
-
-function MergeSortBU(arr) {
-  // 先22排序，再44排序，以此类推
-  // 0-1 2-3 4-5 6-7 8-9
-  // 0-3 4-7 8-9
-  // 0-7 8-9
-  // 0-9
-  for(var length = 2; length < arr.length; length=length*2) {
-    var left = 0;
-    var right = length-1;
-    for (; right<arr.length+length;) {
-      if (right >= arr.length) {
-        right = arr.length-1;
-      }
-      _Merge(arr, left, parseInt(left + (right-left)/2), right);
-      left += length;
-      right += length;
-    }
-  }
-}
+};

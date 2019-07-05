@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-    var n = '151121.15';
+    var n = '10.01';
     var result = '';
     // 壹、贰、叁、肆、伍、陆、柒、捌、玖、拾、佰、仟、万、亿、元、角、分、零
     var dict = ['零','壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
@@ -15,36 +15,47 @@
     var intStr = n.split('.')[0];
     // 处理整数部分
     var reverseIntStr = intStr.split('').reverse();
-    var zeroFlag = false;
-    for (var i=0; i<reverseIntStr.length; i++) {
-      if (i==0&&reverseIntStr[i]==0) {} else {
-        // 万
-        if (i==4) {
-          result = unit[4] + result;
-        }
-        // 亿
-        if (i==8) {
-          result = unit[5] + result;
-        }
-        if (reverseIntStr[i]) {
-          if (reverseIntStr[i]=='0') {
-            if (!zeroFlag) {
-              zeroFlag = true;
-              result= dict[reverseIntStr[i]]+result;
-            }
-          } else {
-            zeroFlag = false;
-            if (reverseIntStr[i]=='1'&&(i%4)==1) {
-              result = unit[(i%4)]+result;
+    while(true) {
+      if (reverseIntStr[reverseIntStr.length-1] == '0') {
+        reverseIntStr.pop();
+      } else {
+        break;
+      }
+    }
+    if (!reverseIntStr.length) {
+      result = '零元';
+    } else {
+      var zeroFlag = false;
+      for (var i=0; i<reverseIntStr.length; i++) {
+        if (i==0&&reverseIntStr[i]==0) {} else {
+          // 万
+          if (i==4) {
+            result = unit[4] + result;
+          }
+          // 亿
+          if (i==8) {
+            result = unit[5] + result;
+          }
+          if (reverseIntStr[i]) {
+            if (reverseIntStr[i]=='0') {
+              if (!zeroFlag) {
+                zeroFlag = true;
+                result= dict[reverseIntStr[i]]+result;
+              }
             } else {
-              result = dict[reverseIntStr[i]]+unit[(i%4)]+result;
+              zeroFlag = false;
+              if (reverseIntStr[i]=='1'&&(i%4)==1) {
+                result = unit[(i%4)]+result;
+              } else {
+                result = dict[reverseIntStr[i]]+unit[(i%4)]+result;
+              }
             }
           }
         }
       }
+      result += '元';
     }
-    result += '元';
-
+  
     if (n.indexOf('.')>-1) {
       var decStr = n.split('.')[1];
       var decArr = decStr.split('');
@@ -55,7 +66,11 @@
         }
       } else if(+decArr[1]>0){
         result += dict[0] + dict[decArr[1]] + '分';
+      } else {
+        result += '整';
       }
+    } else {
+      result += '整';
     }
     result = '人民币' + result;
     console.log(result);
