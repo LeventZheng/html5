@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    var n = 4;
+    var strs = "ab32cd14 13ab2d4c d31a2b4c ba3c21d4".split(" ");
+    var totalObj = {};
+    for(var i=0; i<n; i++) {
+      var sortedLetter = strs[i].split('').sort(function(a, b) {
+        if (a < b ) {           // 按某种排序标准进行比较, a 小于 b
+          return -1;
+        }
+        if (a > b ) {
+          return 1;
+        }
+        return 0;
+      }).join('');
+      if (!totalObj[sortedLetter]) {
+        totalObj[sortedLetter] = 1;
+      } else {
+        totalObj[sortedLetter]++;
+      }
+    }
+    console.log(Object.keys(totalObj).length);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

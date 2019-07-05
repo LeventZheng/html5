@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      var n = 12;
+      // var numbers = "7 2 3 4 1 6 7 2 9 10 11 12 13 14 15 16 2 1".split(" ");
+      // var numbers = "7 2 3 4 5 1".split(" ");
+      var numbers = "7 8 1 2 5 6 7 0".split(" ");
+      var totalResult = getResult(numbers.length, numbers);
+      
+      function getResult(n, numbers) {
+        console.log(numbers);
+        var result = 0;
+        var breakIndexs = [];   // 记录所有的断点
+        if (n == 1) {
+          return 1;
+        }
+        for (var i = 1; i < n; i++) {
+          if (parseInt(numbers[i])<=parseInt(numbers[i-1])) {
+            breakIndexs.push(i);
+          }
+        }
+        if (breakIndexs.length == 0) return n;  // 无断点
+        // 第二位或最后一个是断点
+        if (breakIndexs.length == 1) {
+          if (breakIndexs[0]==1 || breakIndexs[0]==n-1) {
+            return n;
+          } else {
+            var breakIndex = breakIndexs[0];
+            if (parseInt(numbers[breakIndex+1])-parseInt(numbers[breakIndex-1])>1) {
+              return n;
+            } else {
+              var n1 = breakIndex-0+1;
+              var n2 = n - 1 - (breakIndex-1) + 1;
+              var n = n1>n2?n1:n2;
+              return n;
+            }
+          }
+        }
+        console.log(breakIndexs);
+        // 首断 尾断 首尾断 无断尾
+        // 中间断1个
+        
+        // 遍历所有的断点
+        // 看看断点两边能否拼接起来
+
+        // 断点横跨的两个区间起止点
+        var begin = 0;
+        var end;
+        for (var i=0; i<breakIndexs.length; i++) {
+          var breakIndex = breakIndexs[i];// 断点左边，是左边升序的最后一个元素,断点本身又是右边升序的第一个元素
+
+          var tempResult;
+          
+          if (!breakIndexs[i+1]) {
+            end = n-1;  // 后面没有断点，一直升序,最后一个就是结束点
+          } else {
+            // 后面还有断点
+            if (parseInt(numbers[breakIndex+1])-parseInt(numbers[breakIndex-1])>1) {
+              end = breakIndexs[i+1] - 1; // 下一个断点的前一位是结束点
+            } else {
+              end = breakIndexs[i];
+            }
+          }
+          tempResult = end - begin + 1;
+          result = result > tempResult ? result : tempResult;
+          begin = breakIndex; // 取当前断点作为下一个断点的两区间起点
+        }
+        return result;
+      }
+      console.log(totalResult);
+    </script>
+  </head>
+  <body></body>
+</html>
