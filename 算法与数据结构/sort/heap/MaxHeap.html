@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./helper.js"></script>
+  <script src="./MaxHeap.js"></script>
+  <script>
+    var n = 100000;
+    var array = SortTestHelper.generateRandamArray(n, 0, n);
+    
+    console.time();
+    var maxHeap = new MaxHeap();
+    // for (var i=0; i<n; i++) {
+    //   maxHeap.insert(array[i]);
+    // }
+    maxHeap.getFromArray(array);
+    for (var i=n-1; i>=0; i--) {
+      array[i] = maxHeap.extractMax();
+    }
+    
+    console.timeEnd();
+    console.log(array);
+    console.log('是否有序:'+SortTestHelper.isSorted(array));
+    
+    /* 通过一个个插入进行初始化的堆排序时间效率 */
+    // n = 100 default: 0.463134765625ms
+    // n = 1000 default: 4.708984375ms
+    // n = 10000 default: 17.320068359375ms
+    // n = 100000 default: 77.291015625ms
+
+    /* 通过heapify进行初始化的堆排序的时间效率 */
+    // n = 100 default: 0.43994140625ms
+    // n = 1000 default: 3.989013671875ms
+    // n = 10000 default: 10.49609375ms
+    // n = 100000 default: 33.662109375ms
+
+    // 能看到heapify性能有了较大的提升
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
