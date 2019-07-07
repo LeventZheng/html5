@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function logn(n) {
+      if (n<3) {
+        console.log('递归前', n);
+        n++;
+        logn(n);
+        console.log('递归后', n);
+      }
+    }
+    logn(0);
+    
+    console.log('---------------------------------');
+
+    // 尾递归
+    function lognTail(n) {
+      if (n<3) {
+        console.log('递归前', n);
+        n++;
+        return lognTail(n);
+      }
+    }
+    lognTail(0);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
