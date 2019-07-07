@@ -4,8 +4,9 @@ function QuickSort2Way(arr) {
 
 function _QuickSort2Way(arr, l, r) {
   if (l<r) {
-    var v = arr[l];
-    var i=l+1, j=r;
+    var v = arr[l]; // 这里可以先将l与[l,r]中的一个随机位置交换再取arr[l]
+    var i=l+1;  // 从左到右的遍历索引，指向下一个要考察的元素，[l+1,i)<=v 初始区间为空
+    var j=r;    // 从右到左的遍历索引，指向下一个要考察的元素，(j,r]>=v 初始区间为空
     while(true) {
       while (i<=r && arr[i]<v) {
         i++;
@@ -21,7 +22,8 @@ function _QuickSort2Way(arr, l, r) {
       i++;
       j--;
     }
-    // 上面的循环结束的条件是i<j,说明此时i>=j，j是左边<=v区间的最后一个
+    // 跳出循环的时候，j指向的是<=v的元素，[l,j]<=v
+    // i指向的是>=v的元素,[i,r]>=v，i==j或者i==j+1
     arr.swap(l, j);
     _QuickSort2Way(arr, l, j-1);
     _QuickSort2Way(arr, j+1, r);
