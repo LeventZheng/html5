@@ -11,10 +11,20 @@
     var n = 20;
     var array = SortTestHelper.generateRandamArray(n, 0, n);
     var indexMaxHeap = new IndexMaxHeap();
-    for (var i=0; i<n; i++) {
-      indexMaxHeap.insert(i, array[i]);
-    }
+    // for (var i=0; i<n; i++) {
+    //   indexMaxHeap.insert(i, array[i]);
+    // }
+    console.log(array);
+    indexMaxHeap.getFromArray(array);
     console.log(indexMaxHeap);
+    // indexMaxHeap.change(10, 21);
+    // console.log(indexMaxHeap);
+
+    for (var i=0; i<n; i++) {
+      // arr[i] = indexMinHeap.extractMin();
+      console.log(indexMaxHeap.extractMax());
+      
+    }
     
   </script>
 </head>

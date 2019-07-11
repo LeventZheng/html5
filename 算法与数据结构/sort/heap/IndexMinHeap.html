@@ -9,17 +9,21 @@
   <script src="./IndexMinHeap.js"></script>
   <script>
     var n = 25;
-    let arr = SortTestHelper.generateRandamArray(n, 0, n);
+    let array = SortTestHelper.generateRandamArray(n, 0, n);
     var indexMinHeap = new IndexMinHeap();
-    console.log(arr);
-    for (var i=0; i<n; i++) {
-      indexMinHeap.insert(i, arr[i]);
-    }
+
+    // for (var i=0; i<n; i++) {
+    //   indexMinHeap.insert(i, array[i]);
+    // }
+    console.log(array);
+    indexMinHeap.getFromArray(array);
     console.log(indexMinHeap);
+    // indexMinHeap.change(10, 21);
+    // console.log(indexMinHeap);
     
     for (var i=0; i<n; i++) {
       // arr[i] = indexMinHeap.extractMin();
-      console.log(indexMinHeap.extractMinIndex());
+      console.log(indexMinHeap.extractMin());
       
     }
     // console.log(arr);

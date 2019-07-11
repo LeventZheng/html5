@@ -37,18 +37,16 @@ function IndexMaxHeap() {
   }
 
   this.insert = function(i, item) {
-    i += 1; // 转变成从1开始索引
-    this.data[i] = item;
-    this.indexes[this.count+1] = i;
-    this._shiftUp(this.count+1);
-    this.count++;
+    if (!this.data[i+1]&&this.data[i+1]!==0) {
+      i += 1; // 转变成从1开始索引
+      this.data[i] = item;
+      this.indexes[this.count+1] = i;
+      this._shiftUp(this.count+1);
+      this.count++;
+    } else {
+      this.change(i, item);
+    }
   }
-  /* this.insert = function(item) {
-    this.data[this.count+1] = item; // 添加到数组末尾
-    this.indexes[this.count+1] = this.count+1;
-    this._shiftUp(this.count+1);
-    this.count++;
-  } */
 
   // 取出根元素，即data[1]
   // 将data末尾移到data[1],对索引1执行shift down操作
@@ -60,6 +58,7 @@ function IndexMaxHeap() {
     this._shiftDown(1);
     return item;
   }
+
   this.extractMaxIndex = function() {
     console.assert(this.count>0);
     var index = this.indexes[1];
@@ -96,11 +95,11 @@ function IndexMaxHeap() {
     this.count = 0; // 初始化
     for (var i=0; i<array.length; i++) {
       this.data[i+1] = array[i];
-      this.indexes[i+1] = i;
+      this.indexes[i+1] = i+1;
     }
     this.count = array.length;
-    var lastNotChild = parseInt(this.count/2);  // 第一个非子节点，是this.data最后一个元素所在节点的父节点
-    for (var i=lastNotChild; i>=1; i--) {
+    var lastNotLeaf = parseInt(this.count/2);  // 第一个非子节点，是this.data最后一个元素所在节点的父节点
+    for (var i=lastNotLeaf; i>=1; i--) {
       this._shiftDown(i);
     }
   }

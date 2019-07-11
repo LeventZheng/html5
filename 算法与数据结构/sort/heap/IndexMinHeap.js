@@ -38,11 +38,15 @@ function IndexMinHeap() {
   }
 
   this.insert = function(i, item) {
-    i += 1;
-    this.data[i] = item;
-    this.indexes[this.count+1] = i;
-    this._shiftUp(this.count+1);
-    this.count++;
+    if (!this.data[i+1]&&this.data[i+1]!==0) {
+      i++;
+      this.count++;
+      this.data[i] = item;
+      this.indexes[this.count] = i;
+      this._shiftUp(this.count);
+    } else {
+      this.change(i, item);
+    }
   }
 
   this.extractMin = function() {
@@ -59,5 +63,33 @@ function IndexMinHeap() {
     this.count--;
     this._shiftDown(1);
     return result-1;
+  }
+
+  this.getItem = function(i) {
+    return this.data[i+1];
+  }
+
+  this.change = function(i, item) {
+    i++;
+    this.data[i] = item;
+    for (var j=0; j<=this.count; j++) {
+      if (this.indexes[j] == i) {
+        this._shiftDown(this.indexes[j]);
+        this._shiftUp(this.indexes[j]);
+        return;
+      }
+    }
+  }
+
+  this.getFromArray = function(array) {
+    this.count = array.length;
+    for (var i=0; i<array.length; i++) {
+      this.data[i+1] = array[i];
+      this.indexes[i+1] = i+1;
+    }
+    var lastNotLeaf = parseInt(this.count/2);
+    for (var i=lastNotLeaf; i>=0; i--) {
+      this._shiftDown(i);
+    }
   }
 }

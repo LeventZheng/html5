@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./../helper.js"></script>
+  <script src="./IndexHeap.js"></script>
+  <script>
+    var n0 = 50;
+    let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
+    var indexHeap = new IndexHeap();
+    console.log(arr);
+    indexHeap.getFromArray(arr);
+    // for (var i=0; i<n0; i++) {
+    //   indexHeap.insert(i, arr[i]);
+    // }
+    // console.log(indexHeap);
+
+    for (var i=0; i<n0; i++) {
+      // arr[i] = indexHeap.extractMax();
+      arr[i] = indexHeap.extractMin();
+    }
+    console.log(arr);
+    
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
