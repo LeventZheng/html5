@@ -92,4 +92,15 @@ function IndexMinHeap() {
       this._shiftDown(i);
     }
   }
+  this.getFromArray1 = function(array,l, r) {
+    this.count = r-l+1;
+    for (var i=0; i<=this.count; i++) {
+      this.data[i+1] = array[i+l];
+      this.indexes[i+1] = i+1;
+    }
+    var lastNotLeaf = parseInt(this.count/2);
+    for (var i=lastNotLeaf; i>=0; i--) {
+      this._shiftDown(i);
+    }
+  }
 }
