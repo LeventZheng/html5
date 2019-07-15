@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./../sort/helper.js"></script>
+  <script src="./../sort/array/merge/sort.js"></script>
+  <script src="./BinarySearch.js"></script>
+  <script>
+    let n0 = 1000;
+    let arr = SortTestHelper.generateRandamArray(n0, 0, n0);
+    // SortTestHelper.testSort(arr, MergeSort);
+    MergeSort(arr);
+    console.log(arr);
+    console.log(floor(arr, 511));
+    console.log(ceil(arr, 511));
+    
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
