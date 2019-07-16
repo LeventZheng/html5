@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BST</title>
+  <script src="./BST.js"></script>
+</head>
+<body>
+  <script>
+    var bst = new BST();
+    bst.insert('a', 10);  
+    bst.insert('b', 15);  
+    bst.insert('c', 5);  
+    bst.insert('d', 12);  
+    bst.insert('e', 7);
+    console.log(bst.root);
+
+    console.log(bst.find('c'));
+    console.log(bst.contain('z'));
+  </script>
+</body>
+</html>

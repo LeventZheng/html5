@@ -1,10 +1,8 @@
 /**
  * 二分查找树
  */
-function Key() {}
-function Value() {}
 function Node(key, value) {
-    if (key && key instanceof Key && value && value instanceof Value) {
+    if (key && value) {
         this.key = key;
         this.value = value;
     }
