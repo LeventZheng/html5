@@ -131,7 +131,7 @@ function BST() {
   }
   function _minimum(node) {
     if (!node.left) {
-      return node.key;
+      return node;
     }
     return this._minimum(node.left);
   }
@@ -141,7 +141,7 @@ function BST() {
   }
   function _maximum(node) {
     if (!node.right) {
-      return node.key;
+      return node;
     }
     return this.maximum(node.right);
   }
@@ -160,7 +160,7 @@ function BST() {
     // 删除以node.left为根的左子树的最小节点
     // _removeMin方法返回待处理子树的根节点
     // 根节点指向原来p节点的left
-    node.left = this._removeMin(node.left);
+    node.left = _removeMin(node.left);
     return node;
   }
   this.removeMax = function() {
@@ -174,7 +174,63 @@ function BST() {
       this.count--;
       return left;
     }
-    node.right = this._removeMax(node.right);
+    node.right = _removeMax(node.right);
     return node;
+  }
+
+  this.remove = function(key) {
+    _remove(this.root, key);
+  }
+  // 删除以node为根，值为key的节点
+  // 返回删除key节点后的根节点
+  function _remove(node, key) {
+    if (node.key > key) {
+      node.left = _remove(node.left, key);
+    } else if (node.key < key) {
+      node.right = _remove(node.right, key);
+    } else {
+      if (!node.left) {
+        var right = node.right;
+        delete node;
+        this.count--;
+        return right;
+      } else if (!node.right) {
+        var left = node.left;
+        delete node.left;
+        this.count--;
+        return left;
+      } else {
+        // 重难点，node 的左右孩子都不为空
+        var newNode = JSON.parse(JSON.stringify(_minimum(node.right)));
+        newNode.right = _removeMin(node.right); // 这里有一个count--
+        this.count++; // 把减掉的count加回来
+        newNode.left = node.left;
+        delete node;
+        this.count--;
+        return newNode;
+      }
+    }
+    return node;
+  }
+
+  this.floor = function(key) {
+    return _floor(this.root, key);
+  }
+  function _floor(node, key) {
+    if (!node) return null;
+    if (node.key == key) {
+      return node;
+    }
+    if (key > node.key) {
+      if (node.right) {
+        return _floor(node.right, key);
+      }
+      return null;
+    } else {
+      if (node.left) {
+        return _floor(node.left, key);
+      }
+      return null;
+    }
   }
 }
