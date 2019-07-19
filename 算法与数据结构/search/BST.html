@@ -6,19 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BST</title>
   <script src="./BST.js"></script>
+  <script src="./层序遍历/preOrder.js"></script>
 </head>
 <body>
   <script>
     var bst = new BST();
-    bst.insert('a', 10);  
-    bst.insert('b', 15);  
-    bst.insert('c', 5);  
-    bst.insert('d', 12);  
-    bst.insert('e', 7);
+    bst.insert(10, 'a');  
+    bst.insert(15, 'b');  
+    bst.insert(5, 'c');  
+    bst.insert(12, 'd');  
+    bst.insert(7, 'e');
+    bst.insert(17, 'f');
+    bst.insert(2, 'g');
     console.log(bst.root);
+    bst.leverOrder()
+    // preOrder(bst.root)
+    // midOrder(bst.root)
+    // postOrder(bst.root)
 
-    console.log(bst.find('c'));
-    console.log(bst.contain('z'));
+    // console.log(bst.find('c'));
+    // console.log(bst.contain('z'));
   </script>
 </body>
 </html>

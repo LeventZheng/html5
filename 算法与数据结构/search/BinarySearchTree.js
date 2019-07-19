@@ -119,7 +119,7 @@ Node.prototype.levelOrder = function() {
     let q = [];
     q.push(this.root);
     while(q.length == 0) {
-        let node = q.pop();
+        let node = q.shift();
         console.log(node.key);
         if (node.left) {
             q.push(node.left);
