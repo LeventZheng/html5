@@ -133,7 +133,7 @@ function BST() {
     if (!node.left) {
       return node;
     }
-    return this._minimum(node.left);
+    return _minimum(node.left);
   }
   // 寻找最大的节点
   this.maximum = function() {
@@ -143,7 +143,7 @@ function BST() {
     if (!node.right) {
       return node;
     }
-    return this.maximum(node.right);
+    return maximum(node.right);
   }
 
   this.removeMin = function() {
