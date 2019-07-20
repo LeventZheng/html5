@@ -218,19 +218,44 @@ function BST() {
   }
   function _floor(node, key) {
     if (!node) return null;
+    // 有相等的情况，简单
     if (node.key == key) {
       return node;
     }
     if (key > node.key) {
-      if (node.right) {
-        return _floor(node.right, key);
-      }
-      return null;
+      var fNode = _floor(node.right, key);
+      // 当right没有右节点了，node就是floor
+      return fNode?fNode:node;
     } else {
-      if (node.left) {
-        return _floor(node.left, key);
+      var fNode = _floor(node.left, key);
+      // node.left若为空，表示此时node是最左边的节点
+      if (!fNode) {
+        // 当没有找到比key小的节点，返回null
+        return node.key > key?null:node;
       }
-      return null;
+      return fNode;
+    }
+  }
+
+  this.ceil = function(key) {
+    return _ceil(this.root, key);
+  }
+  function _ceil(node, key) {
+    if (!node) return null;
+    if (node.key == key) {
+      return node;
+    }
+    if (key < node.key) {
+      var cNode = _ceil(node.left, key);
+      return cNode?cNode:node;
+    } else {
+      var cNode = _ceil(node.right, key);
+      // node.right若为空，表示此时node是最右边的节点
+      if (!cNode) {
+        // 当没有找到比key大的节点，返回null
+        return node.key < key?null:node;
+      }
+      return cNode;
     }
   }
 }
