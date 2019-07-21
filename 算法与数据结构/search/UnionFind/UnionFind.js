@@ -1,3 +1,6 @@
+// 第三版并查集，连接的时候判断比较两个节点树的高低，低的树连接到高的树上面
+// 包含了路径压缩优化
+// 时间复杂度近乎是O(1)
 function UnionFind(n) {
     this.count = n;
     let parent = [];
@@ -11,14 +14,15 @@ function UnionFind(n) {
 UnionFind.prototype.find = function(p) {
     console.assert(p >= 0 && p < this.count);
     // while(p != this.parent[p]) {
-    //     this.parent[p] = this.parent[this.parent[p]];   // 跳一级找 parent
+    //     this.parent[p] = this.parent[this.parent[p]];   // 跳一级找 parent，路径压缩优化
     //     p = this.parent[p];
     // }
     // return p;
     
-    // 优化的第二个版本 使用递归
-    if (p != this.parent[p]) {
-        this.parent[p] = this.find(this.parent[p]);
+    // 优化的第二个版本 使用递归 将所有节点，直接挂到根节点下
+    if (p != this.parent[p]) { // 说明p不是根节点
+        // 将父节点指向根节点
+        this.parent[p] = this.find(this.parent[p]); // find返回元素的根节点
     }
     return this.parent[p];
 }

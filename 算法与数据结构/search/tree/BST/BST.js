@@ -76,6 +76,7 @@ function BST() {
     return _contain(this.root, key);
   }
 
+  // 前序遍历
   this.preOrder = function (node) {
     if(node) {
       console.log(node.key);
@@ -83,7 +84,7 @@ function BST() {
       preOrder(node.right);
     }
   }
-  
+  // 中序遍历
   this.midOrder = function (node) {
     if(node) {
       preOrder(node.left);
@@ -91,7 +92,7 @@ function BST() {
       preOrder(node.right);
     }
   }
-  
+  // 后序遍历
   this.postOrder = function (node) {
     if(node) {
       preOrder(node.left);
