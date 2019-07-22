@@ -87,8 +87,8 @@ private AvlNodeInteger rightRightRotate(AvlNodeInteger node){
   newRoot.setLeft(node);
   //由此node的高度降低了，newRoot的高度提高了。
   //newRoot的高度由node的高度而来 
-  node.setHeight(maxHeight(node.getLeft(),node.getRight()));
-  newRoot.setHeight(maxHeight(newRoot.getLeft(),newRoot.getRight()));
+  node.setHeight(maxHeight(node.getLeft(),node.getRight())+1);
+  newRoot.setHeight(maxHeight(newRoot.getLeft(),newRoot.getRight())+1);
   return newRoot;
 }
 
@@ -128,7 +128,7 @@ public void insert(Integer val) throws Exception {
 }/** * 递归插入 * parent == null 到最底部插入前节点判断情况 * @param parent * @param val * @return */
 private AvlNodeInteger insertNode(AvlNodeInteger parent,Integer val){
   if(parent == null){
-    return createSingleNode(val);
+    return new AvlNodeInteger(val);
   }
   if(val < parent.getValue()){ 
     //插入判断，小于父节点，插入到左边
@@ -155,11 +155,13 @@ private AvlNodeInteger insertNode(AvlNodeInteger parent,Integer val){
     parent.setRight(insertNode(parent.getRight(),val));
     //判断平衡，不要在意这里的parent是谁，
     //这个parent肯定是递归层级上，回溯的一个节点！每一个节点都需要判断平衡
-    if(height(parent.getRight()) - height(parent.getLeft()) > 2){ 
-      Integer compareVal = (Integer) parent.getLeft().getValue();
+    if(height(parent.getRight()) - height(parent.getLeft()) > 1){ 
+      Integer compareVal = (Integer) parent.getRight().getValue();
+      // 右右旋转类型
       if(val > compareVal){
         parent = rightRightRotate(parent);
       } else {
+        // 右左旋转类型
         parent = rightLeftRotate(parent);
       }
     }
@@ -181,21 +183,21 @@ public void remove(Integer val) {
 /**** * AVL删除，平衡树实现 * @param parent * @param val * @return */
 private AvlNodeInteger remove(AvlNodeInteger parent,Integer val){
   if(val < parent.getValue()){
-  //左子树递归查询
-  //删除以后返回替换的新节点 
-  AvlNodeInteger newLeft = remove(parent.getLeft(),val);
-  parent.setLeft(newLeft);
-  //检查是否平衡，删除的左边，那么用右边-左边
-  if(height(parent.getRight()) - height(parent.getLeft()) > 1){
-    AvlNodeInteger tempNode = parent.getRight();
-    if(height(tempNode.getLeft()) > height(tempNode.getRight())){
-      //RL类型 
-      rightLeftRotate(parent);
-    } else{
-      //RR类型
-      rightRightRotate(parent);
+    //左子树递归查询
+    //删除以后返回替换的新节点 
+    AvlNodeInteger newLeft = remove(parent.getLeft(),val);
+    parent.setLeft(newLeft);
+    //检查是否平衡，删除的左边，那么用右边-左边
+    if(height(parent.getRight()) - height(parent.getLeft()) > 1){
+      AvlNodeInteger tempNode = parent.getRight();
+      if(height(tempNode.getLeft()) > height(tempNode.getRight())){
+        //RL类型 
+        rightLeftRotate(parent);
+      } else{
+        //RR类型
+        rightRightRotate(parent);
+      }
     }
-  }
   } else if(val > parent.getValue()){
     //右子树递归查找
     //删除以后返回替换的新节点
@@ -214,7 +216,7 @@ private AvlNodeInteger remove(AvlNodeInteger parent,Integer val){
     }
   } else { 
     //相等，匹配成功
-    if(null != parent.getLeft() && null != parent.getRight()){ 
+    if(null != parent.getLeft() && null != parent.getRight()){
       //左右子节点都不为空
       //判断高度，高的一方，拿到最大(左)，最小(右)的节点，作为替换节点。
       //删除原来匹配节点
@@ -232,7 +234,8 @@ private AvlNodeInteger remove(AvlNodeInteger parent,Integer val){
         parent.setRight(remove(parent.getRight(),rightMin.getValue())); 
         rightMin.setLeft(parent.getLeft()); 
         rightMin.setRight(parent.getRight()); 
-        rightMin.setHeight(maxHeight(parent.getLeft(),parent.getRight())+1);parent = rightMin;
+        rightMin.setHeight(maxHeight(parent.getLeft(),parent.getRight())+1);
+        parent = rightMin;
       } 
     } else {
       //有任意一方节点为空，则不为空的那一方作为替换节点，删除原来的节点
