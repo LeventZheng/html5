@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #copy{
+      width: 200px;
+      height: 200px;
+      background: green;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="id">点击按钮</div>
+  <div id="copy">
+    <div>child</div>
+  </div>
+  <script>
+    document.querySelector('#id').addEventListener('click', function(e) {
+      console.log(e);
+    });
+    setTimeout(function() {
+      document.querySelector('#copy').appendChild(document.querySelector('#id'));
+      // document.querySelector('#copy').appendChild(document.querySelector('#id').cloneNode(true));
+      console.log('移动成功');
+      
+    }, 2000);
+  </script>
+</body>
+</html>
