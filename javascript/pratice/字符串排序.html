@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // S:待排序字符串
+      // K:对比前几个 
+      function orderlyQueue(S, K) {
+        while(true) {
+          for (let i=0; i<=K; i++) {
+            if (i>= S.length) return S;
+            if (S.charCodeAt(i)>S.charCodeAt(i+1)) {
+              const temp = S.substring(0, i) + S.substring(i+1) + S.substring(i, i+1);
+              S = temp;
+              break;
+            }
+          }
+          if (checkOrder(S, K)) {
+            return S;
+          }
+        }
+
+        function checkOrder(S, K) {
+          let array = S.split('');
+          let order = true;
+          for (let i=1; i<K+1; i++) {
+            if (i>= S.length) return order;
+            if (S.charCodeAt(i)<S.charCodeAt(i-1)) {
+              order = false;
+            }
+          }
+          return order;
+        }
+      }
+
+
+      console.log(orderlyQueue('baaca', 3));
+      
+  </script>
+</body>
+</html>
