@@ -24,8 +24,8 @@
         //获取录音时长
         var url = URL.createObjectURL(content);
         console.log(url);
-        document.querySelector('#video').src = url;
-        document.querySelector('#video').style.display = 'initial'
+        // document.querySelector('#video').src = url;
+        // document.querySelector('#video').style.display = 'initial'
 
          //经测试，发现audio也可获取视频的时长
         var audioElement = new Audio(url);
@@ -47,6 +47,6 @@
     视频时长：
     <span id="time"></span>
   </div>
-  <video id="video" src="" controls style="display: none"></video>
+  <!-- <video id="video" src="" controls style="display: none"></video> -->
 </body>
 </html>
