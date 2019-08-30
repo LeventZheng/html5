@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    // function logFile() {
+    //   let file = document.querySelector('#file').files[0];
+    //   console.log(document.querySelector('#file').value);
+    //   // console.log(file.url);
+      
+    //   document.querySelector('#video').src = document.querySelector('#file').value;
+    //   console.log(document.querySelector('#video'));
+    // }
+
+    function getTimes() {
+      console.time();
+        var obj_file = document.getElementById("file");
+        var content = obj_file.files[0]
+        console.log(content)
+        console.log('文件大小', content.size/1024/1024 + 'm')
+        //获取录音时长
+        var url = URL.createObjectURL(content);
+        console.log(url);
+        document.querySelector('#video').src = url;
+        document.querySelector('#video').style.display = 'initial'
+
+         //经测试，发现audio也可获取视频的时长
+        var audioElement = new Audio(url);
+
+        var duration;
+        audioElement.addEventListener("loadedmetadata", function (_event) {
+            duration = audioElement.duration;
+            console.log(duration);
+            document.querySelector('#time').innerHTML = duration;
+            URL.revokeObjectURL(url);
+            console.timeEnd();
+        });
+    }
+  </script>
+</head>
+<body>
+  <input type="file" name="video" id="file" onchange="getTimes()">
+  <div style="margin-top: 15px;">
+    视频时长：
+    <span id="time"></span>
+  </div>
+  <video id="video" src="" controls style="display: none"></video>
+</body>
+</html>
