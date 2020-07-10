@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // encodeURIComponent(string) ,入参必须是string
+    
+    var a =  {a: 'a', b: 1, c: [1, 2, 3], d: {m: 'm'}}
+    console.log(a);
+    
+    var b = encodeURIComponent(a)
+    console.log(b);
+    console.log(decodeURIComponent(b));
+
+    var c = encodeURIComponent(JSON.stringify(a))
+    console.log(decodeURIComponent(c));
+    
+  </script>
+</body>
+</html>
